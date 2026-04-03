@@ -1,7 +1,5 @@
-redesign: parchment background across all static HTML files
+fix: swap CSS custom property values for light theme
 
-Vercel serves from /public (static HTML), not Next.js app.
-Transformed all 33 HTML files: parchment background, navy text,
-dark red accents, refined gold for CTAs. Readable on light backgrounds.
-
-Co-Authored-By: Claude Opus 4.6 <noreply@anthropic.com>
+The HTML files used CSS variables (--midnight-navy, --civic-parchment)
+not direct hex values. Swapped the variable definitions so backgrounds
+render as parchment and text renders as navy.
