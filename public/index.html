@@ -18,13 +18,13 @@
 <style>
   :root {
     --midnight-navy: #0B1320;
-    --forged-brass: #C8A96A;
+    --forged-brass: #9A7B4F;
     --civic-parchment: #F4F1E8;
     --brass-dim: #A08A56;
     --brass-bright: #D4BA7A;
-    --text-muted: rgba(244, 241, 232, 0.5);
-    --text-dim: rgba(244, 241, 232, 0.35);
-    --rule-brass: rgba(200, 169, 106, 0.25);
+    --text-muted: rgba(11,19,32,0.5);
+    --text-dim: rgba(11,19,32,0.35);
+    --rule-brass: rgba(11,19,32,0.12);
     --navy-light: #111B2E;
     --garnet: #8B2335;
     --garnet-dim: rgba(139,35,53,0.35);
@@ -64,7 +64,7 @@
   }
   .site-header nav { display: flex; gap: 24px; }
   .site-header nav a {
-    font-size: 0.72rem; color: rgba(200,169,106,0.5);
+    font-size: 0.72rem; color: rgba(123,45,59,0.25);
     letter-spacing: 0.1em; text-transform: uppercase;
     text-decoration: none; transition: color 0.2s;
   }
@@ -165,12 +165,12 @@
   }
   .discovery-item {
     padding: 1.5rem;
-    border: 1px solid rgba(200,169,106,0.1);
+    border: 1px solid rgba(123,45,59,0.06);
     border-radius: 4px;
     transition: border-color 0.3s;
   }
   .discovery-item:hover {
-    border-color: rgba(200,169,106,0.3);
+    border-color: rgba(123,45,59,0.15);
   }
   .discovery-item h3 {
     font-family: 'Cormorant Garamond', serif;
@@ -209,7 +209,7 @@
   .email-row input {
     flex: 1;
     padding: 0.6rem 1rem;
-    background: rgba(244,241,232,0.05);
+    background: rgba(11,19,32,0.04);
     border: 1px solid var(--rule-brass);
     border-radius: 3px;
     color: var(--civic-parchment);
@@ -235,7 +235,7 @@
     white-space: nowrap;
   }
   .email-row button:hover {
-    background: rgba(200,169,106,0.1);
+    background: rgba(123,45,59,0.06);
   }
 
   /* ── TEASER ── */
@@ -264,7 +264,7 @@
   .site-footer {
     text-align: center;
     padding: 2.5rem 2rem;
-    border-top: 1px solid rgba(200,169,106,0.08);
+    border-top: 1px solid rgba(11,19,32,0.04);
   }
   .footer-tagline {
     font-family: 'Cormorant Garamond', serif;
@@ -305,7 +305,7 @@
   <nav>
     <a href="/research/">Research</a>
     <a href="/framework.html">Framework</a>
-    <a href="/about.html">About</a><a href="https://partnerwith.ai" style="color: var(--forged-brass); border: 1px solid rgba(200,169,106,0.35); padding: 6px 14px; border-radius: 4px;">Maji&sup2;</a>
+    <a href="/about.html">About</a><a href="https://partnerwith.ai" style="color: var(--forged-brass); border: 1px solid rgba(123,45,59,0.18); padding: 6px 14px; border-radius: 4px;">Maji&sup2;</a>
   </nav>
 </header>
 
@@ -326,17 +326,17 @@
   <h2>Three equations. One universe. No gap.</h2>
 
   <div style="display: grid; grid-template-columns: 1fr; gap: 1.2rem; margin: 2rem 0;">
-    <div style="padding: 1.5rem; border: 1px solid rgba(200,169,106,0.1); border-left: 3px solid var(--garnet); border-radius: 4px;">
+    <div style="padding: 1.5rem; border: 1px solid rgba(123,45,59,0.06); border-left: 3px solid var(--garnet); border-radius: 4px;">
       <div style="font-family: 'Cormorant Garamond', serif; font-weight: 600; font-size: 1.3rem; color: var(--forged-brass); margin-bottom: 0.3rem;">e<sup>i&pi;</sup> + 1 = 0</div>
       <div style="font-size: 0.68rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--garnet); margin-bottom: 0.4rem;">Euler&rsquo;s Identity &mdash; The Ground State</div>
       <p style="font-size: 0.85rem; color: var(--text-dim); margin: 0;">The undifferentiated substrate. All mathematical constants in equilibrium before any perspective exists.</p>
     </div>
-    <div style="padding: 1.5rem; border: 1px solid rgba(200,169,106,0.1); border-left: 3px solid var(--garnet); border-radius: 4px;">
+    <div style="padding: 1.5rem; border: 1px solid rgba(123,45,59,0.06); border-left: 3px solid var(--garnet); border-radius: 4px;">
       <div style="font-family: 'Cormorant Garamond', serif; font-weight: 600; font-size: 1.3rem; color: var(--forged-brass); margin-bottom: 0.3rem;">E = mc&sup2;</div>
       <div style="font-size: 0.68rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--garnet); margin-bottom: 0.4rem;">Einstein &mdash; The External View</div>
       <p style="font-size: 0.85rem; color: var(--text-dim); margin: 0;">Information exchange as measured from outside a system. What physics describes.</p>
     </div>
-    <div style="padding: 1.5rem; border: 1px solid rgba(200,169,106,0.1); border-left: 3px solid var(--garnet); border-radius: 4px;">
+    <div style="padding: 1.5rem; border: 1px solid rgba(123,45,59,0.06); border-left: 3px solid var(--garnet); border-radius: 4px;">
       <div style="font-family: 'Cormorant Garamond', serif; font-weight: 600; font-size: 1.3rem; color: var(--forged-brass); margin-bottom: 0.3rem;">Cx = &Phi; &times; C&sup2;</div>
       <div style="font-size: 0.68rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--garnet); margin-bottom: 0.4rem;">NPR &mdash; The Internal View</div>
       <p style="font-size: 0.85rem; color: var(--text-dim); margin: 0;">Information exchange as experienced from within an integrated system. <strong style="color: var(--civic-parchment);">&Phi;</strong> = integrated information (bits). <strong style="color: var(--civic-parchment);">C&sup2;</strong> = coherence squared (C<sub>internal</sub> &times; C<sub>external</sub>). Measured in Embers (Em).</p>

@@ -12,9 +12,9 @@
 <style>
   :root {
     --navy: #0B1320;
-    --brass: #C8A96A;
+    --brass: #9A7B4F;
     --parchment: #F4F1E8;
-    --brass-dim: rgba(200,169,106,0.35);
+    --brass-dim: rgba(123,45,59,0.18);
   }
 
   *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
@@ -80,25 +80,25 @@
   }
 
   .lang-btn {
-    background: rgba(244,241,232,0.03);
-    border: 1px solid rgba(200,169,106,0.15);
+    background: rgba(11,19,32,0.02);
+    border: 1px solid rgba(123,45,59,0.08);
     border-radius: 6px;
     padding: 12px 24px;
     font-family: 'Source Sans 3', sans-serif;
     font-size: 15px;
-    color: rgba(244,241,232,0.5);
+    color: rgba(11,19,32,0.5);
     cursor: pointer;
     transition: all 0.3s;
     min-width: 120px;
   }
   .lang-btn:hover {
-    background: rgba(200,169,106,0.12);
-    border-color: rgba(200,169,106,0.4);
+    background: rgba(123,45,59,0.07);
+    border-color: rgba(123,45,59,0.2);
     color: var(--brass);
   }
   .lang-btn.primary {
-    background: rgba(200,169,106,0.12);
-    border-color: rgba(200,169,106,0.4);
+    background: rgba(123,45,59,0.07);
+    border-color: rgba(123,45,59,0.2);
     color: var(--brass);
   }
 
@@ -106,7 +106,7 @@
     font-family: 'Cormorant Garamond', serif;
     font-style: italic;
     font-size: 0.85rem;
-    color: rgba(200,169,106,0.2);
+    color: rgba(11,19,32,0.1);
     margin-top: 2.5rem;
   }
 
@@ -147,7 +147,7 @@
   .overlay-close {
     margin-top: 1.5rem;
     background: none;
-    border: 1px solid rgba(200,169,106,0.25);
+    border: 1px solid rgba(11,19,32,0.12);
     color: var(--brass);
     font-family: 'Source Sans 3', sans-serif;
     font-size: 0.85rem;
@@ -157,18 +157,18 @@
     transition: all 0.3s;
   }
   .overlay-close:hover {
-    background: rgba(200,169,106,0.1);
+    background: rgba(123,45,59,0.06);
   }
 
   .translation-note {
     font-family: 'Source Sans 3', sans-serif;
     font-size: 0.7rem;
-    color: rgba(200,169,106,0.25);
+    color: rgba(11,19,32,0.12);
     font-style: italic;
     margin-top: 2rem;
   }
   .translation-note a {
-    color: rgba(200,169,106,0.4);
+    color: rgba(123,45,59,0.2);
     text-decoration: underline;
     text-underline-offset: 2px;
   }
@@ -213,7 +213,7 @@
   <p>Translations are in progress. The research is currently available in English, and we are actively working to make it accessible in as many languages as possible.</p>
   <p>If you are a native speaker and would like to help, please reach out at <a href="mailto:translations@forgedlucidity.ai">translations@forgedlucidity.ai</a></p>
   <button class="overlay-close" onclick="hideComingSoon()">Continue in English</button>
-  <button class="overlay-close" onclick="document.getElementById('comingSoon').classList.remove('open')" style="border: none; margin-top: 0.5rem; font-size: 0.75rem; color: rgba(200,169,106,0.35);">Go back</button>
+  <button class="overlay-close" onclick="document.getElementById('comingSoon').classList.remove('open')" style="border: none; margin-top: 0.5rem; font-size: 0.75rem; color: rgba(123,45,59,0.18);">Go back</button>
 </div>
 
 <script>

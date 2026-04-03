@@ -1,0 +1,7 @@
+redesign: parchment background across all static HTML files
+
+Vercel serves from /public (static HTML), not Next.js app.
+Transformed all 33 HTML files: parchment background, navy text,
+dark red accents, refined gold for CTAs. Readable on light backgrounds.
+
+Co-Authored-By: Claude Opus 4.6 <noreply@anthropic.com>
