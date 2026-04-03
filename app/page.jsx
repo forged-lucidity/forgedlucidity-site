@@ -1172,7 +1172,7 @@ export default function ForgedLuciditySite() {
       <style>{`
         @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Source+Sans+3:wght@300;400;500;600&display=swap');
         *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
-        html, body { overflow: hidden; background: ${C.navy}; }
+        html, body { overflow: hidden; background: ${C.parchment}; }
         button:focus { outline: 1px solid rgba(11,19,32,0.12); outline-offset: 2px; }
         ::selection { background: rgba(123,45,59,0.12); color: ${C.parchment}; }
         input::placeholder { color: rgba(11,19,32,0.3); }
