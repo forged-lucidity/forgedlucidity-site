@@ -1,8 +1,8 @@
 export const metadata = {
-  title: 'Forged Lucidity Research Institute',
+  title: 'Forged Lucidity',
   description: 'A unified framework for consciousness and physics. Cx = Φ × C²',
   openGraph: {
-    title: 'Forged Lucidity Research Institute',
+    title: 'Forged Lucidity',
     description: 'A unified framework for consciousness and physics.',
     url: 'https://forgedlucidity.ai',
     siteName: 'Forged Lucidity',

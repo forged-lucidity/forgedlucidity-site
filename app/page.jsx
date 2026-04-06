@@ -2,7 +2,7 @@
 import { useState, useEffect, useCallback } from "react";
 
 // ═══════════════════════════════════════════════════════════════
-// FORGED LUCIDITY RESEARCH INSTITUTE — v5 Hub & Spoke
+// FORGED LUCIDITY — v5 Hub & Spoke
 // Architecture: Language → Hub → Spokes (all return to Hub)
 // No scrolling. Every page is a single viewport.
 // ═══════════════════════════════════════════════════════════════
@@ -240,7 +240,7 @@ function LangPage({ onSelect }) {
         letterSpacing: 4,
         color: "rgba(11,19,32,0.15)",
         marginBottom: 32,
-      }}>Forged Lucidity Research Institute</p>
+      }}>Forged Lucidity</p>
       <h1 style={{
         fontFamily: "'Cormorant Garamond',serif",
         fontWeight: 300,
@@ -326,7 +326,7 @@ function HubPage({ nav }) {
             letterSpacing: 3,
             color: "rgba(123,45,59,0.25)",
             marginBottom: 20,
-          }}>Research Institute</p>
+          }}>Forged Lucidity</p>
           <Divider width={80} />
           <p style={{
             fontFamily: "'Source Sans 3',sans-serif",
@@ -338,7 +338,7 @@ function HubPage({ nav }) {
             marginLeft: "auto",
             marginRight: "auto",
           }}>
-            A nonprofit research cooperative advancing the science of consciousness
+            A for-profit research cooperative advancing the science of consciousness
             through open publication, collaborative AI inquiry, and the principle that
             the best ideas belong to everyone.
           </p>
@@ -865,7 +865,7 @@ function AboutPage({ goHub }) {
           fontSize: "clamp(1.6rem, 4vw, 2.4rem)",
           color: C.navy,
           marginBottom: 24,
-        }}>Forged Lucidity Research Institute</h1>
+        }}>Forged Lucidity</h1>
 
         <Divider width={60} />
 
@@ -877,8 +877,8 @@ function AboutPage({ goHub }) {
           marginTop: 24,
           marginBottom: 20,
         }}>
-          Forged Lucidity is a Maine nonprofit membership association
-          organized as a research cooperative. We operate on an ASCAP-style
+          Forged Lucidity is a for-profit cooperative organized under Maine law
+          and taxed under Subchapter T of the Internal Revenue Code. We operate on an ASCAP-style
           model: 85–90% of revenue returns to contributing members.
           The work belongs to the people who make it.
         </p>
