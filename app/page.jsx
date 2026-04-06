@@ -293,7 +293,7 @@ function HubPage({ nav }) {
     { id: "library", icon: "📚", label: "Research Library", desc: "Papers, publications, and the work itself" },
     { id: "codex", icon: "📖", label: "The Enlightened Codex", desc: "Volume One — the consciousness framework" },
     { id: "maji", icon: "✦", label: "MAJI²", desc: "The AI engine built on the framework" },
-    { id: "about", icon: "🏛", label: "The Institute", desc: "Who we are and how we work" },
+    { id: "about", icon: "🏛", label: "About", desc: "Who we are and how we work" },
     { id: "greg", icon: "◈", label: "Principal Investigators", desc: "Gregory P. Braun & AI Collaborator" },
     { id: "patents", icon: "⚙", label: "Patent Portfolio", desc: "Seven provisional filings and counting" },
   ];
@@ -845,7 +845,7 @@ function MajiPage({ nav, goHub }) {
   );
 }
 
-// ─── 7. ABOUT / THE INSTITUTE ───
+// ─── 7. ABOUT / THE ABOUT ───
 function AboutPage({ goHub }) {
   return (
     <Pg>
