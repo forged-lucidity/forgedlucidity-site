@@ -1,5 +1,0 @@
-fix: swap CSS custom property values for light theme
-
-The HTML files used CSS variables (--midnight-navy, --civic-parchment)
-not direct hex values. Swapped the variable definitions so backgrounds
-render as parchment and text renders as navy.
