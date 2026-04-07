@@ -15,19 +15,19 @@
   @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500;600&display=swap');
 
   :root {
-    --ember: #7B0A2E;
-    --ember-light: #9C1B3F;
-    --ember-glow: #C4935A;
-    --deep: #0A1128;
-    --warm-dark: #101D3F;
-    --warm-mid: #172752;
-    --parchment: #FAF6F0;
-    --cream: #F5EDE3;
+    --ember: #9B3420;
+    --ember-light: #C04428;
+    --ember-glow: #E8733A;
+    --deep: #0f1a2e;
+    --warm-dark: #142038;
+    --warm-mid: #1a2a4a;
+    --parchment: #F4F2EF;
+    --cream: #EDE9E3;
     --sage: #7A8B6F;
     --sage-light: #A3B895;
-    --gold: #D4A017;
-    --text: #1A1A1A;
-    --text-light: #555050;
+    --gold: #D05828;
+    --text: #161616;
+    --text-light: #4A4545;
   }
 
   * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -45,7 +45,7 @@
   /* NAV */
   nav {
     position: fixed; top: 0; width: 100%; z-index: 100;
-    background: linear-gradient(to top, var(--deep) 0%, var(--warm-dark) 30%, #12254A 50%, var(--gold) 72%, #B8561A 88%, var(--ember) 100%);
+    background: linear-gradient(to top, var(--deep) 0%, var(--warm-dark) 30%, #162848 50%, var(--gold) 72%, #C04428 88%, var(--ember) 100%);
     backdrop-filter: blur(12px);
     border-bottom: none;
     padding: 0.8rem 2rem;
@@ -78,12 +78,12 @@
   .hero-logo {
     width: clamp(160px, 22vw, 260px); height: auto;
     margin-bottom: 2rem;
-    filter: drop-shadow(0 0 40px rgba(212, 160, 23, 0.25));
+    filter: drop-shadow(0 0 40px rgba(208, 88, 40, 0.25));
     animation: breathe 6s ease-in-out infinite;
   }
   @keyframes breathe {
-    0%, 100% { transform: scale(1); filter: drop-shadow(0 0 40px rgba(212, 160, 23, 0.2)); }
-    50% { transform: scale(1.02); filter: drop-shadow(0 0 60px rgba(212, 160, 23, 0.35)); }
+    0%, 100% { transform: scale(1); filter: drop-shadow(0 0 40px rgba(208, 88, 40, 0.2)); }
+    50% { transform: scale(1.02); filter: drop-shadow(0 0 60px rgba(208, 88, 40, 0.35)); }
   }
   .hero h1 {
     font-size: 4rem; color: var(--deep); margin-bottom: 0.5rem;
@@ -101,7 +101,7 @@
     text-decoration: none; border-radius: 6px;
     letter-spacing: 0.1em; text-transform: uppercase;
     transition: all 0.3s;
-    border: 1px solid rgba(212, 160, 23, 0.3);
+    border: 1px solid rgba(208, 88, 40, 0.3);
     box-shadow: 0 2px 12px rgba(10, 17, 40, 0.4);
   }
   .cta-btn:hover {
@@ -167,7 +167,7 @@
     font-size: 0.8rem; font-weight: 500;
     letter-spacing: 0.04em; text-transform: uppercase;
     cursor: pointer; transition: all 0.3s;
-    border: 1px solid rgba(212, 160, 23, 0.5);
+    border: 1px solid rgba(208, 88, 40, 0.5);
     color: var(--gold); background: transparent;
     text-decoration: none;
   }
