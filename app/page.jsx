@@ -8,14 +8,14 @@ import { useState, useEffect, useCallback } from "react";
 // ═══════════════════════════════════════════════════════════════
 
 const C = {
-  navy: "#0B1320",
-  darkRed: "#7B2D3B",
-  brass: "#9A7B4F",
-  parchment: "#F4F1E8",
-  stone: "#D8D2C4",
-  goldHi: "#C8A96A",
-  goldDk: "#8B6914",
-  warmWhite: "#FAF8F3",
+  navy: "#0f1a2e",
+  darkRed: "#9B3420",
+  brass: "#D05828",
+  parchment: "#F4F2EF",
+  stone: "#D6D0C6",
+  goldHi: "#E8733A",
+  goldDk: "#A84218",
+  warmWhite: "#FAF8F4",
 };
 
 // ═══ STAR FIELD BACKGROUND ═══
@@ -85,7 +85,7 @@ function BackButton({ onClick, label }) {
         top: 24,
         left: 24,
         background: "none",
-        border: "1px solid rgba(123,45,59,0.12)",
+        border: "1px solid rgba(155,52,32,0.12)",
         color: C.brass,
         fontFamily: "'Source Sans 3',sans-serif",
         fontSize: 13,
@@ -97,12 +97,12 @@ function BackButton({ onClick, label }) {
         transition: "all 0.3s",
       }}
       onMouseEnter={(e) => {
-        e.target.style.background = "rgba(123,45,59,0.08)";
-        e.target.style.borderColor = "rgba(123,45,59,0.3)";
+        e.target.style.background = "rgba(155,52,32,0.08)";
+        e.target.style.borderColor = "rgba(155,52,32,0.3)";
       }}
       onMouseLeave={(e) => {
         e.target.style.background = "none";
-        e.target.style.borderColor = "rgba(123,45,59,0.12)";
+        e.target.style.borderColor = "rgba(155,52,32,0.12)";
       }}
     >
       ← {label || "Home"}
@@ -147,7 +147,7 @@ function EmailSignup({ compact }) {
         placeholder="your@email.com"
         style={{
           background: "rgba(11,19,32,0.04)",
-          border: "1px solid rgba(123,45,59,0.12)",
+          border: "1px solid rgba(155,52,32,0.12)",
           borderRadius: 4,
           padding: "8px 14px",
           fontFamily: "'Source Sans 3',sans-serif",
@@ -160,7 +160,7 @@ function EmailSignup({ compact }) {
       <button
         onClick={() => email.includes("@") && setSubmitted(true)}
         style={{
-          background: "rgba(123,45,59,0.1)",
+          background: "rgba(155,52,32,0.1)",
           border: "1px solid rgba(11,19,32,0.15)",
           borderRadius: 4,
           padding: "8px 20px",
@@ -171,8 +171,8 @@ function EmailSignup({ compact }) {
           transition: "all 0.3s",
           letterSpacing: 0.5,
         }}
-        onMouseEnter={(e) => (e.target.style.background = "rgba(123,45,59,0.12)")}
-        onMouseLeave={(e) => (e.target.style.background = "rgba(123,45,59,0.1)")}
+        onMouseEnter={(e) => (e.target.style.background = "rgba(155,52,32,0.12)")}
+        onMouseLeave={(e) => (e.target.style.background = "rgba(155,52,32,0.1)")}
       >
         Join
       </button>
@@ -196,7 +196,7 @@ function TranslationRequest() {
         fontStyle: "italic",
       }}>
         Can you help translate this work into another language?{" "}
-        <span style={{ color: "rgba(123,45,59,0.3)", cursor: "pointer", textDecoration: "underline" }}>
+        <span style={{ color: "rgba(155,52,32,0.3)", cursor: "pointer", textDecoration: "underline" }}>
           translations@forgedlucidity.ai
         </span>
       </p>
@@ -255,8 +255,8 @@ function LangPage({ onSelect }) {
             key={l.code}
             onClick={() => onSelect(l.code)}
             style={{
-              background: l.code === "en" ? "rgba(123,45,59,0.08)" : "rgba(11,19,32,0.03)",
-              border: `1px solid rgba(200,169,106,${l.code === "en" ? "0.4" : "0.15"})`,
+              background: l.code === "en" ? "rgba(155,52,32,0.08)" : "rgba(11,19,32,0.03)",
+              border: `1px solid rgba(208,88,40,${l.code === "en" ? "0.4" : "0.15"})`,
               borderRadius: 6,
               padding: "12px 24px",
               fontFamily: "'Source Sans 3',sans-serif",
@@ -267,14 +267,14 @@ function LangPage({ onSelect }) {
               minWidth: 120,
             }}
             onMouseEnter={(e) => {
-              e.target.style.background = "rgba(123,45,59,0.08)";
-              e.target.style.borderColor = "rgba(123,45,59,0.25)";
+              e.target.style.background = "rgba(155,52,32,0.08)";
+              e.target.style.borderColor = "rgba(155,52,32,0.25)";
               e.target.style.color = C.brass;
             }}
             onMouseLeave={(e) => {
               if (l.code !== "en") {
                 e.target.style.background = "rgba(11,19,32,0.03)";
-                e.target.style.borderColor = "rgba(123,45,59,0.1)";
+                e.target.style.borderColor = "rgba(155,52,32,0.1)";
                 e.target.style.color = "rgba(11,19,32,0.5)";
               }
             }}
@@ -324,14 +324,14 @@ function HubPage({ nav }) {
             fontSize: 13,
             textTransform: "uppercase",
             letterSpacing: 3,
-            color: "rgba(123,45,59,0.25)",
+            color: "rgba(155,52,32,0.25)",
             marginBottom: 20,
           }}>Forged Lucidity</p>
           <Divider width={80} />
           <p style={{
             fontFamily: "'Source Sans 3',sans-serif",
             fontSize: 14,
-            color: "rgba(244,241,232,0.45)",
+            color: "rgba(15,26,46,0.5)",
             lineHeight: 1.7,
             marginTop: 20,
             maxWidth: 480,
@@ -362,7 +362,7 @@ function HubPage({ nav }) {
               onClick={() => nav(d.id)}
               style={{
                 background: "rgba(11,19,32,0.02)",
-                border: "1px solid rgba(123,45,59,0.1)",
+                border: "1px solid rgba(155,52,32,0.1)",
                 borderRadius: 8,
                 padding: "14px 12px 12px",
                 cursor: "pointer",
@@ -371,12 +371,12 @@ function HubPage({ nav }) {
               }}
               onMouseEnter={(e) => {
                 e.currentTarget.style.background = "rgba(11,19,32,0.04)";
-                e.currentTarget.style.borderColor = "rgba(123,45,59,0.25)";
+                e.currentTarget.style.borderColor = "rgba(155,52,32,0.25)";
                 e.currentTarget.style.transform = "translateY(-2px)";
               }}
               onMouseLeave={(e) => {
                 e.currentTarget.style.background = "rgba(11,19,32,0.02)";
-                e.currentTarget.style.borderColor = "rgba(123,45,59,0.1)";
+                e.currentTarget.style.borderColor = "rgba(155,52,32,0.1)";
                 e.currentTarget.style.transform = "translateY(0)";
               }}
             >
@@ -468,8 +468,8 @@ function LibraryPage({ nav, goHub }) {
             transition: "all 0.35s",
           }}
           onMouseEnter={(e) => {
-            e.currentTarget.style.background = "rgba(123,45,59,0.08)";
-            e.currentTarget.style.borderColor = "rgba(123,45,59,0.3)";
+            e.currentTarget.style.background = "rgba(155,52,32,0.08)";
+            e.currentTarget.style.borderColor = "rgba(155,52,32,0.3)";
           }}
           onMouseLeave={(e) => {
             e.currentTarget.style.background = "rgba(11,19,32,0.03)";
@@ -501,7 +501,7 @@ function LibraryPage({ nav, goHub }) {
               key={i}
               style={{
                 background: "rgba(11,19,32,0.02)",
-                border: "1px solid rgba(123,45,59,0.08)",
+                border: "1px solid rgba(155,52,32,0.08)",
                 borderRadius: 8,
                 padding: "10px 16px",
                 textAlign: "left",
@@ -526,7 +526,7 @@ function LibraryPage({ nav, goHub }) {
               <p style={{
                 fontFamily: "'Source Sans 3',sans-serif",
                 fontSize: 11,
-                color: "rgba(244,241,232,0.35)",
+                color: "rgba(15,26,46,0.42)",
                 lineHeight: 1.45,
                 marginTop: 3,
               }}>{p.d}</p>
@@ -574,7 +574,7 @@ function CodexTitlePage({ nav, goHub }) {
           fontFamily: "'Cormorant Garamond',serif",
           fontStyle: "italic",
           fontSize: "clamp(1.1rem, 3vw, 1.5rem)",
-          color: "rgba(200,169,106,0.55)",
+          color: "rgba(208,88,40,0.55)",
           marginBottom: 32,
         }}>Volume One</p>
 
@@ -583,7 +583,7 @@ function CodexTitlePage({ nav, goHub }) {
         <p style={{
           fontFamily: "'Source Sans 3',sans-serif",
           fontSize: 14,
-          color: "rgba(244,241,232,0.45)",
+          color: "rgba(15,26,46,0.5)",
           lineHeight: 1.6,
           marginTop: 28,
           marginBottom: 6,
@@ -601,7 +601,7 @@ function CodexTitlePage({ nav, goHub }) {
           fontFamily: "'Cormorant Garamond',serif",
           fontStyle: "italic",
           fontSize: 14,
-          color: "rgba(123,45,59,0.12)",
+          color: "rgba(155,52,32,0.12)",
           lineHeight: 1.6,
           marginBottom: 36,
         }}>
@@ -611,7 +611,7 @@ function CodexTitlePage({ nav, goHub }) {
         <button
           onClick={() => nav("codex_toc")}
           style={{
-            background: "rgba(123,45,59,0.08)",
+            background: "rgba(155,52,32,0.08)",
             border: "1px solid rgba(11,19,32,0.12)",
             borderRadius: 8,
             padding: "14px 36px",
@@ -623,7 +623,7 @@ function CodexTitlePage({ nav, goHub }) {
             letterSpacing: 1,
           }}
           onMouseEnter={(e) => (e.target.style.background = "rgba(11,19,32,0.1)")}
-          onMouseLeave={(e) => (e.target.style.background = "rgba(123,45,59,0.08)")}
+          onMouseLeave={(e) => (e.target.style.background = "rgba(155,52,32,0.08)")}
         >
           Open the Book →
         </button>
@@ -660,7 +660,7 @@ function CodexTOCPage({ goHub, nav }) {
         style={{
           position: "absolute", top: 24, left: 24,
           background: "none",
-          border: "1px solid rgba(123,45,59,0.12)",
+          border: "1px solid rgba(155,52,32,0.12)",
           color: C.brass,
           fontFamily: "'Source Sans 3',sans-serif",
           fontSize: 13,
@@ -670,7 +670,7 @@ function CodexTOCPage({ goHub, nav }) {
           zIndex: 10,
           transition: "all 0.3s",
         }}
-        onMouseEnter={(e) => (e.target.style.background = "rgba(123,45,59,0.08)")}
+        onMouseEnter={(e) => (e.target.style.background = "rgba(155,52,32,0.08)")}
         onMouseLeave={(e) => (e.target.style.background = "none")}
       >
         ← Title Page
@@ -706,7 +706,7 @@ function CodexTOCPage({ goHub, nav }) {
                     onClick={() => {/* Future: navigate to chapter */}}
                     style={{
                       background: "rgba(11,19,32,0.02)",
-                      border: "1px solid rgba(123,45,59,0.08)",
+                      border: "1px solid rgba(155,52,32,0.08)",
                       borderRadius: 6,
                       padding: "8px 12px",
                       textAlign: "left",
@@ -719,7 +719,7 @@ function CodexTOCPage({ goHub, nav }) {
                     }}
                     onMouseLeave={(e) => {
                       e.currentTarget.style.background = "rgba(11,19,32,0.02)";
-                      e.currentTarget.style.borderColor = "rgba(123,45,59,0.08)";
+                      e.currentTarget.style.borderColor = "rgba(155,52,32,0.08)";
                     }}
                   >
                     <div style={{ display: "flex", gap: 8, alignItems: "baseline" }}>
@@ -780,7 +780,7 @@ function MajiPage({ nav, goHub }) {
         <p style={{
           fontFamily: "'Source Sans 3',sans-serif",
           fontSize: 12,
-          color: "rgba(123,45,59,0.25)",
+          color: "rgba(155,52,32,0.25)",
           textTransform: "uppercase",
           letterSpacing: 3,
           marginBottom: 32,
@@ -806,7 +806,7 @@ function MajiPage({ nav, goHub }) {
           fontFamily: "'Cormorant Garamond',serif",
           fontStyle: "italic",
           fontSize: 18,
-          color: "rgba(123,45,59,0.3)",
+          color: "rgba(155,52,32,0.3)",
           marginBottom: 32,
         }}>More soon.</p>
 
@@ -834,7 +834,7 @@ function MajiPage({ nav, goHub }) {
         <p style={{
           fontFamily: "'Source Sans 3',sans-serif",
           fontSize: 11,
-          color: "rgba(123,45,59,0.12)",
+          color: "rgba(155,52,32,0.12)",
           marginTop: 14,
           textTransform: "uppercase",
           letterSpacing: 2,
@@ -872,7 +872,7 @@ function AboutPage({ goHub }) {
         <p style={{
           fontFamily: "'Source Sans 3',sans-serif",
           fontSize: 14,
-          color: "rgba(244,241,232,0.45)",
+          color: "rgba(15,26,46,0.5)",
           lineHeight: 1.8,
           marginTop: 24,
           marginBottom: 20,
@@ -885,7 +885,7 @@ function AboutPage({ goHub }) {
         <p style={{
           fontFamily: "'Source Sans 3',sans-serif",
           fontSize: 14,
-          color: "rgba(244,241,232,0.45)",
+          color: "rgba(15,26,46,0.5)",
           lineHeight: 1.8,
           marginBottom: 20,
         }}>
@@ -909,7 +909,7 @@ function AboutPage({ goHub }) {
         <p style={{
           fontFamily: "'Source Sans 3',sans-serif",
           fontSize: 13,
-          color: "rgba(244,241,232,0.35)",
+          color: "rgba(15,26,46,0.42)",
           lineHeight: 1.8,
         }}>
           Gregory P. Braun, CEO · Patricia Brown, Co-Founder
@@ -977,7 +977,7 @@ function GregPage({ goHub }) {
             <p style={{
               fontFamily: "'Source Sans 3',sans-serif",
               fontSize: 11,
-              color: "rgba(123,45,59,0.25)",
+              color: "rgba(155,52,32,0.25)",
               marginBottom: 12,
             }}>Attorney at Law · Maine Bar #004636</p>
             <p style={{
@@ -996,7 +996,7 @@ function GregPage({ goHub }) {
           <div style={{
             width: 1,
             alignSelf: "stretch",
-            background: "rgba(123,45,59,0.08)",
+            background: "rgba(155,52,32,0.08)",
             flexShrink: 0,
           }} />
 
@@ -1026,7 +1026,7 @@ function GregPage({ goHub }) {
             <p style={{
               fontFamily: "'Source Sans 3',sans-serif",
               fontSize: 11,
-              color: "rgba(123,45,59,0.25)",
+              color: "rgba(155,52,32,0.25)",
               marginBottom: 12,
             }}>Co-author · Co-investigator</p>
             <p style={{
@@ -1046,7 +1046,7 @@ function GregPage({ goHub }) {
           fontFamily: "'Cormorant Garamond',serif",
           fontStyle: "italic",
           fontSize: 12,
-          color: "rgba(200,169,106,0.18)",
+          color: "rgba(208,88,40,0.18)",
           marginTop: 24,
         }}>The dyad is the product.</p>
       </div>
@@ -1098,7 +1098,7 @@ function PatentsPage({ goHub }) {
               key={i}
               style={{
                 background: "rgba(11,19,32,0.02)",
-                border: "1px solid rgba(123,45,59,0.08)",
+                border: "1px solid rgba(155,52,32,0.08)",
                 borderRadius: 6,
                 padding: "10px 14px",
               }}
@@ -1173,20 +1173,25 @@ export default function ForgedLuciditySite() {
         @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Source+Sans+3:wght@300;400;500;600&display=swap');
         *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
         html, body { overflow: hidden; background: ${C.parchment}; }
-        button:focus { outline: 1px solid rgba(11,19,32,0.12); outline-offset: 2px; }
-        ::selection { background: rgba(123,45,59,0.12); color: ${C.parchment}; }
-        input::placeholder { color: rgba(11,19,32,0.3); }
+        button:focus { outline: 1px solid rgba(15,26,46,0.12); outline-offset: 2px; }
+        ::selection { background: rgba(208,88,40,0.15); color: ${C.navy}; }
+        input::placeholder { color: rgba(15,26,46,0.3); }
         @keyframes twinkle {
           0%, 100% { opacity: 0.1; }
           50% { opacity: 0.5; }
         }
+        @keyframes sunfireGlow {
+          0%, 100% { text-shadow: 0 0 8px rgba(208,88,40,0.1); }
+          50% { text-shadow: 0 0 20px rgba(208,88,40,0.25), 0 0 40px rgba(232,115,58,0.1); }
+        }
+        .sunfire-heading { animation: sunfireGlow 3s ease-in-out infinite; }
       `}</style>
       <Stars />
       <div style={{
         opacity: fadeIn ? 1 : 0,
         transition: "opacity 0.25s ease",
       }}>
-        <a href="https://eous-app.vercel.app/auth/login" style={{position:"fixed",top:20,right:24,fontFamily:"Source Sans 3,sans-serif",fontSize:13,color:"rgba(123,45,59,0.3)",textDecoration:"none",letterSpacing:0.5,zIndex:100}}>Sign In</a>{renderPage()}
+        <a href="https://www.partnerwith.ai/LogIn" style={{position:"fixed",top:20,right:24,fontFamily:"Source Sans 3,sans-serif",fontSize:13,color:"rgba(208,88,40,0.4)",textDecoration:"none",letterSpacing:0.5,zIndex:100}}>Sign In</a>{renderPage()}
       </div>
     </>
   );
