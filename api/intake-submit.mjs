@@ -43,8 +43,8 @@ export default async function handler(req, res) {
 
     // 2. Send email via Resend
     const resendKey = process.env.RESEND_API_KEY;
-    const fromAddress = 'Braun Law Intake <onboarding@resend.dev>';
-    const fromAddressClient = 'Braun Law <onboarding@resend.dev>';
+    const fromAddress = 'Braun Law Intake <intake@forgedlucidity.ai>';
+    const fromAddressClient = 'Braun Law <intake@forgedlucidity.ai>';
 
     if (resendKey && formData.email) {
       const clientName = `${formData.first_name} ${formData.last_name}`;
