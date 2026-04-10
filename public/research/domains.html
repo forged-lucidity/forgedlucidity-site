@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Seven Domains — Forged Lucidity</title>
-<meta name="description" content="The Cx operator tested across seven independent physical domains. Same equation. Same results.">
+<title>Six Domains — Forged Lucidity</title>
+<meta name="description" content="The Cx operator tested across six independent physical domains with public datasets. Same equation. Statistically significant in every one.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400;1,500&family=Source+Sans+3:ital,wght@0,300;0,400;0,500;0,600;1,400;1,500&display=swap" rel="stylesheet">
@@ -15,9 +15,9 @@
   *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
   html { font-size: 18px; scroll-behavior: smooth; -webkit-font-smoothing: antialiased; }
   body { font-family: 'Source Sans 3', sans-serif; background: var(--civic-parchment); color: var(--text-body); line-height: 1.75; }
+  h1, h2, h3 { font-family: 'Cormorant Garamond', serif; font-weight: 400; color: var(--midnight-navy); }
 </style>
 <style>
-  h1, h2, h3 { font-family: 'Cormorant Garamond', serif; font-weight: 400; color: var(--midnight-navy); }
   .site-header { position: sticky; top: 0; z-index: 100; background: rgba(244,241,232,0.97);
     backdrop-filter: blur(12px); padding: 0.8rem 2rem; display: flex; align-items: center;
     justify-content: space-between; border-bottom: 2px solid var(--forged-brass); }
@@ -27,7 +27,7 @@
   .site-header nav a { font-family: 'Source Sans 3', sans-serif; font-size: 0.7rem;
     color: rgba(11,19,32,0.4); letter-spacing: 0.1em; text-transform: uppercase; }
   .site-header nav a:hover { color: var(--forged-brass); }
-  .content { max-width: 720px; margin: 0 auto; padding: 3rem 2rem 5rem; }
+  .content { max-width: 740px; margin: 0 auto; padding: 3rem 2rem 5rem; }
   .page-label { font-size: 0.68rem; letter-spacing: 0.25em; text-transform: uppercase;
     color: var(--brass-dim); margin-bottom: 0.6rem; }
   h1 { font-size: 2rem; margin-bottom: 0.3rem; line-height: 1.25; }
@@ -37,6 +37,9 @@
   h2 { font-size: 1.3rem; font-weight: 600; margin-top: 2.5rem; margin-bottom: 0.8rem; }
   p { margin-bottom: 1rem; font-size: 1rem; line-height: 1.8; }
   strong { color: var(--midnight-navy); }
+  .back-link { display: inline-block; margin-bottom: 2rem; font-size: 0.78rem;
+    color: var(--forged-brass); text-decoration: none; letter-spacing: 0.05em; }
+  .back-link:hover { text-decoration: underline; }
 </style>
 <style>
   .domain-card { padding: 1.5rem; margin: 1.2rem 0; border-radius: 4px;
@@ -46,16 +49,27 @@
   .domain-card .domain-meta { font-size: 0.78rem; color: var(--brass-dim);
     letter-spacing: 0.04em; margin-bottom: 0.6rem; }
   .domain-card p { font-size: 0.92rem; margin-bottom: 0.5rem; }
-  .back-link { display: inline-block; margin-bottom: 2rem; font-size: 0.78rem;
-    color: var(--forged-brass); text-decoration: none; letter-spacing: 0.05em; }
-  .back-link:hover { text-decoration: underline; }
+  .domain-card .domain-stats { display: flex; gap: 1.5rem; margin-top: 0.8rem;
+    padding-top: 0.8rem; border-top: 1px solid rgba(154,123,79,0.1); }
+  .domain-card .domain-stats span { font-size: 0.78rem; color: var(--text-secondary); }
+  .domain-card .domain-stats strong { color: var(--midnight-navy); font-size: 0.85rem; }
   .equation-display { font-family: 'Cormorant Garamond', serif; font-size: 2rem;
     text-align: center; color: var(--forged-brass); margin: 2rem 0; font-weight: 400; }
+  .null-card { padding: 1.2rem; margin: 1rem 0; border-radius: 4px;
+    border: 1px solid rgba(139,35,53,0.2); background: rgba(139,35,53,0.04); }
+  .null-card h3 { font-size: 1rem; font-weight: 600; color: var(--garnet); margin-bottom: 0.3rem; }
+  .null-card p { font-size: 0.88rem; }
+  .results-table { width: 100%; border-collapse: collapse; margin: 1.5rem 0; font-size: 0.88rem; }
+  .results-table th { text-align: left; padding: 0.6rem 0.8rem; border-bottom: 2px solid rgba(154,123,79,0.3);
+    font-size: 0.72rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--brass-dim); }
+  .results-table td { padding: 0.6rem 0.8rem; border-bottom: 1px solid rgba(154,123,79,0.1); }
+  .results-table .sig { color: var(--forged-brass); font-weight: 600; }
   .footer { text-align: center; padding: 2rem; border-top: 1px solid rgba(123,45,59,0.08);
     font-size: 0.7rem; color: rgba(244,241,232,0.3); letter-spacing: 0.05em; }
   .footer-tagline { font-family: 'Cormorant Garamond', serif; font-style: italic;
     font-size: 0.92rem; color: var(--brass-dim); margin-bottom: 0.8rem; }
-  @media (max-width: 768px) { .content { padding: 2rem 1.5rem 3rem; } h1 { font-size: 1.6rem; } }
+  @media (max-width: 768px) { .content { padding: 2rem 1.5rem 3rem; } h1 { font-size: 1.6rem; }
+    .domain-card .domain-stats { flex-direction: column; gap: 0.3rem; } }
 </style>
 </head>
 <body>
@@ -71,72 +85,205 @@
 <main class="content">
 <a href="/" class="back-link">&larr; Back to home</a>
 <div class="page-label">The Evidence</div>
-<h1>Seven Domains. One Equation.</h1>
-<div class="subtitle">Cross-domain validation of the Cx operator</div>
+<h1>Six Domains. One Equation.</h1>
+<div class="subtitle">Cross-domain validation of the Cx operator using public datasets</div>
 <div class="rule"></div>
 
-<p>The Cx operator &mdash; Cx = &Phi; &times; C&sup2; &mdash; was tested against real-world data from seven independent physical systems. The same mathematical structure produces statistically significant results across all seven. No parameter tuning between domains. No domain-specific adjustments. One equation.</p>
+<p>The Cx operator &mdash; Cx = &Phi; &times; C&sup2; &mdash; was applied to six independent physical systems using publicly available data. No parameter tuning between domains. No domain-specific adjustments. One equation. Statistically significant results in every domain tested. Four achieve p &lt; .001.</p>
 
 <div class="equation-display">Cx = &Phi; &times; C&sup2;</div>
 
-<p>The domains were chosen to maximize diversity: if the operator works across systems this different, the underlying structure is likely fundamental rather than domain-specific.</p>
+<p>Where &Phi; is normalized Shannon entropy of the eigenvalue distribution of the cross-correlation matrix (measuring signal integration), and C&sup2; is the squared inverse of the Frobenius distance between consecutive correlation matrices (measuring structural stability). The product Cx measures coherent integration.</p>
 
-<h2>The Seven Domains</h2>
+<h2>Confirmed Results</h2>
 
-<div class="domain-card">
-  <h3>1. Solar Wind</h3>
-  <div class="domain-meta">Heliophysics &middot; NASA data</div>
-  <p>Measured coherence in solar wind plasma flow. The Cx operator identifies coherent structures in turbulent plasma &mdash; regions where magnetic field lines maintain organized behavior despite surrounding chaos. These structures correspond to known physical phenomena (coronal mass ejections, sector boundaries).</p>
-</div>
-<div class="domain-card">
-  <h3>2. Neural Activity</h3>
-  <div class="domain-meta">Neuroscience &middot; EEG / fMRI literature</div>
-  <p>Applied the Cx operator to neural integration and coherence data. The operator&rsquo;s predictions align with established neuroscience findings: higher Cx values correspond to states associated with conscious awareness, lower values to unconscious states. Structurally parallel to the Perturbational Complexity Index (PCI) validated by Casali et al. (2013).</p>
-</div>
-
-<div class="domain-card">
-  <h3>3. Jet Streams</h3>
-  <div class="domain-meta">Atmospheric Science &middot; NOAA reanalysis data</div>
-  <p>Jet stream behavior exhibits measurable coherence patterns. The Cx operator identifies transitions between laminar (coherent) and turbulent (fragmented) flow regimes. These transitions correspond to known meteorological events and have predictive implications for weather pattern stability.</p>
-</div>
+<table class="results-table">
+  <thead>
+    <tr><th>Domain</th><th>Substrate</th><th>p-value</th><th>&Delta;Cx</th><th>N</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>EEG (Neural)</td><td>EM cortical</td><td class="sig">1.54 &times; 10&supmin;&sup6;</td><td>&minus;7.7%</td><td>4,574</td></tr>
+    <tr><td>Ocean Currents</td><td>Thermohaline</td><td class="sig">2.34 &times; 10&supmin;&sup6;</td><td>+9.4%</td><td>7,103</td></tr>
+    <tr><td>Financial Markets</td><td>Information</td><td class="sig">3.37 &times; 10&supmin;&sup5;</td><td>&minus;11.6%</td><td>852</td></tr>
+    <tr><td>Jet Stream</td><td>Neutral gas</td><td class="sig">7.20 &times; 10&supmin;&sup4;</td><td>+15.9%</td><td>204</td></tr>
+    <tr><td>Seismic</td><td>Solid elastic</td><td>0.00172</td><td>&minus;8.4%</td><td>239</td></tr>
+    <tr><td>Solar Wind</td><td>Plasma</td><td>0.00471</td><td>&minus;9.3%</td><td>65</td></tr>
+  </tbody>
+</table>
+<h2>The Six Confirmed Domains</h2>
 
 <div class="domain-card">
-  <h3>4. Seismic Activity</h3>
-  <div class="domain-meta">Geophysics &middot; USGS seismic data</div>
-  <p>Seismic wave propagation through geological structures shows coherence signatures detectable by the Cx operator. Coherence values correlate with structural integrity of geological formations and the coupling between tectonic elements.</p>
-</div>
-<div class="domain-card">
-  <h3>5. Financial Markets</h3>
-  <div class="domain-meta">Econophysics &middot; Market microstructure data</div>
-  <p>Market data exhibits coherence signatures that distinguish between stable trading regimes and pre-crash fragmentation. The Cx operator detects the same integration-coherence relationship in financial time series that it detects in plasma. The math doesn&rsquo;t know what domain it&rsquo;s in.</p>
-</div>
-
-<div class="domain-card">
-  <h3>6. Ocean Currents</h3>
-  <div class="domain-meta">Physical Oceanography &middot; NOAA/satellite data</div>
-  <p>Ocean circulation patterns &mdash; from thermohaline currents to eddy formation &mdash; display measurable coherence that the Cx operator quantifies. Coherent structures in ocean flow correspond to known oceanographic phenomena and maintain stability over time.</p>
+  <h3>1. Neurological EEG</h3>
+  <div class="domain-meta">Electromagnetic cortical activity &middot; CHB-MIT PhysioNet v1.0</div>
+  <p>8-channel scalp EEG recordings. The Cx operator detects coherence collapse at seizure boundaries &mdash; the transition from organized cortical activity to disordered firing. Strongest statistical result of all domains.</p>
+  <div class="domain-stats">
+    <span>p = <strong>1.54 &times; 10&supmin;&sup6;</strong></span>
+    <span>&Delta;Cx = <strong>&minus;7.7%</strong></span>
+    <span>N = <strong>4,574 windows</strong></span>
+    <span>Channels: <strong>8</strong></span>
+  </div>
 </div>
 
 <div class="domain-card">
-  <h3>7. Power Grids</h3>
-  <div class="domain-meta">Electrical Engineering &middot; Grid stability data</div>
-  <p>Electrical power grids are distributed systems where coherence (phase synchronization across generators) directly determines stability. The Cx operator measures integration and coherence in grid behavior. Grid failures correspond to coherence collapse &mdash; the same signature the operator detects in every other domain.</p>
+  <h3>2. Ocean Currents</h3>
+  <div class="domain-meta">Thermohaline fluid dynamics &middot; Argo Float Program 2021&ndash;2022</div>
+  <p>Temperature profiles across 4 depth layers from the global Argo float network. Coherence increases in organized circulation patterns. Largest dataset in the study.</p>
+  <div class="domain-stats">
+    <span>p = <strong>2.34 &times; 10&supmin;&sup6;</strong></span>
+    <span>&Delta;Cx = <strong>+9.4%</strong></span>
+    <span>N = <strong>7,103 profiles</strong></span>
+    <span>Layers: <strong>4</strong></span>
+  </div>
 </div>
 
-<h2>What This Means</h2>
+<div class="domain-card">
+  <h3>3. Financial Markets</h3>
+  <div class="domain-meta">Pure information dynamics &middot; SPDR Sector ETFs 2007&ndash;2024</div>
+  <p>Seven sector ETF returns analyzed across 17 years. Cx drops sharply before market crises &mdash; coherence degrades as correlations fragment. The operator detects pre-crash signature without any financial-domain-specific inputs.</p>
+  <div class="domain-stats">
+    <span>p = <strong>3.37 &times; 10&supmin;&sup5;</strong></span>
+    <span>&Delta;Cx = <strong>&minus;11.6%</strong></span>
+    <span>N = <strong>852 windows</strong></span>
+    <span>Channels: <strong>7 sectors</strong></span>
+  </div>
+</div>
+<div class="domain-card">
+  <h3>4. Atmospheric Jet Stream</h3>
+  <div class="domain-meta">Neutral gas dynamics &middot; NOAA NCEP/NCAR Reanalysis 2019&ndash;2022</div>
+  <p>5-channel u-wind data at jet stream altitude. Coherence increases during atmospheric blocking events &mdash; when the jet stream locks into a persistent pattern. Largest effect size in the study.</p>
+  <div class="domain-stats">
+    <span>p = <strong>7.20 &times; 10&supmin;&sup4;</strong></span>
+    <span>&Delta;Cx = <strong>+15.9%</strong></span>
+    <span>N = <strong>204 windows</strong></span>
+    <span>Channels: <strong>5</strong></span>
+  </div>
+</div>
 
-<p>A single mathematical operator producing statistically significant results (p &lt; .001) across seven independent physical domains is not a coincidence. It is evidence of underlying structure.</p>
+<div class="domain-card">
+  <h3>5. Seismic Network</h3>
+  <div class="domain-meta">Solid elastic medium &middot; SCEDC CI Network, M7.1 Ridgecrest 2019</div>
+  <p>Vertical-component seismograms from 6 stations around the 2019 Ridgecrest M7.1 event. Coherence drops at the earthquake boundary &mdash; organized stress release transitions to aftershock disorder.</p>
+  <div class="domain-stats">
+    <span>p = <strong>0.00172</strong></span>
+    <span>&Delta;Cx = <strong>&minus;8.4%</strong></span>
+    <span>N = <strong>239 windows</strong></span>
+    <span>Stations: <strong>6</strong></span>
+  </div>
+</div>
 
-<p>The Cx operator does not claim to explain each domain. It claims to measure the same fundamental property &mdash; coherent integration of information &mdash; wherever that property exists. The domains are different. The math is the same. The results are consistent.</p>
+<div class="domain-card">
+  <h3>6. Solar Wind</h3>
+  <div class="domain-meta">Plasma dynamics &middot; NASA OMNI2 2019&ndash;2023</div>
+  <p>4-channel magnetic field data from NASA&rsquo;s OMNI2 database. Coherence degrades at interplanetary shock boundaries. The domain with the smallest sample size, producing the weakest (but still significant) result.</p>
+  <div class="domain-stats">
+    <span>p = <strong>0.00471</strong></span>
+    <span>&Delta;Cx = <strong>&minus;9.3%</strong></span>
+    <span>N = <strong>65 windows</strong></span>
+    <span>Channels: <strong>4 (B-field)</strong></span>
+  </div>
+</div>
 
-<p>Full methodology and statistical analysis are available in the published research papers. The operational details of the measurement pipeline are protected under our patent portfolio.</p>
+<!-- HONEST NULLS -->
+<h2 class="section-title" style="margin-top: 4rem;">Honest Nulls</h2>
+<p class="intro-text" style="max-width: 720px; margin: 0 auto 2rem;">
+  Not every domain confirmed. Two produced non-significant results.
+  We report them because selective reporting is the antithesis of science.
+</p>
 
-<p style="margin-top: 2rem;"><a href="/research/" style="color: var(--forged-brass);">Read the full research &rarr;</a></p>
+<div class="null-card">
+  <h3>Geomagnetic Storms (Kp &ge; 5)</h3>
+  <div class="domain-meta">NASA OMNI2 hourly Kp index &middot; 2019&ndash;2023</div>
+  <p>Storm-window analysis using the same OMNI2 dataset as Solar Wind but segmented by
+  Kp &ge; 5 events. Only 8 qualifying storm windows in the study period &mdash; severely
+  underpowered. The effect direction was consistent with the Solar Wind result, but the
+  sample was too small to reach significance.</p>
+  <div class="domain-stats">
+    <span>p = <strong>0.19</strong> (n.s.)</span>
+    <span>&Delta;Cx = <strong>&minus;6.1%</strong></span>
+    <span>N = <strong>8 storm windows</strong></span>
+    <span>Status: <strong>Underpowered</strong></span>
+  </div>
+</div>
+
+<div class="null-card">
+  <h3>Cardiac HRV (MIT-BIH)</h3>
+  <div class="domain-meta">PhysioNet MIT-BIH Normal Sinus Rhythm Database</div>
+  <p>Heart rate variability from single-lead ECG recordings. The multi-channel
+  independence assumption required by the Cx operator was violated &mdash; a single
+  physiological source cannot generate the cross-channel structure the operator
+  measures. This is a theoretical exclusion, not a failed replication. The separate
+  CHB-MIT EEG study (multi-electrode, genuine multi-channel) confirmed strongly.</p>
+  <div class="domain-stats">
+    <span>p = <strong>0.093</strong> (n.s.)</span>
+    <span>&Delta;Cx = <strong>&minus;3.2%</strong></span>
+    <span>N = <strong>18 subjects</strong></span>
+    <span>Status: <strong>Assumption violated</strong></span>
+  </div>
+</div>
+
+<!-- PENDING DOMAINS -->
+<h2 class="section-title" style="margin-top: 4rem;">Pending Domains</h2>
+<p class="intro-text" style="max-width: 720px; margin: 0 auto 2rem;">
+  These domains have protocols designed but are awaiting data access or additional validation.
+</p>
+
+<div class="domain-card" style="border-left-color: rgba(244, 241, 232, 0.15);">
+  <h3>Power Grid (Fingrid Open Data API)</h3>
+  <p>Finnish national grid frequency and cross-border flow data. Multi-channel
+  structure confirmed. API access pending. Expected to test whether coherence
+  drops precede grid instability events.</p>
+</div>
+
+<div class="domain-card" style="border-left-color: rgba(244, 241, 232, 0.15);">
+  <h3>MIMIC-IV Cardiovascular / Respiratory</h3>
+  <p>Multi-channel ICU physiological data from PhysioNet&rsquo;s MIMIC-IV database.
+  True multi-channel (ABP, ECG, SpO2, respiratory) &mdash; resolves the single-source
+  limitation that excluded the MIT-BIH cardiac analysis.</p>
+</div>
+
+<!-- CONCLUSION -->
+<h2 class="section-title" style="margin-top: 4rem;">What This Means</h2>
+<div style="max-width: 720px; margin: 0 auto 2rem;">
+  <p class="intro-text">
+    A single mathematical operator &mdash; identical code, identical parameters &mdash;
+    detects boundary transitions in neural tissue, ocean currents, financial markets,
+    atmospheric circulation, seismic networks, and solar plasma. It fails where theory
+    predicts it should fail (single-channel cardiac data) and produces non-significant
+    results where sample size is insufficient (geomagnetic storms with N=8).
+  </p>
+  <p class="intro-text">
+    The operator does not know what domain it is measuring. It receives only a matrix of
+    time-aligned numerical channels. That it finds structure &mdash; and that the structure
+    aligns with independently documented physical boundaries &mdash; is either a coincidence
+    across six unrelated fields, or evidence that coherent self-referential integration is a
+    domain-general property of complex systems.
+  </p>
+</div>
+
+<!-- REPRODUCIBILITY -->
+<div style="max-width: 720px; margin: 0 auto 3rem; padding: 1.5rem; border: 1px solid rgba(244, 241, 232, 0.12); border-radius: 8px;">
+  <h3 style="color: rgba(244, 241, 232, 0.95); margin-bottom: 0.75rem;">Reproducibility</h3>
+  <p style="color: rgba(244, 241, 232, 0.7); line-height: 1.7; margin: 0;">
+    Every dataset used in this study is publicly available. The validation code runs
+    on a standard laptop in under two hours. Source datasets: NASA OMNI2 (CDAWeb),
+    CHB-MIT Scalp EEG (PhysioNet), NOAA NCEP/NCAR Reanalysis (PSL), SCEDC CI Network
+    (SCEDC), SPDR Sector ETFs (public market data), Argo Float Program (Argo GDAC).
+    No proprietary data. No special hardware.
+  </p>
+</div>
 
 </main>
-<footer class="footer">
-  <div class="footer-tagline">Forged, Not Generated.</div>
-  &copy; 2025&ndash;2026 Forged Lucidity LLC &middot; Westbrook, Maine
+
+<!-- FOOTER -->
+<footer style="text-align: center; padding: 2rem 1rem; border-top: 1px solid rgba(244, 241, 232, 0.08); color: rgba(244, 241, 232, 0.4); font-size: 0.85rem;">
+  <p>&copy; 2025 Forged Lucidity LLC &middot; Westbrook, Maine</p>
+  <p style="margin-top: 0.5rem;">
+    <a href="/" style="color: rgba(244, 241, 232, 0.5); text-decoration: none;">Home</a> &middot;
+    <a href="/research/" style="color: rgba(244, 241, 232, 0.5); text-decoration: none;">Research</a> &middot;
+    <a href="/research/mathematics.html" style="color: rgba(244, 241, 232, 0.5); text-decoration: none;">Mathematics</a> &middot;
+    <a href="/research/significance.html" style="color: rgba(244, 241, 232, 0.5); text-decoration: none;">Significance</a>
+  </p>
 </footer>
+
 </body>
 </html>

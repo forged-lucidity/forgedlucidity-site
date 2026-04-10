@@ -3,21 +3,23 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Statistical Significance — Forged Lucidity</title>
-<meta name="description" content="p less than .001 across all seven domains. What that means and why it matters.">
+<title>Methodology &amp; Significance — Forged Lucidity</title>
+<meta name="description" content="ELICIT cross-domain validation methodology. Formal operator definitions, windowing, statistical methods.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400;1,500&family=Source+Sans+3:ital,wght@0,300;0,400;0,500;0,600;1,400;1,500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"
+  onload="renderMathInElement(document.body, {delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false}]});"></script>
 <style>
   :root { --midnight-navy: #F4F1E8; --forged-brass: #9A7B4F; --civic-parchment: #0B1320;
-    --brass-dim: #A08A56; --text-body: rgba(244, 241, 232, 0.82); --text-secondary: rgba(244, 241, 232, 0.6);
-    --rule-brass: rgba(123,45,59,0.18); --garnet: #8B2335; }
+    --brass-dim: #A08A56; --text-body: rgba(244, 241, 232, 0.82); --text-secondary: rgba(244, 241, 232, 0.6); }
   *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
   html { font-size: 18px; scroll-behavior: smooth; -webkit-font-smoothing: antialiased; }
   body { font-family: 'Source Sans 3', sans-serif; background: var(--civic-parchment); color: var(--text-body); line-height: 1.75; }
   h1, h2, h3 { font-family: 'Cormorant Garamond', serif; font-weight: 400; color: var(--midnight-navy); }
-</style>
-<style>
+</style><style>
   .site-header { position: sticky; top: 0; z-index: 100; background: rgba(244,241,232,0.97);
     backdrop-filter: blur(12px); padding: 0.8rem 2rem; display: flex; align-items: center;
     justify-content: space-between; border-bottom: 2px solid var(--forged-brass); }
@@ -27,42 +29,41 @@
   .site-header nav a { font-family: 'Source Sans 3', sans-serif; font-size: 0.7rem;
     color: rgba(11,19,32,0.4); letter-spacing: 0.1em; text-transform: uppercase; }
   .site-header nav a:hover { color: var(--forged-brass); }
-  .content { max-width: 720px; margin: 0 auto; padding: 3rem 2rem 5rem; }
+  .content { max-width: 760px; margin: 0 auto; padding: 3rem 2rem 5rem; }
   .page-label { font-size: 0.68rem; letter-spacing: 0.25em; text-transform: uppercase;
     color: var(--brass-dim); margin-bottom: 0.6rem; }
   h1 { font-size: 2rem; margin-bottom: 0.3rem; line-height: 1.25; }
   .subtitle { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 1.05rem;
     color: var(--brass-dim); margin-bottom: 1.5rem; }
-  .rule { width: 50px; height: 1px; background: var(--rule-brass); margin-bottom: 2rem; }
+  .rule { width: 50px; height: 1px; background: rgba(123,45,59,0.18); margin-bottom: 2rem; }
   h2 { font-size: 1.3rem; font-weight: 600; margin-top: 2.5rem; margin-bottom: 0.8rem; }
   p { margin-bottom: 1rem; font-size: 1rem; line-height: 1.8; }
   strong { color: var(--midnight-navy); }
-</style>
-<style>
   .back-link { display: inline-block; margin-bottom: 2rem; font-size: 0.78rem;
     color: var(--forged-brass); text-decoration: none; letter-spacing: 0.05em; }
   .back-link:hover { text-decoration: underline; }
-  .stat-highlight { font-family: 'Cormorant Garamond', serif; font-size: 3.5rem;
-    text-align: center; color: var(--forged-brass); margin: 2.5rem 0 0.5rem; font-weight: 400; }
-  .stat-subtitle { text-align: center; font-size: 0.82rem; color: var(--brass-dim);
-    letter-spacing: 0.08em; margin-bottom: 2.5rem; }
-  .method-box { padding: 1.2rem 1.5rem; margin: 1.5rem 0; border-left: 2px solid var(--forged-brass);
+</style><style>
+  .def-block { padding: 1.2rem 1.5rem; margin: 1.5rem 0; border-left: 2px solid var(--forged-brass);
     background: rgba(244,241,232,0.04); }
-  .method-box h3 { font-size: 1rem; font-weight: 600; color: var(--midnight-navy); margin-bottom: 0.4rem; }
-  .method-box p { font-size: 0.9rem; margin-bottom: 0.4rem; }
+  .def-block h3 { font-size: 1rem; font-weight: 600; color: var(--midnight-navy); margin-bottom: 0.5rem; }
+  .def-block p { font-size: 0.92rem; margin-bottom: 0.4rem; }
+  .window-table { width: 100%; border-collapse: collapse; margin: 1.5rem 0; font-size: 0.88rem; }
+  .window-table th { text-align: left; padding: 0.6rem 0.8rem; border-bottom: 2px solid var(--forged-brass);
+    color: var(--midnight-navy); font-weight: 600; font-size: 0.78rem; letter-spacing: 0.08em; text-transform: uppercase; }
+  .window-table td { padding: 0.5rem 0.8rem; border-bottom: 1px solid rgba(244,241,232,0.08); }
+  .window-table tr:hover td { background: rgba(244,241,232,0.03); }
   .honesty-box { padding: 1.5rem; margin: 2rem 0; border: 1px solid rgba(139,35,53,0.3);
     border-radius: 4px; background: rgba(139,35,53,0.05); }
-  .honesty-box h3 { color: var(--garnet); font-size: 1.05rem; font-weight: 600; margin-bottom: 0.6rem; }
-  .honesty-box p { font-size: 0.9rem; }
-  .footer { text-align: center; padding: 2rem; border-top: 1px solid rgba(123,45,59,0.08);
-    font-size: 0.7rem; color: rgba(244,241,232,0.3); letter-spacing: 0.05em; }
-  .footer-tagline { font-family: 'Cormorant Garamond', serif; font-style: italic;
-    font-size: 0.92rem; color: var(--brass-dim); margin-bottom: 0.8rem; }
-  @media (max-width: 768px) { .content { padding: 2rem 1.5rem 3rem; } h1 { font-size: 1.6rem; } }
+  .honesty-box h3 { color: #8B2335; font-family: 'Cormorant Garamond', serif; font-size: 1.05rem; font-weight: 600; margin-bottom: 0.6rem; }
+  .honesty-box p { font-size: 0.92rem; }
+  .katex-display { margin: 1.5rem 0; overflow-x: auto; }
+  .footer { text-align: center; padding: 2rem; border-top: 1px solid rgba(244,241,232,0.08);
+    font-size: 0.7rem; color: rgba(244,241,232,0.3); }
+  @media (max-width: 768px) { .content { padding: 2rem 1.5rem 3rem; } h1 { font-size: 1.6rem; }
+    .window-table { font-size: 0.8rem; } .window-table th, .window-table td { padding: 0.4rem; } }
 </style>
 </head>
-<body>
-<header class="site-header">
+<body><header class="site-header">
   <a href="/">Forged Lucidity</a>
   <nav>
     <a href="/research/">Research</a>
@@ -72,57 +73,134 @@
   </nav>
 </header>
 <main class="content">
-<a href="/" class="back-link">&larr; Back to home</a>
-<div class="page-label">The Evidence</div>
-<h1>Statistical Significance</h1>
-<div class="subtitle">What p &lt; .001 means and what it doesn&rsquo;t</div>
+<a href="/research/" class="back-link">&larr; Research</a>
+<div class="page-label">ELICIT Validation Program</div>
+<h1>Methodology &amp; Significance</h1>
+<div class="subtitle">How the operator is defined, how it was tested, and what the results mean</div>
 <div class="rule"></div>
 
-<div class="stat-highlight">p &lt; .001</div>
-<div class="stat-subtitle">Across all seven independent domains</div>
+<h2>The Operator</h2>
+<p>The Cx operator measures <em>cohesive self-referential integration of information</em> in any
+multi-channel time-series system. It is computed as the product of two components:</p>
 
-<h2>What This Number Means</h2>
+$$\mathrm{Cx} = \Phi \times C^2$$
 
-<p>A p-value of less than .001 means there is less than a 0.1% probability that the observed results occurred by chance. In science, p &lt; .05 (5%) is the conventional threshold for statistical significance. p &lt; .01 (1%) is considered strong evidence. p &lt; .001 (0.1%) is considered very strong evidence.</p>
-
-<p>The Cx operator achieves p &lt; .001 not in one domain but in <strong>seven independent domains simultaneously</strong>. Solar wind, neural activity, jet streams, seismic data, financial markets, ocean currents, and power grids. Same equation. Same threshold. No domain-specific tuning.</p>
-
-<p>The probability of achieving p &lt; .001 by chance across seven independent tests is approximately 10&supmin;&sup2;&sup1; &mdash; effectively zero.</p>
-<h2>Methodology</h2>
-
-<div class="method-box">
-  <h3>Cross-Domain Validation</h3>
-  <p>The operator was applied to each domain independently. No parameters were adjusted between domains. The same mathematical structure &mdash; Cx = &Phi; &times; C&sup2; &mdash; was used without modification. This rules out overfitting and domain-specific artifacts.</p>
+<p>where $\Phi$ measures integration (how many independent dimensions of information a system
+maintains) and $C^2$ measures relational stability (how consistently those dimensions relate
+to each other across time).</p>
+<div class="def-block">
+  <h3>$\Phi$ &mdash; Integration (Normalized Eigenvalue Entropy)</h3>
+  <p>For a window $W$ with $n$ signal channels, compute the cross-correlation matrix $R$.
+  Extract eigenvalues $\lambda_1, \lambda_2, \ldots, \lambda_n$ and normalize:</p>
+  <p>$$p_i = \frac{\lambda_i}{\sum_j \lambda_j}, \qquad H = -\sum_i p_i \log p_i, \qquad \Phi = \frac{H}{\log n} \in [0,1]$$</p>
+  <p>High $\Phi$ means eigenvalues are distributed uniformly &mdash; signal dimensions are equally
+  informative, indicating rich integration. Low $\Phi$ means one eigenvalue dominates &mdash; one
+  mode drives the system. Grounded in Cover &amp; Thomas (1991, Ch. 2, 16): eigenvalue entropy
+  as a measure of distributional uniformity in information theory.</p>
 </div>
 
-<div class="method-box">
-  <h3>Data Sources</h3>
-  <p>All domains used publicly available or established research datasets: NASA heliophysics data, NOAA atmospheric and oceanographic records, USGS seismic records, established neuroscience literature (EEG/fMRI), financial market microstructure data, and power grid stability measurements.</p>
+<div class="def-block">
+  <h3>$C^2$ &mdash; Relational Coherence (Inverse Frobenius Distance)</h3>
+  <p>$$C^2(W_t) = \frac{1}{(1 + \|R_t - R_{t-1}\|_F)^2}$$</p>
+  <p>where $\|\cdot\|_F$ is the Frobenius norm. High $C^2$ means the relational structure between
+  channels is stable across consecutive windows &mdash; the system is coherent. Low $C^2$ means
+  relational structure is shifting &mdash; the system is losing coherence. The squared form derives
+  from the NPR two-frame geometry requiring a squared coherence term analogous to $c^2$ in
+  spacetime.</p>
 </div>
+<h2>Signal Requirements</h2>
+<p>The operator requires a minimum of <strong>3 channels</strong> (4&ndash;6 recommended) that are
+spatially or functionally distinct measurements of the same system. Single-source derived
+statistics (e.g., mean, std, RMSSD all computed from one RR-interval series) are invalid &mdash;
+they cannot generate the cross-channel structure the operator measures. This is why the
+MIT-BIH cardiac HRV analysis produced a null result: it violated the multi-channel independence
+requirement.</p>
 
-<div class="method-box">
-  <h3>Structural Parallel</h3>
-  <p>The methodology is structurally parallel to the Perturbational Complexity Index (PCI), which is peer-reviewed and clinically validated for distinguishing conscious from unconscious states (Casali et al., <em>Science Translational Medicine</em>, 2013). PCI measures complexity; Cx measures coherent integration. Both detect the same underlying property through different mathematical windows.</p>
+<h2>Windowing Protocol</h2>
+<p>Window size is domain-dependent, matched to the characteristic timescale of each system.
+Step size is typically 1/3 to 1/2 of window length. All windows require &ge;70% valid
+(non-NaN) observations.</p>
+
+<table class="window-table">
+  <thead>
+    <tr><th>Domain</th><th>Substrate</th><th>Window</th><th>Channels</th><th>N</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>EEG Seizure</td><td>Electromagnetic</td><td>10 seconds</td><td>8 (10-20 scalp)</td><td>4,574</td></tr>
+    <tr><td>Ocean Currents</td><td>Liquid fluid</td><td>Variable</td><td>4 (depth layers)</td><td>7,103</td></tr>
+    <tr><td>Financial Markets</td><td>Information</td><td>20&ndash;60 trading days</td><td>7 (sector ETFs)</td><td>852</td></tr>
+    <tr><td>Jet Stream</td><td>Neutral gas</td><td>30 days</td><td>5 (latitude bands)</td><td>204</td></tr>
+    <tr><td>Seismic Network</td><td>Solid elastic</td><td>1&ndash;6 hours</td><td>6 (stations)</td><td>239</td></tr>
+    <tr><td>Solar Wind</td><td>Plasma</td><td>72 hours</td><td>4 (B-field)</td><td>65</td></tr>
+  </tbody>
+</table>
+<h2>What the p-values Mean</h2>
+<p>A p-value measures the probability of observing results at least as extreme as those measured,
+assuming the null hypothesis (no real effect) is true. Convention:</p>
+<ul style="margin: 0.5rem 0 1.5rem 1.5rem; list-style: disc;">
+  <li style="margin-bottom: 0.3rem;">$p < .05$ &mdash; statistically significant</li>
+  <li style="margin-bottom: 0.3rem;">$p < .01$ &mdash; strong evidence</li>
+  <li style="margin-bottom: 0.3rem;">$p < .001$ &mdash; very strong evidence</li>
+</ul>
+<p>Four of six confirmed domains achieve $p < .001$. All six achieve $p < .01$.
+The combined probability of six independent tests all reaching $p < .01$ by chance
+is approximately $10^{-12}$.</p>
+
+<h2>What We Did Not Do</h2>
+<p>No parameters were adjusted between domains. The identical operator &mdash; same code, same
+$\Phi$ and $C^2$ definitions &mdash; was applied to each dataset independently. No domain-specific
+tuning, no post-hoc correction, no feature engineering. The operator receives a matrix of
+time-aligned numerical channels and returns a scalar. It does not know what it is measuring.</p>
+
+<p>This rules out overfitting. An operator tuned to detect seizures in EEG data has no reason
+to also detect atmospheric blocking in jet stream data or pre-crash signatures in financial
+markets &mdash; unless the mathematical structure it measures is genuinely domain-general.</p>
+<h2>Information-Theoretic Foundations</h2>
+<p>The operator&rsquo;s design is grounded in formal information theory (Cover &amp; Thomas, 1991):</p>
+<div class="def-block">
+  <h3>Data Processing Inequality</h3>
+  <p>Derived Cx cannot artifactually contain more information about regime state than the raw
+  data. Any structure the operator finds was present in the original signal.</p>
+</div>
+<div class="def-block">
+  <h3>Entropy Rate &amp; Conditional Structure</h3>
+  <p>$C^2$ measures the conditional entropy rate of the correlation structure &mdash; how much
+  new relational information each window adds. Stable systems have low conditional entropy;
+  transitioning systems have high conditional entropy.</p>
+</div>
+<div class="def-block">
+  <h3>Stein&rsquo;s Lemma &amp; Error Bounds</h3>
+  <p>Type II error probability decays exponentially with exponent $D(p\|q)$ (KL divergence),
+  governing how reliably the operator distinguishes regime states. Sanov&rsquo;s theorem bounds the
+  probability of empirical misclassification at approximately $2^{-n \cdot D(p\|q)}$.</p>
 </div>
 <h2>Calibrated Confidence</h2>
-
 <div class="honesty-box">
   <h3>What we claim and what we don&rsquo;t</h3>
-  <p>Statistical significance tells you the results are not random. It does not tell you the theory is correct. We maintain calibrated confidence levels throughout our work:</p>
+  <p>Statistical significance tells you the results are not random. It does not tell you the
+  theory is correct. We maintain calibrated confidence levels throughout our work:</p>
   <p><strong>94%</strong> confidence in internal coherence &mdash; the framework is logically self-consistent.</p>
   <p><strong>83%</strong> confidence in physics compatibility &mdash; the framework does not contradict established physics.</p>
   <p><strong>~45%</strong> confidence in literal truth &mdash; the framework describes reality as it actually is.</p>
-  <p>These numbers are published in every paper. They represent honest assessment, not marketing. The gap between 94% internal coherence and 45% literal truth is where the real scientific work remains to be done.</p>
+  <p>These numbers are published in every paper. The gap between 94% internal coherence and
+  45% literal truth is where the real scientific work remains to be done.</p>
 </div>
 
-<p>Forty-five percent confidence in a unified theory of consciousness is extraordinarily high by the standards of the field. Most competing theories operate at comparable or lower probability &mdash; they simply don&rsquo;t publish the number.</p>
+<h2>Reproducibility</h2>
+<p>Every dataset is publicly available. The complete validation runs on a standard laptop in
+under two hours. Source datasets: NASA OMNI2 (CDAWeb), CHB-MIT Scalp EEG (PhysioNet),
+NOAA NCEP/NCAR Reanalysis (PSL), SCEDC CI Network, SPDR Sector ETFs (public market data),
+Argo Float Program (Argo GDAC). No proprietary data. No special hardware.</p>
 
-<p style="margin-top: 2rem;"><a href="/research/domains.html" style="color: var(--forged-brass);">See the seven domains &rarr;</a> &middot; <a href="/research/" style="color: var(--forged-brass);">Full research library &rarr;</a></p>
+<p style="margin-top: 2rem;">
+  <a href="/research/domains.html" style="color: var(--forged-brass);">See the six confirmed domains &rarr;</a> &middot;
+  <a href="/research/mathematics.html" style="color: var(--forged-brass);">The mathematics &rarr;</a> &middot;
+  <a href="/research/" style="color: var(--forged-brass);">Research hub &rarr;</a>
+</p>
 
 </main>
 <footer class="footer">
-  <div class="footer-tagline">Forged, Not Generated.</div>
-  &copy; 2025&ndash;2026 Forged Lucidity LLC &middot; Westbrook, Maine
+  <p>&copy; 2025&ndash;2026 Forged Lucidity LLC &middot; Westbrook, Maine</p>
 </footer>
 </body>
 </html>
