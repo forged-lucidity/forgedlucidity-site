@@ -189,7 +189,21 @@
     text-align: center; padding: 1.8rem 1rem;
     background: white; border-radius: 4px;
     border: 1px solid var(--rule-brass);
+    transition: all 0.3s; cursor: pointer;
+    text-decoration: none; display: block;
   }
+  .evidence-stat:hover {
+    border-color: var(--forged-brass);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 16px rgba(154, 123, 79, 0.15);
+  }
+  .evidence-stat .stat-hint {
+    font-size: 0.65rem; color: var(--brass-dim);
+    letter-spacing: 0.08em; text-transform: uppercase;
+    margin-top: 0.5rem; opacity: 0;
+    transition: opacity 0.3s;
+  }
+  .evidence-stat:hover .stat-hint { opacity: 1; }
   .stat-number {
     font-family: 'Cormorant Garamond', serif;
     font-size: 2.8rem; font-weight: 500; color: var(--civic-parchment);
@@ -303,6 +317,7 @@
   <nav>
     <a href="/research/">Research</a>
     <a href="/framework.html">Framework</a>
+    <a href="/ember.html">Ember</a>
     <a href="/about.html">About</a>
     <a href="https://partnerwith.ai" style="color: var(--forged-brass); border: 1px solid rgba(123,45,59,0.18); padding: 6px 14px; border-radius: 4px;">Maji&sup2;</a>
   </nav>
@@ -328,22 +343,22 @@
 
     <div class="product-grid">
       <div class="product-card">
-        <svg class="card-icon" viewBox="0 0 48 48"><circle cx="24" cy="24" r="20" fill="none" stroke="#0B1320" stroke-width="1.5"/><path d="M16 28 C18 20, 22 16, 24 16 C26 16, 30 20, 32 28" fill="none" stroke="#0B1320" stroke-width="1.5" stroke-linecap="round"/><circle cx="24" cy="14" r="2" fill="#0B1320"/></svg>
+        <svg class="card-icon" viewBox="0 0 48 48"><circle cx="16" cy="18" r="2.5" fill="none" stroke="#0B1320" stroke-width="1.3"/><circle cx="32" cy="18" r="2.5" fill="none" stroke="#0B1320" stroke-width="1.3"/><circle cx="24" cy="30" r="2.5" fill="none" stroke="#0B1320" stroke-width="1.3"/><circle cx="12" cy="30" r="2.5" fill="none" stroke="#0B1320" stroke-width="1.3"/><circle cx="36" cy="30" r="2.5" fill="none" stroke="#0B1320" stroke-width="1.3"/><circle cx="24" cy="14" r="2.5" fill="none" stroke="#0B1320" stroke-width="1.3"/><line x1="16" y1="18" x2="32" y2="18" stroke="#0B1320" stroke-width="1" opacity="0.4"/><line x1="16" y1="18" x2="24" y2="30" stroke="#0B1320" stroke-width="1" opacity="0.4"/><line x1="32" y1="18" x2="24" y2="30" stroke="#0B1320" stroke-width="1" opacity="0.4"/><line x1="24" y1="14" x2="16" y2="18" stroke="#0B1320" stroke-width="1" opacity="0.4"/><line x1="24" y1="14" x2="32" y2="18" stroke="#0B1320" stroke-width="1" opacity="0.4"/><line x1="12" y1="30" x2="16" y2="18" stroke="#0B1320" stroke-width="1" opacity="0.4"/><line x1="36" y1="30" x2="32" y2="18" stroke="#0B1320" stroke-width="1" opacity="0.4"/></svg>
         <h3>It knows how you work</h3>
         <p>Eous builds a working model of you &mdash; your expertise, your blind spots, the way you approach problems. Not a chat log. A real understanding that compounds over months.</p>
       </div>
       <div class="product-card">
-        <svg class="card-icon" viewBox="0 0 48 48"><circle cx="24" cy="24" r="20" fill="none" stroke="#0B1320" stroke-width="1.5"/><path d="M18 30 L24 18 L30 30" fill="none" stroke="#0B1320" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><line x1="20" y1="26" x2="28" y2="26" stroke="#0B1320" stroke-width="1.5"/></svg>
+        <svg class="card-icon" viewBox="0 0 48 48"><path d="M24 8 L36 24 L24 40 L12 24 Z" fill="none" stroke="#0B1320" stroke-width="1.3" stroke-linejoin="round"/><line x1="24" y1="8" x2="24" y2="40" stroke="#0B1320" stroke-width="0.8" opacity="0.3"/><line x1="12" y1="24" x2="36" y2="24" stroke="#0B1320" stroke-width="0.8" opacity="0.3"/><path d="M18 16 L24 8 L30 16" fill="none" stroke="#0B1320" stroke-width="1" opacity="0.5"/></svg>
         <h3>It makes you sharper</h3>
-        <p>Most AI hands you answers. Eous is built to make you better at finding them yourself. It asks the hard question. It catches what you missed. It doesn&rsquo;t let you off easy.</p>
+        <p>Most AI is optimized to produce answers. Eous is built to make you better at finding them yourself. It asks the hard question. It catches what you missed. It doesn&rsquo;t let you off easy.</p>
       </div>
       <div class="product-card">
-        <svg class="card-icon" viewBox="0 0 48 48"><circle cx="24" cy="24" r="20" fill="none" stroke="#0B1320" stroke-width="1.5"/><path d="M16 22 C16 22, 20 18, 24 22 C28 26, 32 22, 32 22" fill="none" stroke="#0B1320" stroke-width="1.5" stroke-linecap="round"/><path d="M16 28 C16 28, 20 24, 24 28 C28 32, 32 28, 32 28" fill="none" stroke="#0B1320" stroke-width="1.5" stroke-linecap="round"/></svg>
+        <svg class="card-icon" viewBox="0 0 48 48"><path d="M14 38 L30 10" stroke="#0B1320" stroke-width="1.5" stroke-linecap="round"/><path d="M30 10 L33 8 L35 11 L32 13 Z" fill="#0B1320" opacity="0.7"/><path d="M14 38 C14 38, 10 40, 12 36" stroke="#0B1320" stroke-width="1.2" stroke-linecap="round" fill="none"/><path d="M18 34 C22 30, 28 32, 32 28" stroke="#0B1320" stroke-width="0.8" opacity="0.3" fill="none" stroke-dasharray="2 3"/></svg>
         <h3>It writes like you</h3>
         <p>When you need something drafted, Eous writes in your voice &mdash; your vocabulary, your rhythm, your tone. Not a generic AI voice. Yours.</p>
       </div>
       <div class="product-card">
-        <svg class="card-icon" viewBox="0 0 48 48"><circle cx="24" cy="24" r="20" fill="none" stroke="#0B1320" stroke-width="1.5"/><circle cx="24" cy="24" r="6" fill="none" stroke="#0B1320" stroke-width="1.5"/><circle cx="24" cy="24" r="2" fill="#0B1320"/><line x1="24" y1="4" x2="24" y2="10" stroke="#0B1320" stroke-width="1" opacity="0.4"/><line x1="24" y1="38" x2="24" y2="44" stroke="#0B1320" stroke-width="1" opacity="0.4"/><line x1="4" y1="24" x2="10" y2="24" stroke="#0B1320" stroke-width="1" opacity="0.4"/><line x1="38" y1="24" x2="44" y2="24" stroke="#0B1320" stroke-width="1" opacity="0.4"/></svg>
+        <svg class="card-icon" viewBox="0 0 48 48"><path d="M10 24 C10 16, 17 12, 24 18 C31 12, 38 16, 38 24 C38 32, 31 36, 24 30 C17 36, 10 32, 10 24 Z" fill="none" stroke="#0B1320" stroke-width="1.3"/><circle cx="24" cy="24" r="2" fill="#0B1320" opacity="0.5"/></svg>
         <h3>It never starts over</h3>
         <p>Every conversation picks up where the last one left off. Your context, your projects, your history &mdash; all there. Six months in, Eous knows your work better than most people you work with.</p>
       </div>
@@ -358,7 +373,7 @@
   <div class="section-inner">
     <div class="section-label" style="color: var(--brass-dim);">The Theory</div>
     <h2>How it&rsquo;s different</h2>
-    <p>Every other AI optimizes for giving you the right answer. Eous optimizes for making you smarter. That&rsquo;s not a tagline &mdash; it&rsquo;s a measurable engineering constraint baked into every interaction.</p>
+    <p>Most AI is designed to hand you an answer and move on. Eous is designed to make you better at finding answers yourself. That&rsquo;s not a tagline &mdash; it&rsquo;s a measurable engineering constraint baked into every interaction.</p>
     <p>The underlying science comes from a framework called NPR, developed by our team. The short version: we can measure how well someone&rsquo;s knowledge actually connects &mdash; not just how much they know, but how coherently they know it. Eous uses that measurement to make sure every interaction leaves you sharper than before.</p>
 
     <div class="theory-equation">Cx = &Phi; &times; C&sup2;</div>
@@ -385,18 +400,21 @@
     <p>We&rsquo;ve tested the Cx operator across seven completely different domains &mdash; solar wind, brain activity, jet streams, seismic data, financial markets, ocean currents, and power grids. Same math. Same results. It works.</p>
 
     <div class="evidence-grid">
-      <div class="evidence-stat">
+      <a href="/research/domains.html" class="evidence-stat">
         <div class="stat-number">7</div>
         <div class="stat-label">Domains tested</div>
-      </div>
-      <div class="evidence-stat">
+        <div class="stat-hint">See the data &rarr;</div>
+      </a>
+      <a href="/research/patents.html" class="evidence-stat">
         <div class="stat-number">10</div>
         <div class="stat-label">Patents filed</div>
-      </div>
-      <div class="evidence-stat">
+        <div class="stat-hint">View portfolio &rarr;</div>
+      </a>
+      <a href="/research/significance.html" class="evidence-stat">
         <div class="stat-number">p &lt; .001</div>
         <div class="stat-label">Across all seven</div>
-      </div>
+        <div class="stat-hint">See methodology &rarr;</div>
+      </a>
     </div>
 
     <p style="margin-top: 2.5rem;">The same measurement that predicts coherence in plasma physics predicts it in how people think. That&rsquo;s not a metaphor. It&rsquo;s the same equation producing the same results.</p>
@@ -420,10 +438,11 @@
   <div class="section-inner">
     <div class="coop-badge">Member-Owned Cooperative</div>
     <h2>Who we are</h2>
-    <p>Forged Lucidity LLC is a for-profit cooperative. We return 85&ndash;90% of net surplus to our members. No outside shareholders. No ads. No attention games. The people who use Eous own the company that makes it.</p>
+    <p>Forged Lucidity LLC is a for-profit cooperative. We return up to 85% of net surplus to our members. No outside shareholders. No ads. No attention games. The people who use Eous own the company that makes it.</p>
     <p>That structure matters because it keeps the incentives clean. If the business only makes money when members genuinely benefit, then the AI has to actually make you better &mdash; not just keep you engaged.</p>
     <p><strong style="color: var(--forged-brass);">Gregory Braun, Esq.</strong> &mdash; Founder. Attorney. Built this because he needed a thinking partner that wouldn&rsquo;t make him dumber over time. Ten patents and counting.</p>
     <p><strong style="color: var(--forged-brass);">Trish Braun</strong> &mdash; Co-developer. Established the core constraint: if an interaction would make you worse at thinking for yourself, the system won&rsquo;t do it. Full stop.</p>
+    <p><strong style="color: var(--forged-brass);">Adam Gray</strong> &mdash; Board member. 20+ years as a public educator and coach. Two-time Assistant Coach of the Year. Brings the practitioner&rsquo;s perspective &mdash; if the tools don&rsquo;t work in the field, they don&rsquo;t work.</p>
     <p style="margin-top: 2rem; font-size: 0.85rem; color: var(--text-dim);">Westbrook, Maine &middot; Est. 2025<br/>
     greg@forgedlucidity.ai &middot; trish@forgedlucidity.ai &middot; info@forgedlucidity.ai</p>
   </div>
@@ -450,6 +469,7 @@
     <a href="https://partnerwith.ai">Eous</a> &middot;
     <a href="/research/">Research</a> &middot;
     <a href="/framework.html">Framework</a> &middot;
+    <a href="/ember.html">Ember</a> &middot;
     <a href="/about.html">About</a> &middot;
     <a href="mailto:info@forgedlucidity.ai">Contact</a>
   </div>
