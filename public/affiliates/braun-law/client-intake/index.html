@@ -1,0 +1,1114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Braun Law — Client Intake &amp; Engagement</title>
+<meta name="robots" content="noindex, nofollow">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<style>
+  :root {
+    --navy: #1a2332;
+    --gold: #8b7355;
+    --cream: #faf8f5;
+    --text: #2c2c2c;
+    --light-gray: #e8e4df;
+    --error: #b33a3a;
+    --success: #2d6a4f;
+    --field-bg: #ffffff;
+    --border: #c4bfb6;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Georgia', 'Times New Roman', serif;
+    background: var(--cream);
+    color: var(--text);
+    line-height: 1.6;
+    min-height: 100vh;
+  }
+
+  .container {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 0 24px;
+  }
+
+  /* ── Header ── */
+  header {
+    background: var(--navy);
+    padding: 40px 0 32px;
+    text-align: center;
+    border-bottom: 3px solid var(--gold);
+  }
+  header h1 {
+    color: #fff;
+    font-size: 28px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    margin-bottom: 4px;
+  }
+  header .subtitle {
+    color: var(--gold);
+    font-style: italic;
+    font-size: 14px;
+    margin-bottom: 16px;
+  }
+  header .contact-bar {
+    color: #a0a8b4;
+    font-size: 12px;
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+  }
+  header .contact-bar a {
+    color: #a0a8b4;
+    text-decoration: none;
+  }
+
+  /* ── Progress indicator ── */
+  .progress-bar {
+    background: var(--navy);
+    padding: 0 0 20px;
+  }
+  .steps {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    list-style: none;
+  }
+  .steps li {
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+    font-size: 11px;
+    color: #556;
+    padding: 6px 16px;
+    border-radius: 20px;
+    background: rgba(255,255,255,0.08);
+    transition: all 0.3s;
+  }
+  .steps li.active {
+    background: var(--gold);
+    color: #fff;
+    font-weight: 600;
+  }
+  .steps li.completed {
+    background: var(--success);
+    color: #fff;
+  }
+
+  /* ── Main content ── */
+  main {
+    padding: 40px 0 60px;
+  }
+
+  .section-intro {
+    text-align: center;
+    margin-bottom: 32px;
+    padding-bottom: 24px;
+    border-bottom: 1px solid var(--light-gray);
+  }
+  .section-intro h2 {
+    font-size: 22px;
+    color: var(--navy);
+    margin-bottom: 8px;
+  }
+  .section-intro p {
+    font-size: 14px;
+    color: #666;
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+  }
+
+  /* ── Form styles ── */
+  .form-section {
+    display: none;
+  }
+  .form-section.active {
+    display: block;
+  }
+
+  .field-group {
+    margin-bottom: 20px;
+  }
+  .field-row {
+    display: flex;
+    gap: 16px;
+  }
+  .field-row .field-group {
+    flex: 1;
+  }
+
+  label {
+    display: block;
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--navy);
+    margin-bottom: 5px;
+    letter-spacing: 0.3px;
+  }
+  label .required {
+    color: var(--error);
+    margin-left: 2px;
+  }
+  label .optional {
+    color: #999;
+    font-weight: 400;
+    font-style: italic;
+    font-size: 11px;
+  }
+
+  input[type="text"],
+  input[type="email"],
+  input[type="tel"],
+  input[type="date"],
+  select,
+  textarea {
+    width: 100%;
+    padding: 10px 14px;
+    font-family: 'Georgia', serif;
+    font-size: 15px;
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    background: var(--field-bg);
+    color: var(--text);
+    transition: border-color 0.2s;
+  }
+  input:focus, select:focus, textarea:focus {
+    outline: none;
+    border-color: var(--gold);
+    box-shadow: 0 0 0 2px rgba(139,115,85,0.15);
+  }
+  textarea { resize: vertical; min-height: 80px; }
+  select { cursor: pointer; }
+
+  .field-error {
+    border-color: var(--error) !important;
+  }
+  .error-msg {
+    color: var(--error);
+    font-size: 12px;
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+    margin-top: 4px;
+    display: none;
+  }
+
+  /* ── Engagement agreement display ── */
+  .agreement-container {
+    background: #fff;
+    border: 1px solid var(--light-gray);
+    border-radius: 6px;
+    padding: 32px;
+    margin-bottom: 24px;
+    max-height: 500px;
+    overflow-y: auto;
+    font-size: 14px;
+    line-height: 1.7;
+  }
+  .agreement-container h3 {
+    font-size: 16px;
+    margin: 20px 0 8px;
+    color: var(--navy);
+  }
+  .agreement-container h3:first-child {
+    margin-top: 0;
+  }
+  .agreement-container p {
+    margin-bottom: 12px;
+    text-align: justify;
+  }
+  .agreement-letterhead {
+    text-align: center;
+    margin-bottom: 20px;
+    padding-bottom: 16px;
+    border-bottom: 1px solid var(--light-gray);
+  }
+  .agreement-letterhead .name {
+    font-size: 20px;
+    font-weight: 700;
+  }
+  .agreement-letterhead .tagline {
+    font-style: italic;
+    font-size: 12px;
+    color: #666;
+  }
+  .agreement-letterhead .info {
+    font-size: 10px;
+    color: #888;
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+    margin-top: 6px;
+  }
+
+  .scroll-notice {
+    text-align: center;
+    color: #888;
+    font-size: 12px;
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+    margin-bottom: 16px;
+    font-style: italic;
+  }
+
+  /* ── Signature block ── */
+  .signature-block {
+    background: #fff;
+    border: 2px solid var(--navy);
+    border-radius: 6px;
+    padding: 24px;
+    margin-top: 24px;
+  }
+  .signature-block h3 {
+    font-size: 14px;
+    color: var(--navy);
+    margin-bottom: 8px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+  .signature-block .ueta-notice {
+    font-size: 11px;
+    color: #666;
+    font-style: italic;
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+    margin-bottom: 16px;
+    line-height: 1.5;
+  }
+  .signature-field input {
+    font-size: 20px;
+    font-family: 'Dancing Script', 'Brush Script MT', cursive, Georgia, serif;
+    padding: 12px 16px;
+    border: none;
+    border-bottom: 2px solid var(--navy);
+    border-radius: 0;
+    background: transparent;
+  }
+  .signature-field input:focus {
+    box-shadow: none;
+    border-bottom-color: var(--gold);
+  }
+  .signature-field label {
+    font-size: 11px;
+    color: #888;
+    margin-top: 4px;
+  }
+
+  /* ── Checkboxes ── */
+  .checkbox-group {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    margin-bottom: 16px;
+  }
+  .checkbox-group input[type="checkbox"] {
+    margin-top: 3px;
+    width: 18px;
+    height: 18px;
+    cursor: pointer;
+    accent-color: var(--navy);
+  }
+  .checkbox-group label {
+    font-size: 13px;
+    font-weight: 400;
+    color: var(--text);
+    cursor: pointer;
+    line-height: 1.5;
+  }
+
+  /* ── Buttons ── */
+  .btn-row {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 32px;
+    gap: 16px;
+  }
+  .btn {
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    padding: 12px 32px;
+    border-radius: 4px;
+    border: none;
+    cursor: pointer;
+    transition: all 0.2s;
+    letter-spacing: 0.3px;
+  }
+  .btn-primary {
+    background: var(--navy);
+    color: #fff;
+  }
+  .btn-primary:hover {
+    background: #263a50;
+  }
+  .btn-primary:disabled {
+    background: #999;
+    cursor: not-allowed;
+  }
+  .btn-secondary {
+    background: transparent;
+    color: var(--navy);
+    border: 1px solid var(--border);
+  }
+  .btn-secondary:hover {
+    background: #f0ece7;
+  }
+  .btn-submit {
+    background: var(--success);
+    color: #fff;
+    padding: 14px 40px;
+    font-size: 15px;
+    width: 100%;
+  }
+  .btn-submit:hover {
+    background: #235c41;
+  }
+  .btn-submit:disabled {
+    background: #999;
+    cursor: not-allowed;
+  }
+
+  /* ── Confirmation page ── */
+  .confirmation {
+    text-align: center;
+    padding: 60px 0;
+  }
+  .confirmation .checkmark {
+    width: 72px;
+    height: 72px;
+    background: var(--success);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 24px;
+    font-size: 36px;
+    color: #fff;
+  }
+  .confirmation h2 {
+    font-size: 24px;
+    color: var(--navy);
+    margin-bottom: 12px;
+  }
+  .confirmation p {
+    font-size: 15px;
+    color: #555;
+    margin-bottom: 8px;
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+  }
+  .confirmation .download-btn {
+    display: inline-block;
+    margin-top: 24px;
+    padding: 12px 28px;
+    background: var(--navy);
+    color: #fff;
+    text-decoration: none;
+    border-radius: 4px;
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    border: none;
+  }
+
+  /* ── Responsive ── */
+  @media (max-width: 600px) {
+    .field-row { flex-direction: column; gap: 0; }
+    .container { padding: 0 16px; }
+    header h1 { font-size: 22px; }
+    .steps li { font-size: 10px; padding: 5px 10px; }
+    .agreement-container { padding: 20px; font-size: 13px; }
+    .btn-row { flex-direction: column; }
+    .btn { width: 100%; text-align: center; }
+  }
+
+  /* ── Footer ── */
+  footer {
+    text-align: center;
+    padding: 24px 0;
+    border-top: 1px solid var(--light-gray);
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+    font-size: 11px;
+    color: #999;
+  }
+  footer a { color: #888; text-decoration: none; }
+</style>
+</head>
+<body>
+
+<!-- ═══════════════════ HEADER ═══════════════════ -->
+<header>
+  <div class="container">
+    <h1>Gregory P. Braun, Esq.</h1>
+    <div class="subtitle">~Attorney-at-Law~</div>
+    <div class="contact-bar">
+      Braun Law &nbsp;|&nbsp; PO Box 107, Westbrook, ME 04092 &nbsp;|&nbsp;
+      <a href="tel:2073464140">(207) 346-4140</a> &nbsp;|&nbsp;
+      <a href="mailto:gregory@braunlaw.us">gregory@braunlaw.us</a>
+    </div>
+  </div>
+</header>
+
+<!-- ═══════════════════ PROGRESS ═══════════════════ -->
+<div class="progress-bar">
+  <div class="container">
+    <ul class="steps" id="progressSteps">
+      <li class="active" data-step="1">Contact Information</li>
+      <li data-step="2">Matter Details</li>
+      <li data-step="3">Engagement Agreement</li>
+      <li data-step="4">Confirmation</li>
+    </ul>
+  </div>
+</div>
+
+<!-- ═══════════════════ MAIN ═══════════════════ -->
+<main>
+<div class="container">
+<form id="intakeForm" novalidate>
+
+  <!-- ── STEP 1: Contact Information ── -->
+  <div class="form-section active" id="step1">
+    <div class="section-intro">
+      <h2>Contact Information</h2>
+      <p>Please provide your current contact information. All fields marked with <span style="color:var(--error)">*</span> are required.</p>
+    </div>
+
+    <div class="field-row">
+      <div class="field-group">
+        <label>First Name <span class="required">*</span></label>
+        <input type="text" id="firstName" required>
+        <div class="error-msg">First name is required</div>
+      </div>
+      <div class="field-group">
+        <label>Middle Name <span class="optional">(optional)</span></label>
+        <input type="text" id="middleName">
+      </div>
+      <div class="field-group">
+        <label>Last Name <span class="required">*</span></label>
+        <input type="text" id="lastName" required>
+        <div class="error-msg">Last name is required</div>
+      </div>
+    </div>
+
+    <div class="field-row">
+      <div class="field-group">
+        <label>Company / Entity Name <span class="optional">(if applicable)</span></label>
+        <input type="text" id="companyName">
+      </div>
+      <div class="field-group">
+        <label>Title / Role <span class="optional">(optional)</span></label>
+        <input type="text" id="titleRole">
+      </div>
+    </div>
+
+    <div class="field-group">
+      <label>Street Address <span class="required">*</span></label>
+      <input type="text" id="street" required>
+      <div class="error-msg">Street address is required</div>
+    </div>
+    <div class="field-group">
+      <label>Street Address Line 2 <span class="optional">(optional)</span></label>
+      <input type="text" id="street2">
+    </div>
+
+    <div class="field-row">
+      <div class="field-group" style="flex:2">
+        <label>City <span class="required">*</span></label>
+        <input type="text" id="city" required>
+        <div class="error-msg">City is required</div>
+      </div>
+      <div class="field-group">
+        <label>State <span class="required">*</span></label>
+        <input type="text" id="state" required maxlength="2" placeholder="ME" style="text-transform:uppercase">
+        <div class="error-msg">State is required</div>
+      </div>
+      <div class="field-group">
+        <label>Zip Code <span class="required">*</span></label>
+        <input type="text" id="zip" required maxlength="10">
+        <div class="error-msg">Zip code is required</div>
+      </div>
+    </div>
+
+    <div class="field-row">
+      <div class="field-group">
+        <label>Email Address <span class="required">*</span></label>
+        <input type="email" id="email" required>
+        <div class="error-msg">Valid email address is required</div>
+      </div>
+      <div class="field-group">
+        <label>Phone <span class="required">*</span></label>
+        <input type="tel" id="phone" required>
+        <div class="error-msg">Phone number is required</div>
+      </div>
+    </div>
+
+    <div class="field-row">
+      <div class="field-group">
+        <label>Alternate Phone <span class="optional">(optional)</span></label>
+        <input type="tel" id="altPhone">
+      </div>
+      <div class="field-group">
+        <label>Preferred Contact Method <span class="required">*</span></label>
+        <select id="contactPref" required>
+          <option value="">— Select —</option>
+          <option value="email">Email</option>
+          <option value="phone">Phone</option>
+          <option value="either">No Preference</option>
+        </select>
+        <div class="error-msg">Please select a preference</div>
+      </div>
+    </div>
+
+    <div class="field-group">
+      <label>How did you hear about Braun Law? <span class="optional">(optional)</span></label>
+      <input type="text" id="referralSource">
+    </div>
+
+    <div class="btn-row">
+      <div></div>
+      <button type="button" class="btn btn-primary" onclick="goToStep(2)">Continue &rarr;</button>
+    </div>
+  </div>
+
+  <!-- ── STEP 2: Matter Details ── -->
+  <div class="form-section" id="step2">
+    <div class="section-intro">
+      <h2>Matter Details</h2>
+      <p>Please describe the legal matter for which you are seeking representation.</p>
+    </div>
+
+    <div class="field-group">
+      <label>Practice Area <span class="required">*</span></label>
+      <select id="practiceArea" required>
+        <option value="">— Select —</option>
+        <option value="Probate / Estate Administration">Probate / Estate Administration</option>
+        <option value="Probate / Conservatorship">Probate / Conservatorship</option>
+        <option value="Probate / Guardianship">Probate / Guardianship</option>
+        <option value="Estate Planning">Estate Planning</option>
+        <option value="Real Estate">Real Estate</option>
+        <option value="Real Estate / Development">Real Estate / Development</option>
+        <option value="Business / Entity Formation">Business / Entity Formation</option>
+        <option value="Business / Transactions">Business / Transactions</option>
+        <option value="Employment Law">Employment Law</option>
+        <option value="Municipal Law">Municipal Law</option>
+        <option value="Land Use / Municipal">Land Use / Municipal</option>
+        <option value="HOA / Condominium">HOA / Condominium</option>
+        <option value="Municipal / Administrative Appeal">Municipal / Administrative Appeal</option>
+        <option value="Other">Other</option>
+      </select>
+      <div class="error-msg">Please select a practice area</div>
+    </div>
+
+    <div class="field-group">
+      <label>Brief Description of Your Matter <span class="required">*</span></label>
+      <textarea id="matterDescription" rows="4" required placeholder="Please describe the nature of your legal matter in a few sentences."></textarea>
+      <div class="error-msg">Please provide a brief description</div>
+    </div>
+
+    <div class="field-group">
+      <label>Existing Case or Docket Number <span class="optional">(if known)</span></label>
+      <input type="text" id="caseNumber" placeholder="e.g., CUPRO-2022-1357">
+    </div>
+
+    <div class="field-group">
+      <label>Adverse Parties <span class="optional">(if any — for conflict check purposes)</span></label>
+      <textarea id="adverseParties" rows="2" placeholder="List any known opposing parties, their attorneys, or other involved parties."></textarea>
+    </div>
+
+    <div class="field-group">
+      <label>Is there a deadline or upcoming court date we should be aware of? <span class="optional">(optional)</span></label>
+      <input type="text" id="urgentDeadline" placeholder="e.g., Hearing on May 13, 2026">
+    </div>
+
+    <div class="btn-row">
+      <button type="button" class="btn btn-secondary" onclick="goToStep(1)">&larr; Back</button>
+      <button type="button" class="btn btn-primary" onclick="goToStep(3)">Continue &rarr;</button>
+    </div>
+  </div>
+
+  <!-- ── STEP 3: Engagement Agreement ── -->
+  <div class="form-section" id="step3">
+    <div class="section-intro">
+      <h2>Engagement Agreement</h2>
+      <p>Please review the terms below carefully, then sign electronically at the bottom.</p>
+    </div>
+
+    <p class="scroll-notice">Scroll to read the full agreement</p>
+
+    <div class="agreement-container" id="agreementText">
+      <div class="agreement-letterhead">
+        <div class="name">Gregory P. Braun, Esq.</div>
+        <div class="tagline">~Attorney-at-Law~</div>
+        <div class="info">Braun Law &nbsp;|&nbsp; PO Box 107, Westbrook, ME 04092 &nbsp;|&nbsp; (207) 346-4140 &nbsp;|&nbsp; gregory@braunlaw.us</div>
+      </div>
+
+      <p>Dear <span class="client-name-display"></span>:</p>
+
+      <p>Thank you for the opportunity to represent you. This letter sets forth the terms of my engagement as your attorney. Please review it carefully and contact me with any questions before signing.</p>
+
+      <h3>Scope of Representation</h3>
+      <p>My representation will include providing legal advice and counsel on the matter described in your intake submission above, and such other related matters as may arise in connection with this engagement. My representation is limited to those matters for which you specifically request my assistance and does not include representation in litigation without a separate engagement agreement.</p>
+
+      <h3>Fees</h3>
+      <p>My hourly rate for this engagement is <strong>$300.00 per hour</strong>. I will invoice on a monthly basis for services rendered. Invoices are due and payable within thirty (30) days of receipt.</p>
+
+      <h3>Collection of Unpaid Fees and Costs</h3>
+      <p>In the event that any invoice remains unpaid for more than thirty (30) days from the date of the invoice, the outstanding balance shall accrue interest at the rate of twelve percent (12%) per annum from the date the invoice was first issued until paid in full. If it becomes necessary to pursue collection of any unpaid fees, costs, or expenses, I reserve the right to pursue all available legal remedies, including but not limited to filing suit in a court of competent jurisdiction. In the event of collection, you agree to pay all reasonable costs of collection, including court costs and reasonable attorney's fees incurred in connection with the collection effort. This provision survives the termination of this engagement.</p>
+
+      <h3>Communication</h3>
+      <p>All correspondence and communications should be directed to me at gregory@braunlaw.us or (207) 346-4140. My mailing address is PO Box 107, Westbrook, ME 04092.</p>
+
+      <h3>File Retention &mdash; Rule 1.15, Maine Rules of Professional Conduct</h3>
+      <p>At the conclusion of any matter, I will retain your files for a period of eight (8) years, after which they may be destroyed without further notice unless they have intrinsic value.</p>
+
+      <p>I look forward to working with you. Please do not hesitate to contact me with any questions about the terms of this engagement.</p>
+
+      <p style="margin-top:24px">With consideration,</p>
+      <p style="margin-top:16px">
+        <em><strong>/s/ Gregory P. Braun, Esq.</strong></em><br>
+        Braun Law<br>
+        PO Box 107, Westbrook, ME 04092<br>
+        (207) 346-4140<br>
+        gregory@braunlaw.us
+      </p>
+    </div>
+
+    <!-- Acknowledgments -->
+    <div style="margin: 24px 0">
+      <div class="checkbox-group">
+        <input type="checkbox" id="ackRead" required>
+        <label for="ackRead">I have read and understand the terms of this engagement agreement, including the fee structure of $300.00 per hour and payment terms. <span class="required">*</span></label>
+      </div>
+      <div class="checkbox-group">
+        <input type="checkbox" id="ackConflict" required>
+        <label for="ackConflict">To the best of my knowledge, I am not aware of any circumstances that would present a conflict of interest in this representation, other than as disclosed above. <span class="required">*</span></label>
+      </div>
+      <div class="checkbox-group">
+        <input type="checkbox" id="ackAccurate" required>
+        <label for="ackAccurate">The information I have provided in this intake form is true and accurate to the best of my knowledge. <span class="required">*</span></label>
+      </div>
+    </div>
+
+    <!-- Signature block -->
+    <div class="signature-block">
+      <h3>Acknowledged and Agreed</h3>
+      <p class="ueta-notice">By typing your full legal name below, you agree to the terms of this engagement agreement. This electronic signature is valid and enforceable under the Maine Uniform Electronic Transactions Act, 10 M.R.S. Ch. 1051.</p>
+
+      <div class="signature-field field-group">
+        <label>Signature — Type Your Full Legal Name <span class="required">*</span></label>
+        <input type="text" id="signature" required autocomplete="off" placeholder="">
+        <div class="error-msg">Signature is required</div>
+      </div>
+
+      <div class="field-row" style="margin-top:12px">
+        <div class="field-group">
+          <label>Title <span class="optional">(if signing on behalf of an entity)</span></label>
+          <input type="text" id="sigTitle">
+        </div>
+        <div class="field-group">
+          <label>Date</label>
+          <input type="date" id="sigDate" readonly>
+        </div>
+      </div>
+    </div>
+
+    <div style="margin-top: 8px; text-align: right; font-size: 11px; color: #999; font-family: 'Helvetica Neue', Arial, sans-serif;">
+      <span id="ipDisplay"></span> &nbsp;|&nbsp; <span id="timestampDisplay"></span>
+    </div>
+
+    <div class="btn-row">
+      <button type="button" class="btn btn-secondary" onclick="goToStep(2)">&larr; Back</button>
+      <button type="button" class="btn btn-submit" id="submitBtn" onclick="submitForm()">Submit &amp; Sign Engagement Agreement</button>
+    </div>
+  </div>
+
+  <!-- ── STEP 4: Confirmation ── -->
+  <div class="form-section" id="step4">
+    <div class="confirmation">
+      <div class="checkmark">&#10003;</div>
+      <h2>Thank You</h2>
+      <p>Your intake form and engagement agreement have been received.</p>
+      <p>A copy of the signed engagement agreement has been sent to <strong><span id="confirmEmail"></span></strong>.</p>
+      <p style="margin-top:16px; font-size:13px; color:#888;">
+        If time has been incurred on your matter, you will receive an invoice separately.<br>
+        Please don't hesitate to contact Gregory Braun at <a href="tel:2073464140">(207) 346-4140</a> or <a href="mailto:gregory@braunlaw.us">gregory@braunlaw.us</a> with any questions.
+      </p>
+      <button class="download-btn" id="downloadPdfBtn" onclick="downloadPdf()">Download Signed Agreement (PDF)</button>
+    </div>
+  </div>
+
+</form>
+</div>
+</main>
+
+<footer>
+  <div class="container">
+    &copy; <span id="footerYear"></span> Braun Law. All rights reserved.<br>
+    Hosted by <a href="https://forgedlucidity.ai">Forged Lucidity LLC</a>
+  </div>
+</footer>
+
+<script>
+// ═══════════════════ CONFIG ═══════════════════
+const API_ENDPOINT = '/api/intake-submit';  // Vercel serverless function
+
+// ═══════════════════ STATE ═══════════════════
+let currentStep = 1;
+let formData = {};
+let signedPdfBlob = null;
+
+// ═══════════════════ INIT ═══════════════════
+document.addEventListener('DOMContentLoaded', () => {
+  document.getElementById('footerYear').textContent = new Date().getFullYear();
+  document.getElementById('sigDate').value = new Date().toISOString().split('T')[0];
+
+  // Capture timestamp
+  const now = new Date();
+  document.getElementById('timestampDisplay').textContent =
+    now.toLocaleString('en-US', { dateStyle: 'long', timeStyle: 'short' });
+
+  // Capture IP (best-effort, for UETA compliance)
+  fetch('https://api.ipify.org?format=json')
+    .then(r => r.json())
+    .then(d => {
+      document.getElementById('ipDisplay').textContent = 'IP: ' + d.ip;
+      formData._ip = d.ip;
+    })
+    .catch(() => {
+      document.getElementById('ipDisplay').textContent = '';
+    });
+
+  // Live update of client name in agreement
+  ['firstName', 'lastName'].forEach(id => {
+    document.getElementById(id).addEventListener('input', updateNameDisplay);
+  });
+});
+
+function updateNameDisplay() {
+  const first = document.getElementById('firstName').value.trim();
+  const last = document.getElementById('lastName').value.trim();
+  const display = [first, last].filter(Boolean).join(' ') || '[Client]';
+  document.querySelectorAll('.client-name-display').forEach(el => {
+    el.textContent = display;
+  });
+}
+
+// ═══════════════════ NAVIGATION ═══════════════════
+function goToStep(step) {
+  // Validate current step before advancing
+  if (step > currentStep && !validateStep(currentStep)) return;
+
+  // Update sections
+  document.querySelectorAll('.form-section').forEach(s => s.classList.remove('active'));
+  document.getElementById('step' + step).classList.add('active');
+
+  // Update progress
+  document.querySelectorAll('.steps li').forEach(li => {
+    const s = parseInt(li.dataset.step);
+    li.classList.remove('active', 'completed');
+    if (s === step) li.classList.add('active');
+    else if (s < step) li.classList.add('completed');
+  });
+
+  currentStep = step;
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+// ═══════════════════ VALIDATION ═══════════════════
+function validateStep(step) {
+  let valid = true;
+  const section = document.getElementById('step' + step);
+  const required = section.querySelectorAll('[required]');
+
+  required.forEach(field => {
+    const errMsg = field.parentElement.querySelector('.error-msg');
+    if (field.type === 'checkbox') {
+      if (!field.checked) {
+        valid = false;
+        if (errMsg) errMsg.style.display = 'block';
+      } else {
+        if (errMsg) errMsg.style.display = 'none';
+      }
+    } else if (!field.value.trim()) {
+      valid = false;
+      field.classList.add('field-error');
+      if (errMsg) errMsg.style.display = 'block';
+    } else {
+      field.classList.remove('field-error');
+      if (errMsg) errMsg.style.display = 'none';
+    }
+  });
+
+  // Email validation
+  if (step === 1) {
+    const emailField = document.getElementById('email');
+    if (emailField.value && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(emailField.value)) {
+      valid = false;
+      emailField.classList.add('field-error');
+      const errMsg = emailField.parentElement.querySelector('.error-msg');
+      if (errMsg) errMsg.style.display = 'block';
+    }
+  }
+
+  if (!valid) {
+    const firstError = section.querySelector('.field-error, .error-msg[style*="block"]');
+    if (firstError) firstError.scrollIntoView({ behavior: 'smooth', block: 'center' });
+  }
+
+  return valid;
+}
+
+// ═══════════════════ SUBMIT ═══════════════════
+async function submitForm() {
+  if (!validateStep(3)) return;
+
+  const btn = document.getElementById('submitBtn');
+  btn.disabled = true;
+  btn.textContent = 'Submitting...';
+
+  // Collect all data
+  formData = {
+    first_name: document.getElementById('firstName').value.trim(),
+    middle_name: document.getElementById('middleName').value.trim(),
+    last_name: document.getElementById('lastName').value.trim(),
+    company: document.getElementById('companyName').value.trim(),
+    title_role: document.getElementById('titleRole').value.trim(),
+    street: document.getElementById('street').value.trim(),
+    street2: document.getElementById('street2').value.trim(),
+    city: document.getElementById('city').value.trim(),
+    state: document.getElementById('state').value.trim().toUpperCase(),
+    zip: document.getElementById('zip').value.trim(),
+    email: document.getElementById('email').value.trim(),
+    phone: document.getElementById('phone').value.trim(),
+    alt_phone: document.getElementById('altPhone').value.trim(),
+    contact_preference: document.getElementById('contactPref').value,
+    referral_source: document.getElementById('referralSource').value.trim(),
+    practice_area: document.getElementById('practiceArea').value,
+    matter_description: document.getElementById('matterDescription').value.trim(),
+    case_number: document.getElementById('caseNumber').value.trim(),
+    adverse_parties: document.getElementById('adverseParties').value.trim(),
+    urgent_deadline: document.getElementById('urgentDeadline').value.trim(),
+    signature: document.getElementById('signature').value.trim(),
+    sig_title: document.getElementById('sigTitle').value.trim(),
+    sig_date: document.getElementById('sigDate').value,
+    ip_address: formData._ip || '',
+    submitted_at: new Date().toISOString(),
+  };
+
+  // Generate PDF
+  try {
+    signedPdfBlob = generateSignedPdf(formData);
+  } catch (e) {
+    console.error('PDF generation error:', e);
+  }
+
+  // Convert PDF to base64 for email attachment
+  let pdfBase64 = '';
+  if (signedPdfBlob) {
+    try {
+      const reader = new FileReader();
+      pdfBase64 = await new Promise((resolve) => {
+        reader.onloadend = () => resolve(reader.result.split(',')[1]);
+        reader.readAsDataURL(signedPdfBlob);
+      });
+    } catch (e) {
+      console.error('PDF base64 error:', e);
+    }
+  }
+
+  // Submit to API (handles Supabase storage + email to client & attorney)
+  try {
+    const res = await fetch(API_ENDPOINT, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        ...formData,
+        pdf_base64: pdfBase64,
+        pdf_filename: 'Braun_Law_Engagement_' + formData.last_name + '.pdf'
+      })
+    });
+    if (!res.ok) {
+      console.error('API error:', res.status);
+      // Form still succeeds locally — client has the PDF
+    }
+  } catch (e) {
+    console.error('Submit error:', e);
+    // Graceful degradation — PDF was still generated
+  }
+
+  // Show confirmation
+  document.getElementById('confirmEmail').textContent = formData.email;
+  goToStep(4);
+  btn.disabled = false;
+  btn.textContent = 'Submit & Sign Engagement Agreement';
+}
+
+// ═══════════════════ PDF GENERATION ═══════════════════
+function generateSignedPdf(data) {
+  const { jsPDF } = window.jspdf;
+  const doc = new jsPDF({ unit: 'pt', format: 'letter' });
+  const W = 612, ML = 72, MR = 72, TW = W - ML - MR;
+  let y = 72;
+
+  // Letterhead
+  doc.setFont('times', 'bold');
+  doc.setFontSize(20);
+  doc.text('Gregory P. Braun, Esq.', W / 2, y, { align: 'center' });
+  y += 16;
+  doc.setFont('times', 'italic');
+  doc.setFontSize(10);
+  doc.text('~Attorney-at-Law~', W / 2, y, { align: 'center' });
+  y += 12;
+  doc.setDrawColor(0);
+  doc.setLineWidth(0.5);
+  doc.line(ML, y, W - MR, y);
+  y += 10;
+  doc.setFont('helvetica', 'normal');
+  doc.setFontSize(7);
+  doc.text('Braun Law  |  PO Box 107, Westbrook, ME 04092  |  (207) 346-4140  |  gregory@braunlaw.us', W / 2, y, { align: 'center' });
+  y += 24;
+
+  // Date
+  doc.setFont('times', 'normal');
+  doc.setFontSize(11);
+  doc.text(formatDate(data.sig_date), ML, y);
+  y += 20;
+
+  // Client info
+  doc.text(data.first_name + (data.middle_name ? ' ' + data.middle_name : '') + ' ' + data.last_name, ML, y);
+  y += 14;
+  if (data.company) { doc.text(data.company, ML, y); y += 14; }
+  doc.text(data.street + (data.street2 ? ', ' + data.street2 : ''), ML, y);
+  y += 14;
+  doc.text(data.city + ', ' + data.state + ' ' + data.zip, ML, y);
+  y += 24;
+
+  // Re: line
+  doc.setFont('times', 'bold');
+  doc.setFontSize(11);
+  const reLine = 'Re:  Engagement of Legal Counsel — ' + data.practice_area;
+  doc.text(reLine, ML, y);
+  y += 20;
+
+  // Salutation
+  doc.setFont('times', 'normal');
+  doc.text('Dear ' + data.first_name + ' ' + data.last_name + ':', ML, y);
+  y += 18;
+
+  // Body
+  const sections = [
+    { text: 'Thank you for the opportunity to represent you. This letter sets forth the terms of my engagement as your attorney.' },
+    { heading: 'Scope of Representation', text: 'My representation will include providing legal advice and counsel on the matter described in your intake submission, and such other related matters as may arise in connection with this engagement. My representation is limited to those matters for which you specifically request my assistance and does not include representation in litigation without a separate engagement agreement.' },
+    { heading: 'Fees', text: 'My hourly rate for this engagement is $300.00 per hour. I will invoice on a monthly basis for services rendered. Invoices are due and payable within thirty (30) days of receipt.' },
+    { heading: 'Collection of Unpaid Fees and Costs', text: 'In the event that any invoice remains unpaid for more than thirty (30) days from the date of the invoice, the outstanding balance shall accrue interest at the rate of twelve percent (12%) per annum from the date the invoice was first issued until paid in full. If it becomes necessary to pursue collection of any unpaid fees, costs, or expenses, I reserve the right to pursue all available legal remedies, including but not limited to filing suit in a court of competent jurisdiction. In the event of collection, you agree to pay all reasonable costs of collection, including court costs and reasonable attorney\'s fees incurred in connection with the collection effort. This provision survives the termination of this engagement.' },
+    { heading: 'Communication', text: 'All correspondence and communications should be directed to me at gregory@braunlaw.us or (207) 346-4140. My mailing address is PO Box 107, Westbrook, ME 04092.' },
+    { heading: 'File Retention — Rule 1.15, Maine Rules of Professional Conduct', text: 'At the conclusion of any matter, I will retain your files for a period of eight (8) years, after which they may be destroyed without further notice unless they have intrinsic value.' },
+    { text: 'I look forward to working with you. Please do not hesitate to contact me with any questions about the terms of this engagement.' }
+  ];
+
+  for (const s of sections) {
+    if (y > 680) { doc.addPage(); y = 72; }
+    if (s.heading) {
+      doc.setFont('times', 'bold');
+      doc.setFontSize(11);
+      doc.text(s.heading + '.', ML, y);
+      y += 16;
+    }
+    doc.setFont('times', 'normal');
+    doc.setFontSize(10.5);
+    const lines = doc.splitTextToSize(s.text, TW);
+    for (const line of lines) {
+      if (y > 720) { doc.addPage(); y = 72; }
+      doc.text(line, ML, y);
+      y += 13;
+    }
+    y += 6;
+  }
+
+  // Closing
+  if (y > 600) { doc.addPage(); y = 72; }
+  y += 8;
+  doc.text('With consideration,', ML, y);
+  y += 36;
+  doc.setFont('times', 'bolditalic');
+  doc.text('/s/ Gregory P. Braun, Esq.', ML, y);
+  y += 14;
+  doc.setFont('times', 'normal');
+  doc.setFontSize(10.5);
+  ['Braun Law', 'PO Box 107, Westbrook, ME 04092', '(207) 346-4140', 'gregory@braunlaw.us'].forEach(line => {
+    doc.text(line, ML, y); y += 13;
+  });
+
+  // Signature block
+  y += 20;
+  if (y > 580) { doc.addPage(); y = 72; }
+  doc.setLineWidth(0.75);
+  doc.line(ML, y, W - MR, y);
+  y += 20;
+  doc.setFont('times', 'bold');
+  doc.setFontSize(12);
+  doc.text('ACKNOWLEDGED AND AGREED:', ML, y);
+  y += 16;
+  doc.setFont('times', 'italic');
+  doc.setFontSize(8);
+  const uetaLines = doc.splitTextToSize('By typing their full legal name below, the undersigned agrees to the terms of this engagement agreement. This electronic signature is valid and enforceable under the Maine Uniform Electronic Transactions Act, 10 M.R.S. Ch. 1051.', TW);
+  uetaLines.forEach(line => { doc.text(line, ML, y); y += 10; });
+  y += 12;
+
+  // Signature line
+  const fx = ML + 100;
+  doc.setFont('times', 'normal');
+  doc.setFontSize(11);
+
+  doc.text('Signature:', ML, y);
+  doc.setFont('times', 'bolditalic');
+  doc.setFontSize(14);
+  doc.text(data.signature, fx, y);
+  doc.setLineWidth(0.5);
+  doc.line(fx, y + 2, W - MR, y + 2);
+  y += 24;
+
+  doc.setFont('times', 'normal');
+  doc.setFontSize(11);
+  doc.text('Printed Name:', ML, y);
+  doc.text(data.first_name + (data.middle_name ? ' ' + data.middle_name : '') + ' ' + data.last_name, fx, y);
+  doc.line(fx, y + 2, W - MR, y + 2);
+  y += 24;
+
+  if (data.sig_title) {
+    doc.text('Title:', ML, y);
+    doc.text(data.sig_title, fx, y);
+    doc.line(fx, y + 2, W - MR, y + 2);
+    y += 24;
+  }
+
+  doc.text('Date:', ML, y);
+  doc.text(formatDate(data.sig_date), fx, y);
+  doc.line(fx, y + 2, W - MR, y + 2);
+  y += 24;
+
+  // Metadata footer
+  doc.setFont('helvetica', 'normal');
+  doc.setFontSize(7);
+  doc.setTextColor(150);
+  doc.text('Submitted: ' + data.submitted_at + '  |  IP: ' + (data.ip_address || 'N/A'), ML, 760);
+  doc.setTextColor(0);
+
+  return doc.output('blob');
+}
+
+function formatDate(dateStr) {
+  if (!dateStr) return '';
+  const d = new Date(dateStr + 'T12:00:00');
+  return d.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
+}
+
+function downloadPdf() {
+  if (!signedPdfBlob) return;
+  const url = URL.createObjectURL(signedPdfBlob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = 'Braun_Law_Engagement_Agreement_' + formData.last_name + '.pdf';
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
+  URL.revokeObjectURL(url);
+}
+</script>
+
+</body>
+</html>
