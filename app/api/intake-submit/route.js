@@ -29,10 +29,14 @@ export async function POST(request) {
     }
 
     // 2. Send email via Resend to both client and attorney
+    // NOTE: Using onboarding@resend.dev until forgedlucidity.ai domain is verified
     const resendKey = process.env.RESEND_API_KEY;
+    const fromAddress = 'Braun Law Intake <onboarding@resend.dev>';
+    const fromAddressClient = 'Braun Law <onboarding@resend.dev>';
+
     if (resendKey && formData.email) {
       const clientName = `${formData.first_name} ${formData.last_name}`;
-      const subject = `Braun Law — Signed Engagement Agreement — ${clientName}`;
+      const subject = `Braun Law - Signed Engagement Agreement - ${clientName}`;
       const htmlBody = `
         <div style="font-family:Georgia,serif;max-width:600px;margin:0 auto">
           <h2 style="color:#1a2332">Engagement Agreement Received</h2>
@@ -73,20 +77,22 @@ export async function POST(request) {
 
       // Send to attorney
       try {
-        await fetch('https://api.resend.com/emails', {
+        const attResp = await fetch('https://api.resend.com/emails', {
           method: 'POST',
           headers: {
             'Authorization': `Bearer ${resendKey}`,
             'Content-Type': 'application/json'
           },
           body: JSON.stringify({
-            from: 'Braun Law Intake <intake@forgedlucidity.ai>',
+            from: fromAddress,
             to: ['gregory@braunlaw.us'],
             subject: subject,
             html: htmlBody,
             attachments: attachments
           })
         });
+        const attResult = await attResp.json();
+        console.log('Attorney email result:', JSON.stringify(attResult));
       } catch (e) {
         console.error('Email to attorney error:', e);
       }
@@ -110,20 +116,22 @@ export async function POST(request) {
         </div>`;
 
       try {
-        await fetch('https://api.resend.com/emails', {
+        const cliResp = await fetch('https://api.resend.com/emails', {
           method: 'POST',
           headers: {
             'Authorization': `Bearer ${resendKey}`,
             'Content-Type': 'application/json'
           },
           body: JSON.stringify({
-            from: 'Braun Law <intake@forgedlucidity.ai>',
+            from: fromAddressClient,
             to: [formData.email],
-            subject: 'Braun Law — Your Signed Engagement Agreement',
+            subject: 'Braun Law - Your Signed Engagement Agreement',
             html: clientHtml,
             attachments: attachments
           })
         });
+        const cliResult = await cliResp.json();
+        console.log('Client email result:', JSON.stringify(cliResult));
       } catch (e) {
         console.error('Email to client error:', e);
       }
