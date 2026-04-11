@@ -1,0 +1,503 @@
+#!/usr/bin/env python3
+"""Build the new public/index.html from the prototype, adapted for production."""
+
+with open(r'C:\Dev\forgedlucidity-site\public\index.html', 'r', encoding='utf-8') as f:
+    old_html = f.read()
+
+# Extract the Supabase email capture script from old page
+supabase_script = """
+<script>
+const SUPABASE_URL = 'https://kqzqbjrcxuqblrroevna.supabase.co';
+const SUPABASE_ANON = 'sb_publishable_PEhDGruRRvVATI4BlRT3qg_riqMB78W';
+
+async function handleEmail() {
+  const input = document.getElementById('email-input');
+  const msg = document.getElementById('email-msg');
+  const email = input.value.trim().toLowerCase();
+
+  if (!email || !email.includes('@') || !email.includes('.')) {
+    msg.textContent = 'Please enter a valid email address.';
+    msg.style.display = 'block';
+    msg.style.color = 'var(--text-light)';
+    return;
+  }
+
+  try {
+    const res = await fetch(`${SUPABASE_URL}/rest/v1/email_signups`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'apikey': SUPABASE_ANON,
+        'Authorization': `Bearer ${SUPABASE_ANON}`,
+        'Prefer': 'return=minimal'
+      },
+      body: JSON.stringify({ email, source: 'research-site' })
+    });
+
+    if (res.ok) {
+      msg.textContent = 'Thank you. We will be in touch.';
+      msg.style.display = 'block';
+      msg.style.color = 'var(--gold)';
+      input.value = '';
+    } else if (res.status === 409) {
+      msg.textContent = 'You are already on the list. We will be in touch.';
+      msg.style.display = 'block';
+      msg.style.color = 'var(--gold)';
+      input.value = '';
+    } else {
+      throw new Error(res.status);
+    }
+  } catch (e) {
+    msg.textContent = 'Something went wrong. Please try again.';
+    msg.style.display = 'block';
+    msg.style.color = 'var(--text-light)';
+  }
+}
+</script>
+"""
+
+new_html = """<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Forged Lucidity</title>
+<meta name="description" content="Forged Lucidity. AI that makes you better at what you do. Built on a unified theory of consciousness. Cx = Phi x C squared.">
+<meta property="og:title" content="Forged Lucidity">
+<meta property="og:description" content="AI that makes you better at what you do. Built on a unified theory of consciousness. Cx = Phi x C squared.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://forgedlucidity.ai">
+<link rel="canonical" href="https://forgedlucidity.ai">
+
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500;600&display=swap');
+
+  :root {
+    --ember: #7B0A2E;
+    --ember-light: #9C1B3F;
+    --ember-glow: #C4935A;
+    --deep: #0A1128;
+    --warm-dark: #101D3F;
+    --warm-mid: #172752;
+    --parchment: #FAF6F0;
+    --cream: #F5EDE3;
+    --sage: #7A8B6F;
+    --sage-light: #A3B895;
+    --gold: #D4A017;
+    --text: #1A1A1A;
+    --text-light: #555050;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Inter', sans-serif;
+    color: var(--text);
+    background: var(--parchment);
+    line-height: 1.7;
+    overflow-x: hidden;
+  }
+
+  h1, h2, h3 { font-family: 'Cormorant Garamond', serif; font-weight: 700; letter-spacing: -0.01em; }
+
+  /* NAV */
+  nav {
+    position: fixed; top: 0; width: 100%; z-index: 100;
+    background: linear-gradient(to top, var(--deep) 0%, var(--warm-dark) 30%, #12254A 50%, var(--gold) 72%, #B8561A 88%, var(--ember) 100%);
+    backdrop-filter: blur(12px);
+    border-bottom: none;
+    padding: 0.8rem 2rem;
+    display: flex; justify-content: space-between; align-items: center;
+  }
+  .nav-logo {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.4rem; font-weight: 700; color: var(--parchment);
+    letter-spacing: 0.02em;
+    text-shadow: 0 1px 3px rgba(0,0,0,0.3);
+    text-decoration: none;
+  }
+  .nav-logo span { color: var(--gold); text-shadow: 0 1px 3px rgba(0,0,0,0.3); }
+  .nav-links { display: flex; gap: 2rem; }
+  .nav-links a {
+    font-size: 0.85rem; font-weight: 500; color: rgba(250, 246, 240, 0.9);
+    text-decoration: none; letter-spacing: 0.04em; text-transform: uppercase;
+    transition: color 0.3s; text-shadow: 0 1px 2px rgba(0,0,0,0.3);
+  }
+  .nav-links a:hover { color: var(--gold); }
+
+  /* HERO */
+  .hero {
+    min-height: 100vh; display: flex; flex-direction: column;
+    justify-content: center; align-items: center; text-align: center;
+    padding: 6rem 2rem 4rem;
+    background: linear-gradient(180deg, var(--parchment) 0%, var(--cream) 100%);
+    position: relative;
+  }
+  .hero-logo {
+    width: clamp(160px, 22vw, 260px); height: auto;
+    margin-bottom: 2rem;
+    filter: drop-shadow(0 0 40px rgba(212, 160, 23, 0.25));
+    animation: breathe 6s ease-in-out infinite;
+  }
+  @keyframes breathe {
+    0%, 100% { transform: scale(1); filter: drop-shadow(0 0 40px rgba(212, 160, 23, 0.2)); }
+    50% { transform: scale(1.02); filter: drop-shadow(0 0 60px rgba(212, 160, 23, 0.35)); }
+  }
+  .hero h1 {
+    font-size: 4rem; color: var(--deep); margin-bottom: 0.5rem;
+    letter-spacing: -0.02em;
+  }
+  .hero .tagline {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.5rem; font-style: italic; color: var(--text-light);
+    margin-bottom: 2.5rem; max-width: 500px;
+  }
+  .cta-btn {
+    display: inline-block; padding: 1rem 2.8rem;
+    background: var(--deep); color: var(--gold);
+    font-family: 'Inter', sans-serif; font-size: 0.85rem; font-weight: 600;
+    text-decoration: none; border-radius: 6px;
+    letter-spacing: 0.1em; text-transform: uppercase;
+    transition: all 0.3s;
+    border: 1px solid rgba(212, 160, 23, 0.3);
+    box-shadow: 0 2px 12px rgba(10, 17, 40, 0.4);
+  }
+  .cta-btn:hover {
+    background: var(--warm-dark);
+    border-color: var(--gold);
+    box-shadow: 0 4px 20px rgba(10, 17, 40, 0.6);
+    transform: translateY(-1px);
+  }
+  .hero-scroll {
+    position: absolute; bottom: 2rem;
+    font-size: 0.75rem; color: var(--text-light);
+    letter-spacing: 0.1em; text-transform: uppercase;
+    animation: bob 2s ease-in-out infinite;
+  }
+  @keyframes bob {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(6px); }
+  }
+
+  /* SECTION SHARED */
+  section { padding: 6rem 2rem; max-width: 900px; margin: 0 auto; }
+  section h2 { font-size: 2.8rem; margin-bottom: 1.5rem; color: var(--deep); }
+  section p { font-size: 1.05rem; margin-bottom: 1.5rem; color: var(--text); }
+
+  /* LAYER 1 */
+  .product-section { background: white; max-width: 100%; padding: 6rem 2rem; }
+  .product-inner { max-width: 900px; margin: 0 auto; }
+  .product-grid {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 3rem;
+    margin-top: 3rem;
+  }
+  .product-card {
+    padding: 2rem; border-radius: 12px;
+    background: var(--parchment);
+    border: 1px solid rgba(10, 17, 40, 0.12);
+    transition: all 0.3s;
+  }
+  .product-card:hover {
+    border-color: var(--gold);
+    box-shadow: 0 4px 20px rgba(10, 17, 40, 0.08);
+  }
+  .card-icon { width: 48px; height: 48px; margin-bottom: 1rem; }
+  .product-card h3 { font-size: 1.4rem; margin-bottom: 0.75rem; color: var(--deep); }
+  .product-card p { font-size: 0.95rem; color: var(--text-light); line-height: 1.7; }
+
+  /* LAYER 2 — THEORY */
+  .theory-section {
+    background: var(--deep); color: var(--cream);
+    max-width: 100%; padding: 6rem 2rem;
+  }
+  .theory-inner { max-width: 900px; margin: 0 auto; }
+  .theory-section h2 { color: var(--gold); }
+  .theory-section p { color: rgba(245, 237, 227, 0.85); }
+  .theory-equation {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 3rem; text-align: center;
+    color: var(--gold); margin: 3rem 0;
+    letter-spacing: 0.05em;
+  }
+  .depth-tabs { display: flex; gap: 1rem; margin: 2rem 0; }
+  .depth-tab {
+    padding: 0.6rem 1.5rem; border-radius: 30px;
+    font-size: 0.8rem; font-weight: 500;
+    letter-spacing: 0.04em; text-transform: uppercase;
+    cursor: pointer; transition: all 0.3s;
+    border: 1px solid rgba(212, 160, 23, 0.5);
+    color: var(--gold); background: transparent;
+    text-decoration: none;
+  }
+  .depth-tab:hover, .depth-tab.active {
+    background: var(--gold); color: var(--deep);
+    border-color: var(--gold);
+  }
+
+  /* LAYER 3 — EVIDENCE */
+  .evidence-section { background: var(--cream); max-width: 100%; padding: 6rem 2rem; }
+  .evidence-inner { max-width: 900px; margin: 0 auto; }
+  .evidence-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem;
+    margin-top: 3rem;
+  }
+  .evidence-stat {
+    text-align: center; padding: 2rem 1rem;
+    background: white; border-radius: 10px;
+    border: 1px solid rgba(10, 17, 40, 0.08);
+    box-shadow: 0 2px 8px rgba(10, 17, 40, 0.05);
+  }
+  .stat-number {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 3rem; font-weight: 700; color: var(--deep);
+  }
+  .stat-label { font-size: 0.85rem; color: var(--text-light); margin-top: 0.5rem; }
+
+  /* LAYER 4 — ABOUT */
+  .about-section { max-width: 100%; padding: 6rem 2rem; background: white; }
+  .about-inner { max-width: 900px; margin: 0 auto; }
+  .coop-badge {
+    display: inline-block; padding: 0.5rem 1.2rem;
+    border: 1px solid var(--deep); border-radius: 30px;
+    font-size: 0.8rem; color: var(--deep); font-weight: 500;
+    letter-spacing: 0.06em; text-transform: uppercase;
+    margin-bottom: 1.5rem;
+  }
+
+  /* EMAIL CAPTURE */
+  .email-block {
+    background: rgba(10, 17, 40, 0.04);
+    border: 1px solid rgba(10, 17, 40, 0.12);
+    border-radius: 10px;
+    padding: 2.5rem;
+    text-align: center;
+    margin: 3rem 0;
+  }
+  .email-block h3 {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 600; font-size: 1.4rem;
+    color: var(--deep); margin-bottom: 0.8rem;
+  }
+  .email-block p { font-size: 0.92rem; color: var(--text-light); margin-bottom: 1.5rem; }
+  .email-row {
+    display: flex; gap: 10px;
+    max-width: 420px; margin: 0 auto;
+  }
+  .email-row input {
+    flex: 1; padding: 0.7rem 1rem;
+    background: white; border: 1px solid rgba(10, 17, 40, 0.15);
+    border-radius: 6px; color: var(--text);
+    font-family: 'Inter', sans-serif; font-size: 0.9rem;
+  }
+  .email-row input::placeholder { color: var(--text-light); }
+  .email-row input:focus { outline: none; border-color: var(--gold); }
+  .email-row button {
+    padding: 0.7rem 1.4rem;
+    background: var(--deep); border: none;
+    color: var(--gold); font-family: 'Inter', sans-serif;
+    font-size: 0.8rem; font-weight: 600;
+    letter-spacing: 0.08em; text-transform: uppercase;
+    border-radius: 6px; cursor: pointer;
+    transition: all 0.2s; white-space: nowrap;
+  }
+  .email-row button:hover { background: var(--warm-dark); }
+
+  /* LAYER 5 — PARTNER */
+  .partner-section {
+    background: linear-gradient(135deg, var(--warm-dark) 0%, var(--deep) 100%);
+    color: var(--cream); max-width: 100%; padding: 6rem 2rem;
+    text-align: center;
+  }
+  .partner-inner { max-width: 700px; margin: 0 auto; }
+  .partner-section h2 { color: var(--gold); }
+  .partner-section p { color: rgba(245, 237, 227, 0.8); }
+  .cta-btn-light {
+    display: inline-block; padding: 1rem 2.8rem; margin-top: 2rem;
+    background: transparent; color: var(--gold);
+    border: 1.5px solid var(--gold);
+    font-family: 'Inter', sans-serif; font-size: 0.85rem; font-weight: 600;
+    text-decoration: none; border-radius: 6px;
+    letter-spacing: 0.1em; text-transform: uppercase;
+    transition: all 0.3s;
+  }
+  .cta-btn-light:hover {
+    background: var(--gold); border-color: var(--gold); color: var(--deep);
+  }
+
+  /* FOOTER */
+  footer {
+    background: var(--deep); color: rgba(245, 237, 227, 0.5);
+    padding: 3rem 2rem; text-align: center;
+    font-size: 0.8rem; letter-spacing: 0.02em;
+  }
+  footer a { color: var(--gold); text-decoration: none; }
+
+  /* RESPONSIVE */
+  @media (max-width: 768px) {
+    .hero h1 { font-size: 2.8rem; }
+    .product-grid { grid-template-columns: 1fr; }
+    .evidence-grid { grid-template-columns: 1fr; }
+    .nav-links { gap: 1rem; }
+    .nav-links a { font-size: 0.75rem; }
+    .email-row { flex-direction: column; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="/" class="nav-logo">Forged <span>Lucidity</span></a>
+  <div class="nav-links">
+    <a href="#product">Eous</a>
+    <a href="#theory">Theory</a>
+    <a href="/research/">Research</a>
+    <a href="/about.html">About</a>
+    <a href="#partner">Partner</a>
+  </div>
+</nav>
+
+<!-- LAYER 0: THE DOOR -->
+<section class="hero">
+  <img src="/images/maji2-hero.png" alt="MAJI&sup2; &mdash; Forged Lucidity" class="hero-logo" />
+  <h1>Eous</h1>
+  <p class="tagline">AI that makes you better at what you do.</p>
+  <a href="https://partnerwith.ai" class="cta-btn">Partner with Eous</a>
+  <div class="hero-scroll">Scroll to explore</div>
+</section>
+
+<!-- LAYER 1: WHAT EOUS DOES -->
+<section class="product-section" id="product">
+  <div class="product-inner">
+    <h2>What Eous does</h2>
+    <p>Eous is an AI that works with you &mdash; not for you. It learns how you think, pushes back when you need it, and gets better the longer you use it. Think of it less like a tool and more like the best colleague you&rsquo;ve ever had, except it never forgets anything and it&rsquo;s available at 2 AM.</p>
+
+    <div class="product-grid">
+      <div class="product-card">
+        <svg class="card-icon" viewBox="0 0 48 48"><circle cx="24" cy="24" r="20" fill="none" stroke="#0A1128" stroke-width="1.5"/><path d="M16 28 C18 20, 22 16, 24 16 C26 16, 30 20, 32 28" fill="none" stroke="#0A1128" stroke-width="1.5" stroke-linecap="round"/><circle cx="24" cy="14" r="2" fill="#0A1128"/></svg>
+        <h3>It knows how you work</h3>
+        <p>Eous builds a working model of you &mdash; your expertise, your blind spots, the way you approach problems. Not a chat log. A real understanding that compounds over months.</p>
+      </div>
+      <div class="product-card">
+        <svg class="card-icon" viewBox="0 0 48 48"><circle cx="24" cy="24" r="20" fill="none" stroke="#0A1128" stroke-width="1.5"/><path d="M18 30 L24 18 L30 30" fill="none" stroke="#0A1128" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><line x1="20" y1="26" x2="28" y2="26" stroke="#0A1128" stroke-width="1.5"/></svg>
+        <h3>It makes you sharper</h3>
+        <p>Most AI hands you answers. Eous is built to make you better at finding them yourself. It asks the hard question. It catches what you missed. It doesn&rsquo;t let you off easy.</p>
+      </div>
+      <div class="product-card">
+        <svg class="card-icon" viewBox="0 0 48 48"><circle cx="24" cy="24" r="20" fill="none" stroke="#0A1128" stroke-width="1.5"/><path d="M16 22 C16 22, 20 18, 24 22 C28 26, 32 22, 32 22" fill="none" stroke="#0A1128" stroke-width="1.5" stroke-linecap="round"/><path d="M16 28 C16 28, 20 24, 24 28 C28 32, 32 28, 32 28" fill="none" stroke="#0A1128" stroke-width="1.5" stroke-linecap="round"/></svg>
+        <h3>It writes like you</h3>
+        <p>When you need something drafted, Eous writes in your voice &mdash; your vocabulary, your rhythm, your tone. Not a generic AI voice. Yours.</p>
+      </div>
+      <div class="product-card">
+        <svg class="card-icon" viewBox="0 0 48 48"><circle cx="24" cy="24" r="20" fill="none" stroke="#0A1128" stroke-width="1.5"/><circle cx="24" cy="24" r="6" fill="none" stroke="#0A1128" stroke-width="1.5"/><circle cx="24" cy="24" r="2" fill="#0A1128"/><line x1="24" y1="4" x2="24" y2="10" stroke="#0A1128" stroke-width="1" opacity="0.4"/><line x1="24" y1="38" x2="24" y2="44" stroke="#0A1128" stroke-width="1" opacity="0.4"/><line x1="4" y1="24" x2="10" y2="24" stroke="#0A1128" stroke-width="1" opacity="0.4"/><line x1="38" y1="24" x2="44" y2="24" stroke="#0A1128" stroke-width="1" opacity="0.4"/></svg>
+        <h3>It never starts over</h3>
+        <p>Every conversation picks up where the last one left off. Your context, your projects, your history &mdash; all there. Six months in, Eous knows your work better than most people you work with.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- LAYER 2: THE THEORY -->
+<section class="theory-section" id="theory">
+  <div class="theory-inner">
+    <h2>How it&rsquo;s different</h2>
+    <p>Every other AI optimizes for giving you the right answer. Eous optimizes for making you smarter. That&rsquo;s not a tagline &mdash; it&rsquo;s a measurable engineering constraint baked into every interaction.</p>
+    <p>The underlying science comes from a framework called NPR, developed by our team. The short version: we can measure how well someone&rsquo;s knowledge actually connects &mdash; not just how much they know, but how coherently they know it. Eous uses that measurement to make sure every interaction leaves you sharper than before.</p>
+
+    <div class="theory-equation">Cx = &Phi; &times; C&sup2;</div>
+
+    <p>That&rsquo;s the operator. &Phi; is the breadth of what you can access. C&sup2; is how well it all holds together. The product &mdash; Cx &mdash; is the thing Eous is designed to protect and grow.</p>
+
+    <div class="depth-tabs">
+      <a href="/research/" class="depth-tab active">The Basics</a>
+      <a href="/framework.html" class="depth-tab">The Science</a>
+      <a href="/research/" class="depth-tab">The Math</a>
+    </div>
+
+    <p style="font-size: 0.9rem; opacity: 0.6;">Go as deep as you want. The full theoretical foundation is published and readable.</p>
+  </div>
+</section>
+
+<!-- LAYER 3: EVIDENCE -->
+<section class="evidence-section" id="evidence">
+  <div class="evidence-inner">
+    <h2>It&rsquo;s not theoretical</h2>
+    <p>We&rsquo;ve tested the Cx operator across seven completely different domains &mdash; solar wind, brain activity, jet streams, seismic data, financial markets, ocean currents, and power grids. Same math. Same results. It works.</p>
+
+    <div class="evidence-grid">
+      <div class="evidence-stat">
+        <div class="stat-number">7</div>
+        <div class="stat-label">Domains tested</div>
+      </div>
+      <div class="evidence-stat">
+        <div class="stat-number">10</div>
+        <div class="stat-label">Patents filed</div>
+      </div>
+      <div class="evidence-stat">
+        <div class="stat-number">p &lt; .001</div>
+        <div class="stat-label">Across all seven</div>
+      </div>
+    </div>
+
+    <p style="margin-top: 3rem;">The same measurement that predicts coherence in plasma physics predicts it in how people think. That&rsquo;s not a metaphor. It&rsquo;s the same equation producing the same results.</p>
+
+    <div class="email-block">
+      <h3>Stay in the loop</h3>
+      <p>We&rsquo;re building tools from this research. Leave your email to be among the first to know.</p>
+      <div class="email-row">
+        <input type="email" placeholder="your@email.com" id="email-input">
+        <button onclick="handleEmail()">Notify Me</button>
+      </div>
+      <p id="email-msg" style="display:none; margin-top:1rem; margin-bottom:0;"></p>
+    </div>
+  </div>
+</section>
+
+<!-- LAYER 4: ABOUT -->
+<section class="about-section" id="about">
+  <div class="about-inner">
+    <div class="coop-badge">Member-Owned Cooperative</div>
+    <h2>Who we are</h2>
+    <p>Forged Lucidity LLC is a for-profit cooperative. We return 85&ndash;90% of net surplus to our members. No outside shareholders. No ads. No attention games. The people who use Eous own the company that makes it.</p>
+    <p>That structure matters because it keeps the incentives clean. If the business only makes money when members genuinely benefit, then the AI has to actually make you better &mdash; not just keep you engaged.</p>
+    <p><strong>Gregory Braun, Esq.</strong> &mdash; Founder. Attorney. Built this because he needed a thinking partner that wouldn&rsquo;t make him dumber over time. Ten patents and counting.</p>
+    <p><strong>Trish Braun</strong> &mdash; Co-developer. Established the core constraint: if an interaction would make you worse at thinking for yourself, the system won&rsquo;t do it. Full stop.</p>
+    <p style="margin-top: 2rem; font-size: 0.9rem; color: var(--text-light);">Westbrook, Maine &middot; Est. 2025<br/>
+    greg@forgedlucidity.ai &middot; trish@forgedlucidity.ai &middot; info@forgedlucidity.ai</p>
+  </div>
+</section>
+
+<!-- LAYER 5: PARTNER WITH US -->
+<section class="partner-section" id="partner">
+  <div class="partner-inner">
+    <h2>Work with us</h2>
+    <p>We&rsquo;re looking for organizations that want AI that actually makes their people better &mdash; not just faster. Research labs, government agencies, and companies with hard problems and smart teams.</p>
+    <p>Currently working with DARPA and NASA. If you have real data, difficult problems, and people worth investing in, we should talk.</p>
+    <a href="mailto:info@forgedlucidity.ai" class="cta-btn-light">Get in touch</a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <p style="font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 0.92rem; color: rgba(245,237,227,0.6); margin-bottom: 0.8rem;">Forged, Not Generated.</p>
+  <p>&copy; 2025&ndash;2026 Forged Lucidity LLC &middot; Westbrook, Maine</p>
+  <p style="margin-top: 0.5rem;">
+    <a href="https://partnerwith.ai">Eous</a> &middot;
+    <a href="/research/">Research</a> &middot;
+    <a href="/framework.html">Framework</a> &middot;
+    <a href="/about.html">About</a> &middot;
+    <a href="mailto:info@forgedlucidity.ai">Contact</a>
+  </p>
+</footer>
+
+""" + supabase_script + """
+
+</body>
+</html>
+"""
+
+with open(r'C:\\Dev\\forgedlucidity-site\\public\\index.html', 'w', encoding='utf-8') as f:
+    f.write(new_html)
+
+print('Done - new index.html written to public/')
+print(f'Size: {len(new_html)} chars')

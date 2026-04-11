@@ -1,1 +1,7 @@
-fix: remove "Research Institute" from all deployed pages - FL is an LLC
+Unify homepage to sitewide parchment/brass aesthetic
+
+Fixes nav and color inconsistency reported by Trish. Homepage now uses
+the same header, color variables, typography, and navigation as about,
+framework, and research pages. Gradient nav replaced with parchment
+sticky header. Gold/ember palette replaced with brass/garnet palette.
+Inter font replaced with Source Sans 3.
