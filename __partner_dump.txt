@@ -1,0 +1,7 @@
+﻿    <div class="section-label" style="color: var(--brass-dim);">Collaborate</div>
+    <h2>Work with us</h2>
+    <p>We&rsquo;re looking for organizations that want AI that actually makes their people better &mdash; not just faster. Research labs, government agencies, and companies with hard problems and smart teams.</p>
+    <p>Currently working with DARPA and NASA. If you have real data, difficult problems, and people worth investing in, we should talk.</p>
+    <a href="mailto:info@forgedlucidity.ai" class="cta-btn-light">Get in touch</a>
+  </div>
+</section>

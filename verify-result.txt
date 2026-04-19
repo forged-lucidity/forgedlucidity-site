@@ -1,0 +1,13 @@
+=== COMMIT VERIFICATION ===
+
+=== Last 3 commits ===
+'git' is not recognized as an internal or external command,
+operable program or batch file.
+
+=== Current git status ===
+'git' is not recognized as an internal or external command,
+operable program or batch file.
+
+=== Staged files check ===
+'git' is not recognized as an internal or external command,
+operable program or batch file.
