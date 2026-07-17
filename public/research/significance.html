@@ -85,16 +85,16 @@ multi-channel time-series system. It is computed as the product of two component
 
 $$\mathrm{Cx} = \Phi \times C^2$$
 
-<p>where $\Phi$ measures integration (how many independent dimensions of information a system
+<p>where $\Phi$ measures differentiation (how many independent dimensions of information a system
 maintains) and $C^2$ measures relational stability (how consistently those dimensions relate
 to each other across time).</p>
 <div class="def-block">
-  <h3>$\Phi$ &mdash; Integration (Normalized Eigenvalue Entropy)</h3>
+  <h3>$\Phi$ &mdash; Differentiation (Normalized Eigenvalue Entropy)</h3>
   <p>For a window $W$ with $n$ signal channels, compute the cross-correlation matrix $R$.
   Extract eigenvalues $\lambda_1, \lambda_2, \ldots, \lambda_n$ and normalize:</p>
   <p>$$p_i = \frac{\lambda_i}{\sum_j \lambda_j}, \qquad H = -\sum_i p_i \log p_i, \qquad \Phi = \frac{H}{\log n} \in [0,1]$$</p>
   <p>High $\Phi$ means eigenvalues are distributed uniformly &mdash; signal dimensions are equally
-  informative, indicating rich integration. Low $\Phi$ means one eigenvalue dominates &mdash; one
+  informative, indicating rich differentiation. Low $\Phi$ means one eigenvalue dominates &mdash; one
   mode drives the system. Grounded in Cover &amp; Thomas (1991, Ch. 2, 16): eigenvalue entropy
   as a measure of distributional uniformity in information theory.</p>
 </div>
@@ -142,9 +142,7 @@ assuming the null hypothesis (no real effect) is true. Convention:</p>
   <li style="margin-bottom: 0.3rem;">$p < .01$ &mdash; strong evidence</li>
   <li style="margin-bottom: 0.3rem;">$p < .001$ &mdash; very strong evidence</li>
 </ul>
-<p>Held to stricter, spectrum-matched nulls, the filed p-values recalibrate upward substantially: the strongest effects sit near the 1% level rather than below .001, and not every domain survives. We lead with the calibrated numbers, not the first ones, and we report all results — including the reversals.
-The combined probability of six independent tests all reaching $p < .01$ by chance
-is approximately $10^{-12}$.</p>
+<p>These are the <em>filed</em> p-values, computed against a parametric null that assumes independent, white-noise channels &mdash; too generous for signals carrying red-noise structure. Re-tested against spectrum-matched (Ebisuzaki phase-randomized) surrogate nulls, the filed values recalibrate upward by roughly 7&ndash;8&times;, and <strong>no domain clears $p < .001$ after calibration.</strong> The jet stream remains the strongest &mdash; it survives at about the 1% level on both p-value and effect size. The solar wind survives only marginally. The financial-markets result does not survive a block-permutation null ($p = 0.19$) and has been retired from the confirmed set. We therefore make no combined-probability claim; we report each domain&rsquo;s calibrated status and the honest nulls, and we lead with the recalibrated numbers.</p>
 
 <h2>What We Did Not Do</h2>
 <p>No parameters were adjusted between domains. The identical operator &mdash; same code, same
