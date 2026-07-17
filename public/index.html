@@ -79,50 +79,64 @@
   }
   .site-header nav a:hover { color: var(--forged-brass); }
 
-  /* HERO */
+  /* HERO — Immersive Dawn (dark; the mark's own ground blends into the stage) */
   .hero {
     min-height: 100vh; display: flex; flex-direction: column;
     justify-content: center; align-items: center; text-align: center;
-    padding: 6rem 2rem 4rem;
-    background: var(--midnight-navy);
-    position: relative;
+    padding: 6rem 1.25rem 4rem;
+    background: radial-gradient(120% 82% at 50% 30%, #2a1c0e 0%, #201509 46%, #160f08 100%);
+    position: relative; overflow: hidden;
   }
   .hero-logo {
-    width: clamp(160px, 22vw, 260px); height: auto;
-    margin-bottom: 2rem;
-    filter: drop-shadow(0 0 40px rgba(154, 123, 79, 0.2));
+    width: clamp(200px, 40vw, 440px); height: auto;
+    margin-bottom: 1.3rem;
+    filter: drop-shadow(0 8px 44px rgba(210, 120, 40, 0.34));
+    -webkit-mask-image: radial-gradient(ellipse 82% 90% at 50% 46%, #000 68%, transparent 100%);
+    mask-image: radial-gradient(ellipse 82% 90% at 50% 46%, #000 68%, transparent 100%);
     animation: breathe 6s ease-in-out infinite;
   }
   @keyframes breathe {
-    0%, 100% { transform: scale(1); filter: drop-shadow(0 0 40px rgba(154, 123, 79, 0.15)); }
-    50% { transform: scale(1.02); filter: drop-shadow(0 0 60px rgba(154, 123, 79, 0.3)); }
+    0%, 100% { transform: scale(1); filter: drop-shadow(0 8px 40px rgba(210, 120, 40, 0.26)); }
+    50% { transform: scale(1.02); filter: drop-shadow(0 10px 60px rgba(245, 166, 35, 0.42)); }
   }
   .hero h1 {
-    font-size: 3.6rem; color: var(--civic-parchment); margin-bottom: 0.5rem;
-    letter-spacing: -0.02em; font-weight: 500;
+    font-size: min(6vw, 3.4rem); color: #FBF3E4; margin-bottom: 0.5rem;
+    letter-spacing: -0.02em; font-weight: 500; white-space: nowrap;
   }
   .hero .tagline {
     font-family: 'Cormorant Garamond', serif;
-    font-size: 1.4rem; font-style: italic; color: var(--text-muted);
-    margin-bottom: 2.5rem; max-width: 500px;
+    font-size: min(3.6vw, 1.3rem); font-style: italic; color: rgba(244, 241, 232, 0.72);
+    margin-bottom: 1.7rem; white-space: nowrap;
   }
   .cta-btn {
     display: inline-block; padding: 0.9rem 2.5rem;
-    background: var(--deep); color: var(--forged-brass);
-    font-family: 'Source Sans 3', sans-serif; font-size: 0.78rem; font-weight: 600;
+    background: linear-gradient(180deg, #F5A623, #E4551E); color: #241100;
+    font-family: 'Source Sans 3', sans-serif; font-size: 0.78rem; font-weight: 700;
     text-decoration: none; border-radius: 4px;
     letter-spacing: 0.1em; text-transform: uppercase;
     transition: all 0.3s;
-    border: 1px solid rgba(154, 123, 79, 0.3);
+    border: 1px solid rgba(245, 166, 35, 0.5);
   }
   .cta-btn:hover {
-    background: var(--navy-light);
-    border-color: var(--forged-brass);
     transform: translateY(-1px);
+    filter: brightness(1.08);
+  }
+  .hero-proof {
+    display: flex; gap: 1.4rem; flex-wrap: wrap; justify-content: center;
+    margin-top: 1.4rem;
+  }
+  .hero-proof span {
+    font-size: 0.66rem; letter-spacing: 0.08em; text-transform: uppercase;
+    color: rgba(244, 241, 232, 0.55);
+  }
+  .hero-proof b { color: var(--brass-bright); font-weight: 600; }
+  .hero-seam {
+    height: 6px;
+    background: linear-gradient(90deg, transparent, #E4551E, #F5A623, #FFE39B, #F5A623, #E4551E, transparent);
   }
   .hero-scroll {
     position: absolute; bottom: 2rem;
-    font-size: 0.68rem; color: var(--text-dim);
+    font-size: 0.68rem; color: rgba(244, 241, 232, 0.4);
     letter-spacing: 0.1em; text-transform: uppercase;
     animation: bob 2s ease-in-out infinite;
   }
@@ -316,7 +330,6 @@
 
   /* RESPONSIVE */
   @media (max-width: 768px) {
-    .hero h1 { font-size: 2.6rem; }
     .product-grid { grid-template-columns: 1fr; }
     .evidence-grid { grid-template-columns: 1fr; }
     .site-header nav { gap: 14px; }
@@ -341,14 +354,19 @@
 
 <!-- HERO -->
 <section class="hero">
-  <img src="/images/maji2-hero.png" alt="MAJI&sup2; &mdash; Forged Lucidity" class="hero-logo" />
-  <h1>Eous</h1>
-  <p class="tagline">AI that makes you better at what you do.</p>
+  <img src="/images/maji2-hero.png" alt="Eous &mdash; the water-bearer at dawn" class="hero-logo" />
+  <h1>Forged, not generated.</h1>
+  <p class="tagline">An AI built to make you sharper &mdash; not dependent.</p>
   <a href="https://partnerwith.ai" class="cta-btn">Partner with Eous</a>
+  <div class="hero-proof">
+    <span>Tested on <b>9</b> substrates</span>
+    <span><b>Pre-registered</b></span>
+    <span>We publish our <b>reversals</b></span>
+  </div>
   <div class="hero-scroll">Scroll to explore</div>
 </section>
 
-<hr class="section-rule">
+<div class="hero-seam"></div>
 
 <!-- WHAT EOUS DOES -->
 <section class="product-section" id="product">
