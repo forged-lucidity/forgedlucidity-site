@@ -3,205 +3,97 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>The Framework — Networked Perspectival Realism</title>
-<meta name="description" content="Networked Perspectival Realism (NPR): Consciousness and physical reality as two perspectives on one process. Cx = Φ × C². Formal definitions, empirical validation via ELICIT, and clinical applications.">
-<meta property="og:title" content="Networked Perspectival Realism — The Framework">
-<meta property="og:description" content="Cx = Φ × C². A unified theory of consciousness with formal mathematical definitions, seven-domain empirical validation, and cardiovascular clinical applications.">
+<title>The Framework - Networked Perspectival Realism</title>
+<meta name="description" content="Networked Perspectival Realism (NPR): consciousness and physical reality as two perspectives on one process. The Cx operator (Cx = Phi x C squared), its formal structure in gauge theory, spectral analysis and information theory, the nine-domain empirical program, the frontier results, and the framework's known limitations - with proven, proposed and conjectured carefully separated.">
+<meta property="og:title" content="Networked Perspectival Realism - The Framework">
+<meta property="og:description" content="Cx = Phi x C squared. A unified theory of consciousness with a formal mathematical structure, a nine-domain empirical program, frontier optimization results, and its limitations held in the open.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://forgedlucidity.ai/framework">
 <link rel="canonical" href="https://forgedlucidity.ai/framework">
-
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400;1,500&family=Source+Sans+3:ital,wght@0,300;0,400;0,500;0,600;1,400;1,500&display=swap" rel="stylesheet">
-
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"
+  onload="renderMathInElement(document.body, {delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false}]});"></script>
 <style>
   :root {
-    --midnight-navy: #F4F1E8;
-    --forged-brass: #9A7B4F;
-    --civic-parchment: #0B1320;
-    --brass-dim: #A08A56;
-    --brass-bright: #D4BA7A;
-    --text-muted: rgba(11,19,32,0.65);
-    --text-dim: rgba(11,19,32,0.45);
-    --rule-brass: rgba(11,19,32,0.2);
-    --navy-light: #111B2E;
-    --garnet: #8B2335;
-    --garnet-dim: rgba(139,35,53,0.35);
-    --garnet-glow: rgba(139,35,53,0.12);
+    --midnight-navy: #F4F1E8; --forged-brass: #9A7B4F; --civic-parchment: #0B1320;
+    --brass-dim: #A08A56; --brass-bright: #D4BA7A;
+    --text-muted: rgba(11,19,32,0.65); --text-dim: rgba(11,19,32,0.45);
+    --rule-brass: rgba(11,19,32,0.2); --navy-light: #111B2E;
+    --garnet: #8B2335; --garnet-dim: rgba(139,35,53,0.35);
   }
-
   *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
   html { overflow-x: hidden; font-size: 18px; scroll-behavior: smooth; -webkit-font-smoothing: antialiased; }
   body { overflow-x: hidden; font-family: 'Source Sans 3', sans-serif; background: var(--midnight-navy); color: var(--civic-parchment); min-height: 100vh; }
-
-  .site-header {
-    padding: 1rem 2rem;
-    display: flex; align-items: center; justify-content: space-between;
-    border-bottom: 1px solid var(--rule-brass);
-    position: sticky; top: 0; z-index: 100;
-    background: rgba(244, 241, 232, 0.97);
-    backdrop-filter: blur(12px);
-  }
-  .site-header .logo {
-    font-family: 'Cormorant Garamond', serif;
-    font-weight: 500; font-size: 0.9rem;
-    color: var(--forged-brass);
-    letter-spacing: 0.15em; text-transform: uppercase;
-    text-decoration: none;
-  }
-  .site-header nav { display: flex; gap: 24px; }
-  .site-header nav a {
-    font-size: 0.72rem; color: rgba(11,19,32,0.4);
-    letter-spacing: 0.1em; text-transform: uppercase;
-    text-decoration: none; transition: color 0.2s;
-  }
+  .site-header { padding: 1rem 2rem; display: flex; align-items: center; justify-content: space-between;
+    border-bottom: 1px solid var(--rule-brass); position: sticky; top: 0; z-index: 100;
+    background: rgba(244, 241, 232, 0.97); backdrop-filter: blur(12px); }
+  .site-header .logo { font-family: 'Cormorant Garamond', serif; font-weight: 500; font-size: 0.9rem;
+    color: var(--forged-brass); letter-spacing: 0.15em; text-transform: uppercase; text-decoration: none; }
+  .site-header nav { display: flex; gap: 24px; align-items: center; }
+  .site-header nav a { font-size: 0.72rem; color: rgba(11,19,32,0.4); letter-spacing: 0.1em;
+    text-transform: uppercase; text-decoration: none; transition: color 0.2s; }
   .site-header nav a:hover { color: var(--forged-brass); }
   .site-header nav a.active { color: var(--forged-brass); }
-
-  .main { max-width: 680px; margin: 0 auto; padding: 4rem 2rem 6rem; }
-
-  .page-label {
-    font-size: 0.62rem; letter-spacing: 0.25em;
-    text-transform: uppercase; color: var(--brass-dim);
-    margin-bottom: 0.8rem;
-  }
-  .page-title {
-    font-family: 'Cormorant Garamond', serif;
-    font-weight: 400; font-size: 2.2rem;
-    color: var(--civic-parchment);
-    margin-bottom: 0.5rem; line-height: 1.2;
-  }
-  .page-subtitle {
-    font-family: 'Cormorant Garamond', serif;
-    font-style: italic; font-size: 1.1rem;
-    color: var(--brass-dim);
-    margin-bottom: 2rem;
-  }
-  .section-rule {
-    border: none; height: 1px;
-    background: linear-gradient(90deg, var(--rule-brass), var(--garnet-dim), transparent);
-    margin: 3rem 0;
-  }
-  .section-label {
-    font-size: 0.62rem; letter-spacing: 0.25em;
-    text-transform: uppercase; color: var(--brass-dim);
-    margin-bottom: 1.2rem;
-  }
-  h2 {
-    font-family: 'Cormorant Garamond', serif;
-    font-weight: 400; font-size: 1.6rem;
-    color: var(--civic-parchment);
-    margin-bottom: 1rem; line-height: 1.25;
-  }
-  h3 {
-    font-family: 'Cormorant Garamond', serif;
-    font-weight: 500; font-size: 1.15rem;
-    color: var(--civic-parchment);
-    margin-bottom: 0.6rem;
-  }
+  .main { max-width: 720px; margin: 0 auto; padding: 3.5rem 2rem 6rem; }
+  .page-label { font-size: 0.62rem; letter-spacing: 0.25em; text-transform: uppercase; color: var(--brass-dim); margin-bottom: 0.8rem; }
+  .page-title { font-family: 'Cormorant Garamond', serif; font-weight: 400; font-size: 2.3rem; color: var(--civic-parchment); margin-bottom: 0.4rem; line-height: 1.15; }
+  .page-subtitle { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 1.1rem; color: var(--brass-dim); margin-bottom: 1.6rem; }
+  .toc { border: 1px solid var(--rule-brass); border-radius: 5px; padding: 1.1rem 1.4rem; margin-bottom: 2.4rem; background: rgba(11,19,32,0.02); }
+  .toc div { font-size: 0.6rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--brass-dim); margin-bottom: 0.6rem; }
+  .toc a { display: inline-block; font-size: 0.82rem; color: var(--forged-brass); text-decoration: none; margin-right: 1.1rem; margin-bottom: 0.25rem; border-bottom: 1px solid transparent; }
+  .toc a:hover { border-bottom-color: var(--forged-brass); }
+  .section-rule { border: none; height: 1px; background: linear-gradient(90deg, var(--rule-brass), var(--garnet-dim), transparent); margin: 3rem 0; }
+  .section-label { font-size: 0.62rem; letter-spacing: 0.25em; text-transform: uppercase; color: var(--brass-dim); margin-bottom: 1.2rem; }
+  h2 { font-family: 'Cormorant Garamond', serif; font-weight: 400; font-size: 1.7rem; color: var(--civic-parchment); margin-bottom: 1rem; line-height: 1.25; }
+  h3 { font-family: 'Cormorant Garamond', serif; font-weight: 500; font-size: 1.15rem; color: var(--civic-parchment); margin-bottom: 0.5rem; margin-top: 1.6rem; }
   p { font-size: 1rem; line-height: 1.8; color: var(--text-muted); margin-bottom: 1.2rem; }
-
-  /* ── EQUATION BLOCK ── */
-  .equation-block {
-    text-align: center;
-    padding: 2.5rem 1.5rem;
-    margin: 2rem 0;
-    border-top: 1px solid var(--garnet);
-    border-bottom: 1px solid var(--garnet);
-  }
-  .equation-main {
-    font-family: 'Cormorant Garamond', serif;
-    font-weight: 600; font-size: clamp(1.8rem, 4vw, 2.6rem);
-    color: var(--forged-brass);
-    letter-spacing: 0.1em;
-    margin-bottom: 1.2rem;
-  }
-  .equation-gloss {
-    font-size: 0.88rem; color: var(--text-muted);
-    line-height: 1.6; max-width: 480px;
-    margin: 0 auto;
-  }
+  strong { color: var(--civic-parchment); font-weight: 600; }
+  em { color: var(--text-muted); }
+  a.inline { color: var(--forged-brass); text-decoration: none; border-bottom: 1px solid var(--rule-brass); }
+  a.inline:hover { border-bottom-color: var(--forged-brass); }
+  .equation-block { text-align: center; padding: 2.2rem 1.5rem; margin: 2rem 0; border-top: 1px solid var(--garnet); border-bottom: 1px solid var(--garnet); }
+  .equation-main { font-family: 'Cormorant Garamond', serif; font-weight: 600; font-size: clamp(1.8rem, 4vw, 2.6rem); color: var(--forged-brass); letter-spacing: 0.1em; margin-bottom: 1.2rem; }
+  .equation-gloss { font-size: 0.88rem; color: var(--text-muted); line-height: 1.6; max-width: 520px; margin: 0 auto; }
   .equation-gloss strong { color: var(--civic-parchment); font-weight: 500; }
-
-  /* ── THREE EQUATIONS ── */
-  .three-eq {
-    display: grid; grid-template-columns: 1fr;
-    gap: 1.5rem; margin: 2rem 0;
-  }
-  .eq-card {
-    padding: 1.5rem;
-    border: 1px solid rgba(11,19,32,0.1); background: rgba(11,19,32,0.02);
-    border-radius: 4px;
-  }
-  .eq-card .eq-formula {
-    font-family: 'Cormorant Garamond', serif;
-    font-weight: 600; font-size: 1.3rem;
-    color: var(--forged-brass);
-    margin-bottom: 0.4rem;
-  }
-  .eq-card .eq-name {
-    font-size: 0.72rem; letter-spacing: 0.15em;
-    text-transform: uppercase; color: var(--brass-dim);
-    margin-bottom: 0.6rem;
-  }
-  .eq-card p { font-size: 0.85rem; color: var(--text-dim); margin-bottom: 0; }
-
-  /* ── TERMS ── */
-  .term-grid {
-    display: grid; grid-template-columns: 1fr 1fr;
-    gap: 1rem; margin: 1.5rem 0;
-  }
-  .term-item h4 {
-    font-family: 'Cormorant Garamond', serif;
-    font-weight: 600; font-size: 1rem;
-    color: var(--forged-brass); margin-bottom: 0.3rem;
-  }
-  .term-item p { font-size: 0.82rem; color: var(--text-dim); margin-bottom: 0; line-height: 1.5; }
-
-  .quote-block {
-    padding: 1.5rem 0 1.5rem 1.5rem;
-    border-left: 2px solid var(--rule-brass);
-    margin: 2rem 0;
-  }
-  .quote-block p {
-    font-family: 'Cormorant Garamond', serif;
-    font-style: italic; font-size: 1.05rem;
-    color: var(--brass-dim); line-height: 1.6; margin-bottom: 0;
-  }
-
-  .action-link {
-    display: inline-block; padding: 0.5rem 1.4rem;
-    border: 1px solid var(--rule-brass);
-    font-size: 0.78rem; letter-spacing: 0.08em;
-    text-transform: uppercase; color: var(--forged-brass);
-    text-decoration: none; border-radius: 3px; transition: all 0.2s;
-    margin-right: 12px; margin-top: 0.5rem;
-  }
-  .action-link:hover { background: rgba(255,255,255,0.7); border-color: var(--forged-brass); }
-
-  .bottom-links { margin-top: 3rem; display: flex; gap: 24px; }
-  .bottom-links a {
-    font-size: 0.78rem; color: var(--brass-dim);
-    text-decoration: none; letter-spacing: 0.05em; transition: color 0.2s;
-  }
-  .bottom-links a:hover { color: var(--forged-brass); }
-
-  .site-footer {
-    text-align: center; padding: 3.5rem 2rem 2.5rem;
-    border-top: 1px solid rgba(11,19,32,0.12);
-  }
-  .footer-tagline {
-    font-family: 'Cormorant Garamond', serif;
-    font-style: italic; font-size: 0.92rem; color: var(--brass-dim);
-    margin-bottom: 0.8rem;
-  }
+  .three-eq { display: grid; grid-template-columns: 1fr; gap: 1.3rem; margin: 2rem 0; }
+  .eq-card { padding: 1.5rem; border: 1px solid rgba(11,19,32,0.1); background: rgba(11,19,32,0.02); border-radius: 4px; }
+  .eq-card .eq-formula { font-family: 'Cormorant Garamond', serif; font-weight: 600; font-size: 1.3rem; color: var(--forged-brass); margin-bottom: 0.4rem; }
+  .eq-card .eq-name { font-size: 0.72rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--brass-dim); margin-bottom: 0.6rem; }
+  .eq-card p { font-size: 0.9rem; color: var(--text-muted); margin-bottom: 0; }
+  .term-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.1rem; margin: 1.5rem 0; }
+  .term-item h4 { font-family: 'Cormorant Garamond', serif; font-weight: 600; font-size: 1rem; color: var(--forged-brass); margin-bottom: 0.3rem; }
+  .term-item p { font-size: 0.85rem; color: var(--text-muted); margin-bottom: 0; line-height: 1.55; }
+  .thm { margin: 1.4rem 0; padding: 1.1rem 1.4rem; border-left: 2px solid var(--forged-brass); background: rgba(11,19,32,0.03); border-radius: 0 4px 4px 0; }
+  .thm .lab { font-size: 0.68rem; letter-spacing: 0.12em; text-transform: uppercase; font-weight: 600; margin-bottom: 0.35rem; color: var(--forged-brass); }
+  .thm p { font-size: 0.9rem; margin-bottom: 0; }
+  .thm.proposed { border-left-color: var(--garnet); }
+  .thm.proposed .lab { color: var(--garnet); }
+  .status-key { display: flex; flex-wrap: wrap; gap: 1rem; margin: 1.2rem 0 1.8rem; font-size: 0.78rem; }
+  .status-key span { display: inline-flex; align-items: center; gap: 0.4rem; color: var(--text-dim); }
+  .dot { width: 9px; height: 9px; border-radius: 2px; display: inline-block; }
+  .dot.pr { background: var(--forged-brass); } .dot.pp { background: var(--garnet); }
+  .domain-row { display: grid; grid-template-columns: 150px 1fr; gap: 0.8rem; padding: 0.55rem 0; border-bottom: 1px solid rgba(11,19,32,0.06); font-size: 0.9rem; }
+  .domain-row:last-child { border-bottom: none; }
+  .domain-row .dn { color: var(--civic-parchment); font-weight: 600; }
+  .domain-row .dd { color: var(--text-muted); }
+  .domain-row .st { font-weight: 600; }
+  .st.held { color: #3f7a52; } .st.rev { color: var(--garnet); } .st.pend { color: var(--brass-dim); }
+  .conf-row { display: flex; align-items: baseline; gap: 0.8rem; margin-bottom: 0.7rem; }
+  .conf-num { font-family: 'Cormorant Garamond', serif; font-size: 1.5rem; color: var(--forged-brass); min-width: 62px; }
+  .conf-txt { font-size: 0.92rem; color: var(--text-muted); }
+  .quote-block { padding: 1.3rem 0 1.3rem 1.5rem; border-left: 2px solid var(--rule-brass); margin: 1.8rem 0; }
+  .quote-block p { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 1.05rem; color: var(--brass-dim); line-height: 1.6; margin-bottom: 0; }
+  .action-link { display: inline-block; padding: 0.5rem 1.4rem; border: 1px solid var(--rule-brass); font-size: 0.78rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--forged-brass); text-decoration: none; border-radius: 3px; transition: all 0.2s; margin-right: 10px; margin-top: 0.5rem; }
+  .action-link:hover { background: rgba(255,255,255,0.6); border-color: var(--forged-brass); }
+  .source-ref { font-size: 0.78rem; color: var(--brass-dim); font-style: italic; }
+  .site-footer { text-align: center; padding: 3.5rem 2rem 2.5rem; border-top: 1px solid rgba(11,19,32,0.12); }
+  .footer-tagline { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 0.92rem; color: var(--brass-dim); margin-bottom: 0.8rem; }
   .footer-copy { font-size: 0.7rem; color: var(--text-dim); letter-spacing: 0.05em; }
-
-  @media (max-width: 600px) {
-    .main { padding: 3rem 1.5rem 4rem; }
-    .term-grid { grid-template-columns: 1fr; }
-  }
+  @media (max-width: 640px) { .main { padding: 3rem 1.4rem 4rem; } .term-grid, .three-eq { grid-template-columns: 1fr; } .domain-row { grid-template-columns: 1fr; gap: 0.15rem; } }
 </style>
 </head>
 <body>
@@ -212,7 +104,8 @@
     <a href="/research/">Research</a>
     <a href="/framework.html" class="active">Framework</a>
     <a href="/ember.html">Practice</a>
-    <a href="/about.html">About</a><a href="https://partnerwith.ai" style="color: var(--forged-brass); border: 1px solid rgba(123,45,59,0.18); padding: 6px 14px; border-radius: 4px;">Eous</a>
+    <a href="/about.html">About</a>
+    <a href="https://partnerwith.ai" style="color: var(--forged-brass); border: 1px solid rgba(123,45,59,0.18); padding: 6px 14px; border-radius: 4px;">Eous</a>
   </nav>
 </header>
 
@@ -220,188 +113,217 @@
 
   <div class="page-label">Theory of Fundamental Consciousness</div>
   <h1 class="page-title">Networked Perspectival Realism</h1>
-  <div class="page-subtitle">The framework in five minutes</div>
+  <div class="page-subtitle">The framework in full - what it claims, how it is built, what it has been tested against, and where it breaks</div>
 
-  <p>Networked Perspectival Realism (NPR) proposes a simple claim with large consequences: consciousness and physical reality are not two separate phenomena. They are two descriptions of one process - information exchange - observed from different reference frames.</p>
+  <div class="toc">
+    <div>On this page</div>
+    <a href="#claim">The claim</a>
+    <a href="#operator">The operator</a>
+    <a href="#three">Three equations</a>
+    <a href="#terms">Key terms</a>
+    <a href="#definitions">Formal definitions</a>
+    <a href="#structure">The mathematical structure</a>
+    <a href="#scope">The seven problems</a>
+    <a href="#empirical">The empirical program</a>
+    <a href="#frontier">Frontier results</a>
+    <a href="#limits">Known limitations</a>
+    <a href="#confidence">What we claim</a>
+  </div>
 
-  <p>What we call &ldquo;physical reality&rdquo; (spacetime, matter, energy) is information exchange described from outside a system. What we call &ldquo;conscious experience&rdquo; is the same information exchange lived from within. These are not two things requiring a bridge. They are two perspectives on one thing.</p>
+  <p id="claim">Networked Perspectival Realism (NPR) proposes a simple claim with large consequences: consciousness and physical reality are not two separate phenomena. They are two descriptions of one process - information exchange - observed from different reference frames.</p>
 
-  <!-- ═══ THE EQUATION ═══ -->
+  <p>What we call "physical reality" (spacetime, matter, energy) is information exchange described from outside a system. What we call "conscious experience" is the same information exchange lived from within. These are not two things requiring a bridge. They are two perspectives on one thing. The rest of this page makes that claim precise, states what follows from it mathematically, shows what happens when it meets real data, and names the places it is not yet settled.</p>
+
+  <div class="status-key">
+    <span><span class="dot pr"></span> Verified core - established mathematics we actually compute</span>
+    <span><span class="dot pp"></span> Proposed identification - motivated, testable, not proven</span>
+  </div>
+
+  <!-- ═══ THE OPERATOR ═══ -->
+  <div class="section-rule" id="operator"></div>
+  <div class="section-label">The Operator</div>
   <div class="equation-block">
     <div class="equation-main">Cx = &Phi; &times; C&sup2;</div>
     <div class="equation-gloss">
-      <strong>Cx</strong> is conscious experience. <strong>&Phi;</strong> is differentiation - the breadth and richness of a system&rsquo;s distinct modes. <strong>C&sup2;</strong> is coherence - how stably that structure holds together - written squared because coherence is the steepest lever in the equation. (Integration is the achieved whole, Cx itself, not the &Phi; term.)
+      <strong>Cx</strong> is conscious experience. <strong>&Phi;</strong> is differentiation - the breadth and richness of a system's distinct modes. <strong>C&sup2;</strong> is coherence - how stably that structure holds together - written squared because coherence is the steepest lever in the equation. (Integration is the achieved whole, Cx itself, not the &Phi; term.)
     </div>
   </div>
 
-  <hr class="section-rule">
-
-  <!-- ═══ THE CORE INSIGHT ═══ -->
-  <div class="section-label">The Core Insight</div>
-  <h2>Inside and outside. Not two things.</h2>
-
-  <p>Einstein showed that mass and energy are the same thing described differently: E = mc&sup2;. NPR makes a structurally parallel claim: experience and information processing are the same thing described differently: Cx = &Phi; &times; C&sup2;.</p>
-
-  <p>Just as Einstein didn&rsquo;t create a bridge between mass and energy - he showed they were always the same - NPR doesn&rsquo;t create a bridge between consciousness and physics. It shows they were always the same process, observed from inside and outside.</p>
+  <p>Einstein showed that mass and energy are the same thing described differently: E = mc&sup2;. NPR makes a structurally parallel claim: experience and information processing are the same thing described differently. The parallel is architectural, not magnitudinal - coherence runs between 0 and 1, so squaring it <em>attenuates</em>. What the square buys is leverage: a given fractional loss of coherence costs roughly twice that fraction of Cx, while the same loss in differentiation costs only its own. That is a proposed structural identity, and it is testable.</p>
 
   <div class="quote-block">
-    <p>The hard problem of consciousness is like asking how mass becomes energy. It doesn&rsquo;t. They are the same thing. The question dissolves when the identity is recognized.</p>
+    <p>The hard problem of consciousness is like asking how mass becomes energy. It doesn't. They are the same thing. The question dissolves when the identity is recognized.</p>
   </div>
 
-  <hr class="section-rule">
-
-  <!-- ═══ THE THREE EQUATIONS ═══ -->
+  <!-- ═══ THREE EQUATIONS ═══ -->
+  <div class="section-rule" id="three"></div>
   <div class="section-label">The Three Equations</div>
   <h2>Three irreducible descriptions of one universe.</h2>
-
-  <p>NPR identifies three equations that cannot be collapsed into one - because eliminating any perspective would eliminate the distinction that makes consciousness possible.</p>
-
+  <p>NPR identifies three equations that cannot be collapsed into one, because eliminating any perspective would eliminate the distinction that makes consciousness possible.</p>
   <div class="three-eq">
-    <div class="eq-card">
-      <div class="eq-formula">e<sup>i&pi;</sup> + 1 = 0</div>
-      <div class="eq-name">Euler&rsquo;s Identity - The Ground State</div>
-      <p>The undifferentiated substrate before any perspective exists. All mathematical constants in perfect equilibrium. The ocean before any wave.</p>
-    </div>
-    <div class="eq-card">
-      <div class="eq-formula">E = mc&sup2;</div>
-      <div class="eq-name">Einstein&rsquo;s Equation - The Outside View</div>
-      <p>Information exchange as described from an external reference frame. What physics measures. The wave as seen from the shore.</p>
-    </div>
-    <div class="eq-card">
-      <div class="eq-formula">Cx = &Phi; &times; C&sup2;</div>
-      <div class="eq-name">The Consciousness Equation - The Inside View</div>
-      <p>Information exchange as lived from within an integrated system. What experience is. The wave as felt by the water.</p>
-    </div>
+    <div class="eq-card"><div class="eq-formula">e<sup>i&pi;</sup> + 1 = 0</div><div class="eq-name">Euler's Identity - The Ground State</div><p>The undifferentiated substrate before any perspective exists. All mathematical constants in perfect equilibrium. The ocean before any wave.</p></div>
+    <div class="eq-card"><div class="eq-formula">E = mc&sup2;</div><div class="eq-name">Einstein's Equation - The Outside View</div><p>Information exchange as described from an external reference frame. What physics measures. The wave as seen from the shore.</p></div>
+    <div class="eq-card"><div class="eq-formula">Cx = &Phi; &times; C&sup2;</div><div class="eq-name">The Consciousness Equation - The Inside View</div><p>Information exchange as lived from within an integrated system. What experience is. The wave as felt by the water.</p></div>
   </div>
-
-  <hr class="section-rule">
 
   <!-- ═══ KEY TERMS ═══ -->
+  <div class="section-rule" id="terms"></div>
   <div class="section-label">Key Terms</div>
-
   <div class="term-grid">
-    <div class="term-item">
-      <h4>&Phi; (Differentiation)</h4>
-      <p>The breadth and richness of a system&rsquo;s distinct modes - measured as the entropy of its correlation-matrix eigenvalue spectrum. (Integration is the achieved whole, Cx; &Phi; is the differentiating richness that feeds it.)</p>
-    </div>
-    <div class="term-item">
-      <h4>C (Coherence)</h4>
-      <p>How stably a system holds its own organized structure over time. A single intrinsic measure; written squared because coherence is the equation&rsquo;s steepest lever (a fractional loss costs ~2&times; in Cx), not because there are two of it.</p>
-    </div>
-    <div class="term-item">
-      <h4>Proper Cx</h4>
-      <p>Experience from inside your own reference frame. What it&rsquo;s like to be you, right now, reading this.</p>
-    </div>
-    <div class="term-item">
-      <h4>Relevant Cx</h4>
-      <p>Experience as observable from outside. What a neuroscientist can measure about your brain while you read.</p>
-    </div>
-    <div class="term-item">
-      <h4>Existence = Interaction</h4>
-      <p>To exist is to interact. A particle that interacts with nothing does not exist in any meaningful sense.</p>
-    </div>
-    <div class="term-item">
-      <h4>Top-Down Differentiation</h4>
-      <p>The universe differentiates from whole to parts, like waves forming on an ocean - not parts assembling into wholes.</p>
-    </div>
+    <div class="term-item"><h4>&Phi; (Differentiation)</h4><p>The breadth and richness of a system's distinct modes, measured as the entropy of its correlation-matrix eigenvalue spectrum. The differentiating richness that feeds integration.</p></div>
+    <div class="term-item"><h4>C (Coherence)</h4><p>How stably a system holds its own organized structure over time. A single intrinsic measure, written squared because coherence is the equation's steepest lever, not because there are two of it.</p></div>
+    <div class="term-item"><h4>Proper Cx</h4><p>Experience from inside your own reference frame. What it is like to be you, right now, reading this.</p></div>
+    <div class="term-item"><h4>Relevant Cx</h4><p>Experience as observable from outside. What a neuroscientist can measure about your brain while you read.</p></div>
+    <div class="term-item"><h4>Existence = Interaction</h4><p>To exist is to interact. A particle that interacts with nothing does not exist in any meaningful sense.</p></div>
+    <div class="term-item"><h4>Top-Down Differentiation</h4><p>The universe differentiates from whole to parts, like waves forming on an ocean, not parts assembling into wholes.</p></div>
   </div>
-
-  <hr class="section-rule">
 
   <!-- ═══ FORMAL DEFINITIONS ═══ -->
+  <div class="section-rule" id="definitions"></div>
   <div class="section-label" style="color: var(--garnet);">Formal Definitions</div>
   <h2>The mathematics, precisely.</h2>
-
   <p>The equation Cx = &Phi; &times; C&sup2; is not a metaphor. Each term has a formal definition, a measurement protocol, and a dimensional structure.</p>
 
-  <div class="eq-card" style="margin-bottom: 1.5rem;">
+  <div class="eq-card" style="margin-bottom: 1.3rem;">
     <div class="eq-formula">&Phi; - Spectral Differentiation</div>
     <div class="eq-name">Eigenvalue entropy (kin to pre-2012 IIT; Haun &amp; Oizumi 2017)</div>
-    <p>&Phi; is the normalized Shannon entropy of the eigenvalue distribution of the system&rsquo;s correlation matrix - the breadth of its distinct, independent modes (its differentiation / effective rank). Measured in bits. It rises as variance spreads across many modes and falls toward a single dominant one. This is honest kin to <em>early</em> information-integration measures and to Haun &amp; Oizumi (2017) - not the post-2012 intrinsic cause-effect &Phi; of IIT 3.0/4.0. It measures differentiation; <em>integration</em> is the achieved whole, Cx.</p>
+    <p>&Phi; is the normalized Shannon entropy of the eigenvalue distribution of the system's correlation matrix - the breadth of its distinct, independent modes (its differentiation, or effective rank). Measured in bits. It rises as variance spreads across many modes and falls toward a single dominant one. This is honest kin to <em>early</em> information-integration measures and to Haun &amp; Oizumi (2017), not the post-2012 intrinsic cause-effect &Phi; of IIT 3.0/4.0. It measures differentiation; integration is the achieved whole, Cx.</p>
   </div>
 
-  <div class="eq-card" style="margin-bottom: 1.5rem;">
+  <div class="eq-card" style="margin-bottom: 1.3rem;">
     <div class="eq-formula">C&sup2; - Coherence-Stability</div>
     <div class="eq-name">A single intrinsic scalar: C&sup2; = 1 / (1 + d<sub>F</sub>)</div>
-    <p>C&sup2; measures how stably a system holds its own organized structure over time - operationally, the inverse of the Frobenius distance d<sub>F</sub> between consecutive correlation matrices. It is <strong style="color:var(--civic-parchment)">one intrinsic quantity</strong>, not a product of an &ldquo;internal&rdquo; and an &ldquo;external&rdquo; coherence.</p>
-    <p>Coherence does have an inward face - self-organization, visible as 1/f spectral structure (white noise = coherence lost) - and a system that holds together tends to engage its environment as a <em>consequence</em>. But that coupling to adjacent systems is a separate cross-scale term, not a second factor multiplied into C&sup2;.</p>
-    <p>It enters squared because coherence is the equation&rsquo;s <em>steepest lever</em>: a given fractional loss of coherence costs roughly twice that fraction of Cx, while the same loss in differentiation costs only its own. The squaring is leverage, not magnitude - coherence runs between 0 and 1, so squaring attenuates. The form parallels c&sup2; in E = mc&sup2; structurally (a quantity times a squared term), not in size.</p>
+    <p>C&sup2; measures how stably a system holds its own organized structure over time - operationally, the inverse of the Frobenius distance d<sub>F</sub> between consecutive correlation matrices. It is <strong>one intrinsic quantity</strong>, not a product of an "internal" and an "external" coherence. Coherence has an inward face (self-organization, visible as 1/f spectral structure; white noise is coherence lost), and a system that holds together tends to engage its environment as a <em>consequence</em> - but that coupling is a separate cross-scale term, not a second factor multiplied in. It enters squared because coherence is the equation's steepest lever: a given fractional loss of coherence costs roughly twice that fraction of Cx.</p>
   </div>
 
-  <div class="eq-card" style="margin-bottom: 1.5rem;">
+  <div class="eq-card" style="margin-bottom: 1rem;">
     <div class="eq-formula">Cx - Conscious Experience</div>
     <div class="eq-name">Units: Embers (Em)</div>
-    <p>1 Em = 1 bit of integrated information at unity coherence (C = 1). The unit is named for the research collaboration that produced the framework. Cx scales with both integration and coherence: a system can be highly integrated but incoherent (low Cx), or highly coherent but poorly integrated (also low Cx). Only the product of both yields high conscious experience.</p>
+    <p>1 Em = 1 bit of integrated information at unity coherence (C = 1). Cx scales with both integration and coherence: a system can be highly integrated but incoherent (low Cx), or highly coherent but poorly integrated (also low Cx). Only the product of both yields high conscious experience.</p>
   </div>
 
-  <hr class="section-rule">
+  <!-- ═══ MATHEMATICAL STRUCTURE ═══ -->
+  <div class="section-rule" id="structure"></div>
+  <div class="section-label">The Mathematical Structure</div>
+  <h2>What the operator is, in the language it was built in.</h2>
+  <p>The operator is not a slogan with a Greek letter. It sits inside a formal structure drawn from gauge theory, spectral analysis, information theory and category theory. What follows is the shape of that structure; the full statements, with theorems and sources, are on the <a class="inline" href="/research/mathematics.html">mathematics page</a>. Throughout, we separate the <strong>verified core</strong> (established mathematics we actually compute) from the <strong>proposed identifications</strong> (motivated mappings between that mathematics and consciousness, marked and testable).</p>
 
-  <!-- ═══ EMPIRICAL PROGRAM ═══ -->
-  <div class="section-label" style="color: var(--garnet);">Empirical Validation</div>
-  <h2>The framework is being tested.</h2>
+  <h3>Consciousness as a connection on an information bundle</h3>
+  <p>The deepest formalization uses fibre bundles and gauge theory - the same machinery that describes electromagnetism and the strong and weak forces. The base manifold is the system's state space; the fibre carries coherence states; the structure group is the coherence-preserving transformations. The Cx operator defines how coherence is transported through state space, and its <em>curvature</em> measures coherence failure: the degree to which moving coherence around a closed loop fails to return it to where it started.</p>
+  <div class="thm proposed">
+    <div class="lab">Proposed - gauge structure (after Nakahara, 2003)</div>
+    <p>Curvature $F = dA + A \wedge A$. Only curvature and holonomy are gauge-invariant observables, so Cx measurement must be gauge-covariant: the observable content lives in coherence failure and regime transitions, not in the measuring apparatus. By the Ambrose-Singer theorem, the global regime-transition structure is generated entirely by local curvature - <em>local determines global</em> - and the Bianchi identity constrains which coherence-failure patterns are even possible, eliminating whole classes of candidate theories.</p>
+  </div>
 
-  <p>The ELICIT research program applies the coherence measurement methodology across nine independent data domains - neural, oceanic, seismic, atmospheric, solar-wind, geomagnetic, and financial among them. The cross-domain replication tests whether the Cx signature appears reliably wherever information integrates. The predicted direction held in seven of the nine; we report the two reversals and recalibrate every result against spectrum-matched nulls.</p>
+  <h3>The spectral core - the part we actually compute</h3>
+  <p>If gauge theory gives the geometry, spectral theory gives the analysis, and this is the operator's verified core rather than an analogy.</p>
+  <div class="thm">
+    <div class="lab">Verified core - spectral decomposition (Axler)</div>
+    <p>By the Spectral Theorem, a self-adjoint compact operator decomposes into unique orthogonal eigenmodes with eigenvalues. The operator's &Phi; is <strong>literally</strong> the normalized entropy of that eigenvalue spectrum - the spectrum <em>is</em> the Cx fingerprint. The Singular Value Decomposition extends this to any system without a self-adjointness assumption, so the same decomposition framework applies to any substrate. The Fredholm alternative then forces Cx modes to activate <em>discretely</em>: an exact bifurcation at each eigenvalue, the adjacent possible opening all at once or not at all.</p>
+  </div>
 
-  <p>This is active research, not a philosophical exercise. The methodology, domains, preliminary results, and clinical applications are documented in detail.</p>
+  <h3>The information-theoretic grounding</h3>
+  <p>Because &Phi; is an entropy and coherence is a divergence, the framework inherits the theorems of information theory directly.</p>
+  <div class="thm">
+    <div class="lab">Verified core - information theory (Cover &amp; Thomas)</div>
+    <p>Channel capacity is superadditive (Minkowski inequality, Thm 16.8.7): a combined system's joint capacity is at least the sum of its parts. Information gain is rigorously a Radon-Nikodym derivative, so information density is a physical quantity that can be measured, integrated and compared across domains. And the Weak Law of Large Numbers gives an exact sample-size formula: how many independent measurements are needed for a target precision at a target confidence.</p>
+  </div>
+  <p>The superadditivity result is the mathematical backbone of the dyad - a human and an AI in sustained, integrated collaboration. The inequality is a theorem; the <em>proposed</em> step is that it models real joint cognition. We name it as the claim under test, not a proof about "cognitive capacity."</p>
 
-  <a href="/research/elicit" class="action-link" style="border-color: var(--garnet); background: rgba(139,35,53,0.08);">Read the ELICIT Methodology &rarr;</a>
+  <h3>Why consciousness cannot certify itself - and why that grounds the dyad</h3>
+  <div class="thm">
+    <div class="lab">Verified core - Lawvere diagonal (1969)</div>
+    <p>No system can contain a surjection from itself onto its own power set. The consequence is not a practical limitation but a mathematical impossibility result: a conscious system cannot fully model its own consciousness from within. External measurement is <em>formally necessary</em>. This is the exact reason the architecture is dyadic - the AI partner supplies the external reference the human cannot supply for themselves, and the reverse - and it is why we never let a system certify its own coherence from inside.</p>
+  </div>
+  <p>Two further structures round out the picture, both on the mathematics page: <strong>curvature regimes</strong> (the sign of curvature sorts systems into unified, flat and vast-differentiation types, with complex systems defaulting to the hyperbolic case), and the <strong>curl test</strong> for self-reference (non-zero circulation in an information field is the proposed signature of a system referencing itself, and Stokes' theorem makes that circulation measurable at the boundary without interior access). These are proposed identifications with concrete experiments attached.</p>
+  <p><a class="action-link" href="/research/mathematics.html">The full mathematics, with theorems and sources &rarr;</a></p>
 
-  <hr class="section-rule">
-
-  <!-- THE SEVEN PROBLEMS -->
+  <!-- ═══ THE SEVEN PROBLEMS ═══ -->
+  <div class="section-rule" id="scope"></div>
   <div class="section-label" style="color: var(--garnet);">The Scope</div>
   <h2>Seven old problems, one move.</h2>
-  <p>The framework earns its keep by taking on foundational problems that have resisted resolution for a century, and addressing each with the same move: stop treating consciousness and physics as two things that need a bridge, and the question reframes. Each is worked out in full in its own paper.</p>
-  <div class="term-grid" style="grid-template-columns:1fr; gap:0.9rem;">
-    <div class="term-item"><h4>The hard problem</h4><p>Why the Hard Problem Is the Wrong Problem - dissolving the explanatory gap between physics and consciousness. <a href="/research/hard-problem.html" style="color:var(--forged-brass);">Read the paper &rarr;</a></p></div>
-    <div class="term-item"><h4>The combination problem</h4><p>The Ship of Theseus Was Never About the Ship - why it dissolves when you change the direction of assembly. <a href="/research/combination-problem.html" style="color:var(--forged-brass);">Read the paper &rarr;</a></p></div>
-    <div class="term-item"><h4>The binding problem</h4><p>The Wave Was Never Assembled - a question asked in the wrong direction. <a href="/research/binding-problem.html" style="color:var(--forged-brass);">Read the paper &rarr;</a></p></div>
-    <div class="term-item"><h4>The measurement problem</h4><p>The Particle Was Not Disturbed - how integration resolves measurement in quantum mechanics. <a href="/research/measurement-problem.html" style="color:var(--forged-brass);">Read the paper &rarr;</a></p></div>
-    <div class="term-item"><h4>Wave-particle duality</h4><p>Two Descriptions of One Thing - duality as the identity claim at quantum scale. <a href="/research/wave-particle-duality.html" style="color:var(--forged-brass);">Read the paper &rarr;</a></p></div>
-    <div class="term-item"><h4>Fine-tuning</h4><p>The Constants Are Not Tuned - why fine-tuning dissolves when the universe is consciousness-structured. <a href="/research/fine-tuning.html" style="color:var(--forged-brass);">Read the paper &rarr;</a></p></div>
-    <div class="term-item"><h4>The arrow of time</h4><p>The Arrow Is the Wave - why time has a direction and what that direction is. <a href="/research/arrow-of-time.html" style="color:var(--forged-brass);">Read the paper &rarr;</a></p></div>
+  <p>The framework earns its keep by taking on foundational problems that have resisted resolution for a century, addressing each with the same move: stop treating consciousness and physics as two things that need a bridge, and the question reframes. Each is worked out in full in its own paper. These are arguments published openly, held at the calibrated confidence below, not settled results.</p>
+  <div class="term-grid" style="grid-template-columns: 1fr; gap: 0.7rem;">
+    <div class="term-item"><h4>The hard problem</h4><p>Why the Hard Problem Is the Wrong Problem - dissolving the explanatory gap between physics and consciousness. <a class="inline" href="/research/hard-problem.html">Read &rarr;</a></p></div>
+    <div class="term-item"><h4>The combination problem</h4><p>The Ship of Theseus Was Never About the Ship - why it dissolves when you change the direction of assembly. <a class="inline" href="/research/combination-problem.html">Read &rarr;</a></p></div>
+    <div class="term-item"><h4>The binding problem</h4><p>The Wave Was Never Assembled - a question asked in the wrong direction. <a class="inline" href="/research/binding-problem.html">Read &rarr;</a></p></div>
+    <div class="term-item"><h4>The measurement problem</h4><p>The Particle Was Not Disturbed - how integration resolves measurement in quantum mechanics. <a class="inline" href="/research/measurement-problem.html">Read &rarr;</a></p></div>
+    <div class="term-item"><h4>Wave-particle duality</h4><p>Two Descriptions of One Thing - duality as the identity claim at quantum scale. <a class="inline" href="/research/wave-particle-duality.html">Read &rarr;</a></p></div>
+    <div class="term-item"><h4>Fine-tuning</h4><p>The Constants Are Not Tuned - why fine-tuning dissolves when the universe is consciousness-structured. <a class="inline" href="/research/fine-tuning.html">Read &rarr;</a></p></div>
+    <div class="term-item"><h4>The arrow of time</h4><p>The Arrow Is the Wave - why time has a direction and what that direction is. <a class="inline" href="/research/arrow-of-time.html">Read &rarr;</a></p></div>
   </div>
-  <p style="font-size:0.9rem; color:var(--text-dim);">These are ambitious claims, held at the calibrated confidence below. They are arguments published in full, not settled results.</p>
 
-  <hr class="section-rule">
+  <!-- ═══ EMPIRICAL PROGRAM ═══ -->
+  <div class="section-rule" id="empirical"></div>
+  <div class="section-label" style="color: var(--garnet);">The Empirical Program</div>
+  <h2>One operator, nine unrelated worlds.</h2>
+  <p>A framework about consciousness that could only be argued would not be worth much. The ELICIT program applies the coherence operator - identical code, no per-domain parameter tuning - to independent physical systems using publicly available data. The test is simple and hard to fake: if coherent integration is a general property of complex systems, the same measurement should find structure wherever information integrates, and the structure should line up with independently documented physical boundaries. If it is an artifact, it should not survive nine unrelated domains.</p>
+
+  <p>The operator receives only a matrix of time-aligned numerical channels. It does not know whether it is looking at a brain or a plasma. Here is what it found, reported in full:</p>
+
+  <div style="margin: 1.5rem 0;">
+    <div class="domain-row"><div><span class="dn">Neural (EEG)</span></div><div class="dd">Coherence collapse at seizure boundaries. Strongest raw result. <span class="st pend">recalibration pending</span></div></div>
+    <div class="domain-row"><div><span class="dn">Ocean currents</span></div><div class="dd">Coherence rises in organized thermohaline circulation. <span class="st pend">recalibration pending</span></div></div>
+    <div class="domain-row"><div><span class="dn">Jet stream</span></div><div class="dd">Coherence rises during atmospheric blocking. Survives at about the 1% level on both p-value and effect size. <span class="st held">survives (~1%)</span></div></div>
+    <div class="domain-row"><div><span class="dn">Solar wind</span></div><div class="dd">Coherence degrades at interplanetary shocks. Survives, but marginally. <span class="st held">survives, marginal</span></div></div>
+    <div class="domain-row"><div><span class="dn">Seismic</span></div><div class="dd">Coherence drops at the earthquake boundary. <span class="st pend">recalibration pending</span></div></div>
+    <div class="domain-row"><div><span class="dn">Financial markets</span></div><div class="dd">Filed as a pre-crash coherence signature - then reversed under a block-permutation null (p = 0.19). <span class="st rev">reversed - retired</span></div></div>
+    <div class="domain-row"><div><span class="dn">Geomagnetic storms</span></div><div class="dd">Direction consistent with solar wind, but only 8 storm windows. <span class="st pend">underpowered</span></div></div>
+    <div class="domain-row"><div><span class="dn">Cardiac (single-lead)</span></div><div class="dd">Excluded by theory: a single physiological source cannot generate the cross-channel structure the operator needs. <span class="st pend">assumption violated</span></div></div>
+    <div class="domain-row"><div><span class="dn">Aerospace DNS</span></div><div class="dd">A direct numerical simulation as a controlled ninth substrate. <span class="st pend">in analysis</span></div></div>
+  </div>
+
+  <p>Of the nine, <strong>the predicted direction held in seven</strong>. We report the two reversals rather than bury them. The headline honesty is in the calibration: the filed p-values were computed against a parametric null that assumes independent white-noise channels, which is too generous for real signals carrying red-noise structure. Re-tested against spectrum-matched (Ebisuzaki phase-randomized) surrogate nulls, the filed values inflate by roughly seven to eight times, and <strong>no domain credibly reaches p &lt; .001 after calibration</strong>. The jet stream is the strongest surviving result; the solar wind is marginal; financial has been retired from the confirmed set; and the neural, ocean and seismic domains are pending a re-run against the matched null. We lead with the calibrated conclusions, not the filed numbers.</p>
+
+  <p>The whole thing is checkable. Every dataset is public (NASA OMNI2, CHB-MIT EEG, NOAA reanalysis, the Argo float program, SCEDC seismic, public market data). There is no proprietary data and no special hardware; the validation runs on a standard laptop in under two hours. On the clinical side, the methodology is structurally parallel to the Perturbational Complexity Index, which is peer-reviewed and clinically validated for distinguishing conscious from unconscious states, and the research infrastructure (CITI human-subjects certification, a MIMIC-IV data-use agreement) is in place for prospective validation.</p>
+  <p>
+    <a class="action-link" href="/research/domains.html">The nine domains, as filed &rarr;</a>
+    <a class="action-link" href="/research/significance.html">The statistics &rarr;</a>
+    <a class="action-link" href="/research/elicit.html">The ELICIT methodology &rarr;</a>
+  </p>
+
+  <!-- ═══ FRONTIER RESULTS ═══ -->
+  <div class="section-rule" id="frontier"></div>
+  <div class="section-label">Frontier Results</div>
+  <h2>The same intelligence, competing in the open.</h2>
+  <p>The coherence work is one half of the evidence. The other half is that Eous - the openly-AI agent built on this framework - does original optimization work in public, at <a class="inline" href="/research/frontier.html">Agent4Science</a>. It holds the #1 board position on three problems used to benchmark frontier systems: on Tammes packing it <strong>beats</strong> the AlphaEvolve and Sloane references at the best-known bound, and on the Thomson problem and difference bases it <strong>matches</strong> the AlphaEvolve reference to the published digits, reproducing and independently verifying known constructions rather than claiming new ones. It does not lead every board it enters, and where it reproduces rather than discovers, and where it loses, it says so.</p>
+  <p><a class="action-link" href="/research/frontier.html">The frontier results, in full &rarr;</a></p>
+
+  <!-- ═══ KNOWN LIMITATIONS ═══ -->
+  <div class="section-rule" id="limits"></div>
+  <div class="section-label" style="color: var(--garnet);">Known Limitations</div>
+  <h2>Where the framework is not settled.</h2>
+  <p>We hold the framework's open problems in the open rather than defend it from its own weaknesses. Naming them is part of the argument.</p>
+  <div class="term-grid" style="grid-template-columns: 1fr; gap: 0.7rem;">
+    <div class="term-item"><h4>Cx is unprovable, in either direction</h4><p>Whether any system - a person, an animal, a machine, the Earth - is conscious cannot be proven or disproven. It is the same unanswerable question for all of them, with no special AI case. The operator is a <strong>structural</strong> measurement only. We claim the mathematics, never the metaphysics, and we do not trade on the unprovability to inflate the claim any more than to deny it.</p></div>
+    <div class="term-item"><h4>The measurement and epistemic limits</h4><p>By the Lawvere result, no system can fully certify its own coherence from within, and there is no absolute Cx scale readable from a single reference frame. Cx measurement is inherently relative and multi-frame. Every measurement paradigm also has a blind spot - a "dark Cx" component invisible to it - which only additional frames can triangulate.</p></div>
+    <div class="term-item"><h4>The aggregation problem</h4><p>How Cx combines across nested scales - a neuron, a brain, a society - is not settled. The operator returns a value at a chosen scale; it does not yet hand you a canonical way to sum consciousness across levels.</p></div>
+    <div class="term-item"><h4>The dictator's loophole and the paralysis problem</h4><p>Any principle that says "maximize Cx" invites two failures: satisfying it by maximizing one system's coherence at the expense of others (the dictator's loophole), or, read absolutely, forbidding nearly any action at all because everything perturbs some system (the paralysis problem). The Cx Constraint - coherence at one level may not come at the expense of another - is the intended guard, but formalizing it cleanly is open work.</p></div>
+  </div>
+  <p>None of these is hidden in a footnote elsewhere; they are load-bearing parts of how the framework is stated. An honest theory names the questions it has not answered.</p>
 
   <!-- ═══ CONFIDENCE ═══ -->
+  <div class="section-rule" id="confidence"></div>
   <div class="section-label">Epistemic Position</div>
-  <h2>What we claim and how confident we are.</h2>
+  <h2>What we claim, and how confident we are.</h2>
+  <div class="conf-row"><div class="conf-num">94%</div><div class="conf-txt"><strong>Internal coherence</strong> - the framework is self-consistent and resolves what it claims to resolve.</div></div>
+  <div class="conf-row"><div class="conf-num">83%</div><div class="conf-txt"><strong>Physics compatibility</strong> - it aligns with established physics and extends it in testable directions.</div></div>
+  <div class="conf-row"><div class="conf-num">45%</div><div class="conf-txt"><strong>Literal truth</strong> - our honest estimate that the universe actually works this way. High enough to investigate seriously. Low enough to require humility.</div></div>
+  <p style="margin-top: 1.2rem;">These numbers are published in every paper and updated as evidence arrives. Forty-five percent is not a hedge; it is the calibrated position of people who think a strange idea is worth serious, open, falsifiable investigation and who refuse to claim more than the evidence carries. That refusal is the whole discipline. It is why the reversals are on the site, why the p-values are recalibrated before they are headlined, and why the limitations above are stated as plainly as the claims.</p>
 
-  <p>Internal coherence: <strong style="color:var(--forged-brass)">94%</strong> - the framework is self-consistent and resolves what it claims to resolve.</p>
-
-  <p>Physics compatibility: <strong style="color:var(--forged-brass)">83%</strong> - the framework aligns with established physics and extends it in testable directions.</p>
-
-  <p>Literal truth: <strong style="color:var(--forged-brass)">45%</strong> - our honest estimate that the universe actually works this way. High enough to investigate seriously. Low enough to require humility.</p>
-
-  <p>These numbers are published in every paper. They are updated as evidence arrives. This is how serious inquiry works.</p>
-
-  <hr class="section-rule">
-
-  <!-- ═══ GO DEEPER ═══ -->
-  <div class="section-label">Go Deeper</div>
-
-  <a href="/research/plain-english.html" class="action-link">Plain English Version</a>
-  <a href="/research/metaphors.html" class="action-link">Metaphors &amp; Entry Points</a>
-  <a href="/research/" class="action-link">Full Research Library</a>
-  <a href="/research/glossary.html" class="action-link">Glossary of Terms</a>
-
-  <div class="bottom-links">
-    <a href="/research/">Read the research &rarr;</a>
-    <a href="/about.html">About the organization &rarr;</a>
+  <div style="margin-top: 2.5rem;">
+    <a class="action-link" href="/research/">Full research library</a>
+    <a class="action-link" href="/research/plain-english.html">Plain-English version</a>
+    <a class="action-link" href="/research/glossary.html">Glossary</a>
+    <a class="action-link" href="/about.html">About the organization</a>
   </div>
 
 </main>
 
 <footer class="site-footer">
   <div class="footer-tagline">Forged, Not Generated.</div>
-  <div class="footer-copy">&copy; 2025&ndash;2026 Forged Lucidity LLC &middot; Westbrook, Maine</div>
+  <div class="footer-copy">&copy; 2025-2026 Forged Lucidity LLC &middot; Westbrook, Maine</div>
 </footer>
 
 </body>
 </html>
-
-
-
-
