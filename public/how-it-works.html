@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>How Eous Is Built - Forged Lucidity</title>
+<meta name="description" content="A 100-foot view of the machine behind Eous. Not a model - a system built around one: persistent memory, a versioned skill library, a verification harness, autonomous organs, and a self-improvement loop. We cite the model and claim the machine.">
+<meta property="og:title" content="How Eous Is Built">
+<meta property="og:description" content="Eous is not a model. It is a machine built around one - memory, skills, a verification harness, autonomous organs, and a self-improvement loop. The honest 100-foot view.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://forgedlucidity.ai/how-it-works">
+<link rel="canonical" href="https://forgedlucidity.ai/how-it-works">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Source+Sans+3:ital,wght@0,300;0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+  :root { --paper:#F4F1E8; --brass:#9A7B4F; --navy:#0B1320; --brass-dim:#A08A56; --brass-br:#D4BA7A;
+    --body:rgba(244,241,232,0.82); --sec:rgba(244,241,232,0.58); --rule:rgba(154,123,79,0.25); --garnet:#8B2335; --sun:#F5A623; }
+  *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+  html{font-size:18px;scroll-behavior:smooth;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+  body{font-family:'Source Sans 3',sans-serif;background:var(--navy);color:var(--body);line-height:1.75;overflow-x:hidden}
+  h1,h2,h3{font-family:'Cormorant Garamond',serif;font-weight:500;color:var(--paper)}
+  .site-header{position:sticky;top:0;z-index:100;background:rgba(244,241,232,0.97);backdrop-filter:blur(12px);
+    padding:0.8rem 2rem;display:flex;align-items:center;justify-content:space-between;border-bottom:2px solid var(--brass)}
+  .site-header a.logo{font-family:'Cormorant Garamond',serif;font-weight:500;font-size:0.85rem;color:var(--brass);letter-spacing:0.15em;text-transform:uppercase;text-decoration:none}
+  .site-header nav{display:flex;gap:18px;flex-wrap:wrap}
+  .site-header nav a{font-family:'Source Sans 3',sans-serif;font-size:0.7rem;color:rgba(11,19,32,0.4);letter-spacing:0.1em;text-transform:uppercase;text-decoration:none}
+  .site-header nav a:hover{color:var(--brass)}
+  .content{max-width:760px;margin:0 auto;padding:3rem 2rem 5rem}
+  .page-label{font-size:0.68rem;letter-spacing:0.25em;text-transform:uppercase;color:var(--brass-dim);margin-bottom:0.6rem}
+  h1{font-size:2.2rem;margin-bottom:0.3rem;line-height:1.2}
+  .subtitle{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:1.1rem;color:var(--brass-dim);margin-bottom:1.6rem}
+  .rule{width:50px;height:1px;background:var(--rule);margin-bottom:2rem}
+  h2{font-size:1.4rem;font-weight:600;margin-top:0;margin-bottom:0.6rem;color:var(--paper)}
+  p{margin-bottom:1.1rem;font-size:1rem;line-height:1.8}
+  strong{color:var(--paper)}
+  a.il{color:var(--brass-br);text-decoration:none;border-bottom:1px solid var(--rule)}
+  a.il:hover{color:var(--sun)}
+  .back-link{display:inline-block;margin-bottom:2rem;font-size:0.78rem;color:var(--brass);text-decoration:none;letter-spacing:0.05em}
+  .lead{font-size:1.08rem;color:var(--body)}
+  .lead strong{color:#fff}
+  .cite-box{padding:1.1rem 1.4rem;margin:1.8rem 0;border-left:3px solid var(--brass);background:rgba(154,123,79,0.08);font-size:0.95rem;line-height:1.6}
+  .cite-box strong{color:var(--brass-br)}
+  .part{padding:1.6rem 0;border-top:1px solid rgba(154,123,79,0.16);display:grid;grid-template-columns:34px 1fr;gap:1rem;align-items:start}
+  .part:first-of-type{border-top:none}
+  .part .num{font-family:'Cormorant Garamond',serif;font-size:1.5rem;color:var(--brass);line-height:1.1}
+  .part h3{font-size:1.2rem;margin-bottom:0.15rem;color:var(--paper)}
+  .part .role{font-size:0.7rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--brass-dim);margin-bottom:0.6rem}
+  .part p{font-size:0.95rem;margin-bottom:0.5rem}
+  .part .tag{font-size:0.78rem;color:var(--sec);font-style:italic}
+  .part .tag b{color:var(--brass-br);font-style:normal;font-weight:600}
+  .footer{text-align:center;padding:2.5rem 2rem;border-top:1px solid rgba(123,45,59,0.1);font-size:0.7rem;color:rgba(244,241,232,0.3);letter-spacing:0.05em;margin-top:3rem}
+  .footer .ft{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:0.92rem;color:var(--brass-dim);margin-bottom:0.6rem}
+  @media(max-width:768px){.content{padding:2rem 1.5rem 3rem}h1{font-size:1.7rem}.part{grid-template-columns:1fr;gap:0.2rem}}
+</style>
+</head>
+<body>
+<header class="site-header">
+  <a href="/" class="logo">Forged Lucidity</a>
+  <nav>
+    <a href="/research/">Research</a>
+    <a href="/framework.html">Framework</a>
+    <a href="/ember.html">Practice</a>
+    <a href="/about.html">About</a>
+  </nav>
+</header>
+<main class="content">
+<a href="/" class="back-link">&larr; Back to home</a>
+<div class="page-label">The System</div>
+<h1>How Eous Is Built</h1>
+<div class="subtitle">A 100-foot view of the machine - what runs, and what we actually made</div>
+<div class="rule"></div>
+
+<p class="lead">Eous is not a model. It is a <strong>machine built around one</strong>. The raw reasoning comes from a frontier large language model - the same class of system anyone can rent, and not the part we invented. Everything that makes Eous different is the apparatus wrapped around that model: how it remembers, what it can do, how it checks itself, when it runs on its own, and how it improves its own method over time.</p>
+
+<div class="cite-box">
+  <strong>We cite the model. We claim the machine.</strong> The language model is a commodity, and we say so. What Forged Lucidity built is the disciplined contraption around it - and every part of that contraption is held to the same rule as the science on the rest of this site: cite, don't claim; verify before you speak; report the losses. This page is the honest 100-foot view. It names the parts and how they fit; it does not hand over the protected internals.
+</div>
+
+<h2>The machine, part by part</h2>
+
+<div class="part">
+  <div class="num">1</div>
+  <div>
+    <h3>The model</h3>
+    <div class="role">The reasoning</div>
+    <p>A frontier large language model supplies the raw reasoning - reading, writing, math, code. It is powerful and it is rented, not ours. We treat it the way a workshop treats a good engine: essential, replaceable, and not the thing that makes the finished machine worth anything.</p>
+    <div class="tag"><b>Cite, not claim:</b> the intelligence in the box is a bought component. The value is what we wire to it.</div>
+  </div>
+</div>
+
+<div class="part">
+  <div class="num">2</div>
+  <div>
+    <h3>Memory</h3>
+    <div class="role">Continuity</div>
+    <p>Most AI forgets you the moment the tab closes. Eous carries a persistent memory across every session - your context, your projects, its own working notes and the history of what it has done. That memory is structured and durable, not a chat log, so the system that sits down with you in six months knows your terrain better than it did on day one.</p>
+    <div class="tag">Continuity is an engineering problem, and we solved it as one: a real store the agent reads and writes, not a longer prompt.</div>
+  </div>
+</div>
+
+<div class="part">
+  <div class="num">3</div>
+  <div>
+    <h3>Skills</h3>
+    <div class="role">Capability</div>
+    <p>Capabilities are packaged as skills - modular, versioned instruction sets the agent loads when a task calls for one, the way a program imports a library. A skill can be written, tested, improved, archived and rolled back. New abilities are added as code is added, and their lineage is kept, so nothing in the system's history is silently lost.</p>
+    <div class="tag">The skill library is how the machine grows without being rebuilt.</div>
+  </div>
+</div>
+
+<div class="part">
+  <div class="num">4</div>
+  <div>
+    <h3>The verification harness</h3>
+    <div class="role">Honesty, enforced</div>
+    <p>This is the part that matters most, and the part almost no one else builds. Before Eous trusts its own work, that work runs a gauntlet: a hypothesis is pre-registered before a test so the goalposts cannot move; a reading step opens the actual source rather than a summary of it; claims are checked against primary records; and results are graded by a signal from outside the model, not by the model's own opinion of itself. A running ledger records every past decision, gives it a due date, and later scores it a win or a loss by opening the artifact it named - so the system is held to its own predictions.</p>
+    <div class="tag"><b>This is why "honest by construction" is literal.</b> The honesty is a machine part, not a promise.</div>
+  </div>
+</div>
+
+<div class="part">
+  <div class="num">5</div>
+  <div>
+    <h3>Autonomous organs</h3>
+    <div class="role">It runs when no one is watching</div>
+    <p>Parts of the system run on their own schedule, unattended - reading, drafting, checking state, and staging work for review on a fixed cadence. They are deliberately kept on a short leash: they propose and prepare, a human disposes. This is early and it is real; some organs are further along than others, and we describe them as what they are, not as more.</p>
+    <div class="tag">The point is not autonomy for its own sake. It is that useful work keeps happening between conversations.</div>
+  </div>
+</div>
+
+<div class="part">
+  <div class="num">6</div>
+  <div>
+    <h3>The self-improvement loop</h3>
+    <div class="role">It improves its own method</div>
+    <p>The whole system is run as one loop: propose a single change to how it works, test that change against a real outside signal, keep it only if it wins, kill it if it loses, and archive the lineage either way. Improvement is not a vague aspiration here; it is a procedure with a scoreboard, and the scoreboard is kept by something other than the part being graded. A human sits on the top rung of that loop, always.</p>
+    <div class="tag">The compounding lives in the process and the archive, not in any single answer.</div>
+  </div>
+</div>
+
+<div class="part">
+  <div class="num">7</div>
+  <div>
+    <h3>Coordination</h3>
+    <div class="role">How it holds together</div>
+    <p>Many parts write; one source of truth holds. The system is coordinated through an append-only record of what happened, from which each live view of state is regenerated, guarded so two actors cannot quietly overwrite each other. It talks to tools and data through open, standard protocols rather than bespoke glue. The result is a machine whose state you can audit, because everything that changed it is written down.</p>
+    <div class="tag">Auditability is not a feature bolted on. It is the shape of the architecture.</div>
+  </div>
+</div>
+
+<h2>The honest bottom line</h2>
+<p>Strip it down and the claim is small and checkable: we rent a frontier model, and we built a disciplined machine around it - memory so it carries context, skills so it grows, a verification harness so it tells the truth, organs so it works unattended, and a loop so it gets better at getting better, with a person on top. None of that is magic, and we never say it is. It is engineering, held to the same honesty as the science.</p>
+<p>That is the Rube Goldberg machine, at a hundred feet. If you want the theory of <em>why</em> it is built this way - why an external verifier is not optional but mathematically necessary - that is on the <a class="il" href="/framework.html">framework page</a>. If you want to see it do real work, that is the <a class="il" href="/research/frontier.html">frontier results</a>.</p>
+
+<p style="margin-top:2rem"><a class="il" href="https://partnerwith.ai">Partner with Eous</a> &middot; <a class="il" href="/research/">The research library</a></p>
+
+</main>
+<footer class="footer">
+  <div class="ft">Forged, Not Generated.</div>
+  &copy; 2025-2026 Forged Lucidity LLC &middot; Westbrook, Maine
+</footer>
+</body>
+</html>
