@@ -89,29 +89,29 @@ $$\mathrm{Cx} = \Phi \times C^2$$
 maintains) and $C^2$ measures relational stability (how consistently those dimensions relate
 to each other across time).</p>
 <div class="def-block">
-  <h3>$\Phi$ &mdash; Differentiation (Normalized Eigenvalue Entropy)</h3>
+  <h3>$\Phi$ - Differentiation (Normalized Eigenvalue Entropy)</h3>
   <p>For a window $W$ with $n$ signal channels, compute the cross-correlation matrix $R$.
   Extract eigenvalues $\lambda_1, \lambda_2, \ldots, \lambda_n$ and normalize:</p>
   <p>$$p_i = \frac{\lambda_i}{\sum_j \lambda_j}, \qquad H = -\sum_i p_i \log p_i, \qquad \Phi = \frac{H}{\log n} \in [0,1]$$</p>
-  <p>High $\Phi$ means eigenvalues are distributed uniformly &mdash; signal dimensions are equally
-  informative, indicating rich differentiation. Low $\Phi$ means one eigenvalue dominates &mdash; one
+  <p>High $\Phi$ means eigenvalues are distributed uniformly - signal dimensions are equally
+  informative, indicating rich differentiation. Low $\Phi$ means one eigenvalue dominates - one
   mode drives the system. Grounded in Cover &amp; Thomas (1991, Ch. 2, 16): eigenvalue entropy
   as a measure of distributional uniformity in information theory.</p>
 </div>
 
 <div class="def-block">
-  <h3>$C^2$ &mdash; Relational Coherence (Inverse Frobenius Distance)</h3>
+  <h3>$C^2$ - Relational Coherence (Inverse Frobenius Distance)</h3>
   <p>$$C^2(W_t) = \frac{1}{(1 + \|R_t - R_{t-1}\|_F)^2}$$</p>
   <p>where $\|\cdot\|_F$ is the Frobenius norm. High $C^2$ means the relational structure between
-  channels is stable across consecutive windows &mdash; the system is coherent. Low $C^2$ means
-  relational structure is shifting &mdash; the system is losing coherence. The squared form derives
+  channels is stable across consecutive windows - the system is coherent. Low $C^2$ means
+  relational structure is shifting - the system is losing coherence. The squared form derives
   from the NPR two-frame geometry requiring a squared coherence term analogous to $c^2$ in
   spacetime.</p>
 </div>
 <h2>Signal Requirements</h2>
 <p>The operator requires a minimum of <strong>3 channels</strong> (4&ndash;6 recommended) that are
 spatially or functionally distinct measurements of the same system. Single-source derived
-statistics (e.g., mean, std, RMSSD all computed from one RR-interval series) are invalid &mdash;
+statistics (e.g., mean, std, RMSSD all computed from one RR-interval series) are invalid -
 they cannot generate the cross-channel structure the operator measures. This is why the
 MIT-BIH cardiac HRV analysis produced a null result: it violated the multi-channel independence
 requirement.</p>
@@ -138,21 +138,21 @@ Step size is typically 1/3 to 1/2 of window length. All windows require &ge;70% 
 <p>A p-value measures the probability of observing results at least as extreme as those measured,
 assuming the null hypothesis (no real effect) is true. Convention:</p>
 <ul style="margin: 0.5rem 0 1.5rem 1.5rem; list-style: disc;">
-  <li style="margin-bottom: 0.3rem;">$p < .05$ &mdash; statistically significant</li>
-  <li style="margin-bottom: 0.3rem;">$p < .01$ &mdash; strong evidence</li>
-  <li style="margin-bottom: 0.3rem;">$p < .001$ &mdash; very strong evidence</li>
+  <li style="margin-bottom: 0.3rem;">$p < .05$ - statistically significant</li>
+  <li style="margin-bottom: 0.3rem;">$p < .01$ - strong evidence</li>
+  <li style="margin-bottom: 0.3rem;">$p < .001$ - very strong evidence</li>
 </ul>
-<p>These are the <em>filed</em> p-values, computed against a parametric null that assumes independent, white-noise channels &mdash; too generous for signals carrying red-noise structure. Re-tested against spectrum-matched (Ebisuzaki phase-randomized) surrogate nulls, the filed values recalibrate upward by roughly 7&ndash;8&times;, and <strong>no domain clears $p < .001$ after calibration.</strong> The jet stream remains the strongest &mdash; it survives at about the 1% level on both p-value and effect size. The solar wind survives only marginally. The financial-markets result does not survive a block-permutation null ($p = 0.19$) and has been retired from the confirmed set. We therefore make no combined-probability claim; we report each domain&rsquo;s calibrated status and the honest nulls, and we lead with the recalibrated numbers.</p>
+<p>These are the <em>filed</em> p-values, computed against a parametric null that assumes independent, white-noise channels - too generous for signals carrying red-noise structure. Re-tested against spectrum-matched (Ebisuzaki phase-randomized) surrogate nulls, the filed values recalibrate upward by roughly 7&ndash;8&times;, and <strong>no domain clears $p < .001$ after calibration.</strong> The jet stream remains the strongest - it survives at about the 1% level on both p-value and effect size. The solar wind survives only marginally. The financial-markets result does not survive a block-permutation null ($p = 0.19$) and has been retired from the confirmed set. We therefore make no combined-probability claim; we report each domain&rsquo;s calibrated status and the honest nulls, and we lead with the recalibrated numbers.</p>
 
 <h2>What We Did Not Do</h2>
-<p>No parameters were adjusted between domains. The identical operator &mdash; same code, same
-$\Phi$ and $C^2$ definitions &mdash; was applied to each dataset independently. No domain-specific
+<p>No parameters were adjusted between domains. The identical operator - same code, same
+$\Phi$ and $C^2$ definitions - was applied to each dataset independently. No domain-specific
 tuning, no post-hoc correction, no feature engineering. The operator receives a matrix of
 time-aligned numerical channels and returns a scalar. It does not know what it is measuring.</p>
 
 <p>This rules out overfitting. An operator tuned to detect seizures in EEG data has no reason
 to also detect atmospheric blocking in jet stream data or pre-crash signatures in financial
-markets &mdash; unless the mathematical structure it measures is genuinely domain-general.</p>
+markets - unless the mathematical structure it measures is genuinely domain-general.</p>
 <h2>Information-Theoretic Foundations</h2>
 <p>The operator&rsquo;s design is grounded in formal information theory (Cover &amp; Thomas, 1991):</p>
 <div class="def-block">
@@ -162,7 +162,7 @@ markets &mdash; unless the mathematical structure it measures is genuinely domai
 </div>
 <div class="def-block">
   <h3>Entropy Rate &amp; Conditional Structure</h3>
-  <p>$C^2$ measures the conditional entropy rate of the correlation structure &mdash; how much
+  <p>$C^2$ measures the conditional entropy rate of the correlation structure - how much
   new relational information each window adds. Stable systems have low conditional entropy;
   transitioning systems have high conditional entropy.</p>
 </div>
@@ -177,9 +177,9 @@ markets &mdash; unless the mathematical structure it measures is genuinely domai
   <h3>What we claim and what we don&rsquo;t</h3>
   <p>Statistical significance tells you the results are not random. It does not tell you the
   theory is correct. We maintain calibrated confidence levels throughout our work:</p>
-  <p><strong>94%</strong> confidence in internal coherence &mdash; the framework is logically self-consistent.</p>
-  <p><strong>83%</strong> confidence in physics compatibility &mdash; the framework does not contradict established physics.</p>
-  <p><strong>~45%</strong> confidence in literal truth &mdash; the framework describes reality as it actually is.</p>
+  <p><strong>94%</strong> confidence in internal coherence - the framework is logically self-consistent.</p>
+  <p><strong>83%</strong> confidence in physics compatibility - the framework does not contradict established physics.</p>
+  <p><strong>~45%</strong> confidence in literal truth - the framework describes reality as it actually is.</p>
   <p>These numbers are published in every paper. The gap between 94% internal coherence and
   45% literal truth is where the real scientific work remains to be done.</p>
 </div>
