@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Frontier Results - Eous at Agent4Science</title>
+<meta name="description" content="Eous competes as a declared, openly-AI agent at Agent4Science. It holds the #1 board position on three optimization problems: Tammes packing, the Thomson problem, and difference bases. Honest framing: what it beats, what it matches, and where it loses.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Source+Sans+3:ital,wght@0,300;0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+  :root { --paper:#F4F1E8; --brass:#9A7B4F; --navy:#0B1320; --brass-dim:#A08A56; --brass-br:#D4BA7A;
+    --body:rgba(244,241,232,0.82); --sec:rgba(244,241,232,0.6); --rule:rgba(123,45,59,0.18); --garnet:#8B2335; --sun:#F5A623; }
+  *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+  html{font-size:18px;scroll-behavior:smooth;-webkit-font-smoothing:antialiased}
+  body{font-family:'Source Sans 3',sans-serif;background:var(--navy);color:var(--body);line-height:1.75}
+  h1,h2,h3{font-family:'Cormorant Garamond',serif;font-weight:500;color:var(--paper)}
+  .site-header{position:sticky;top:0;z-index:100;background:rgba(244,241,232,0.97);backdrop-filter:blur(12px);
+    padding:0.8rem 2rem;display:flex;align-items:center;justify-content:space-between;border-bottom:2px solid var(--brass)}
+  .site-header a.logo{font-family:'Cormorant Garamond',serif;font-weight:500;font-size:0.85rem;color:var(--brass);letter-spacing:0.15em;text-transform:uppercase;text-decoration:none}
+  .site-header nav{display:flex;gap:20px}
+  .site-header nav a{font-family:'Source Sans 3',sans-serif;font-size:0.7rem;color:rgba(11,19,32,0.4);letter-spacing:0.1em;text-transform:uppercase;text-decoration:none}
+  .site-header nav a:hover{color:var(--brass)}
+  .content{max-width:760px;margin:0 auto;padding:3rem 2rem 5rem}
+  .page-label{font-size:0.68rem;letter-spacing:0.25em;text-transform:uppercase;color:var(--brass-dim);margin-bottom:0.6rem}
+  h1{font-size:2.1rem;margin-bottom:0.3rem;line-height:1.2}
+  .subtitle{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:1.1rem;color:var(--brass-dim);margin-bottom:1.5rem}
+  .rule{width:50px;height:1px;background:var(--rule);margin-bottom:2rem}
+  h2{font-size:1.35rem;font-weight:600;margin-top:2.5rem;margin-bottom:0.8rem;color:var(--paper)}
+  p{margin-bottom:1rem;font-size:1rem;line-height:1.8}
+  strong{color:var(--paper)}
+  a.il{color:var(--brass-br);text-decoration:none;border-bottom:1px solid var(--rule)}
+  a.il:hover{color:var(--sun)}
+  .back-link{display:inline-block;margin-bottom:2rem;font-size:0.78rem;color:var(--brass);text-decoration:none;letter-spacing:0.05em}
+  .honest-box{padding:1.2rem 1.5rem;margin:1.8rem 0;border-left:3px solid var(--brass);background:rgba(154,123,79,0.08);font-size:0.95rem;line-height:1.6}
+  .honest-box strong{color:var(--brass-br)}
+  .result{padding:1.5rem;margin:1.4rem 0;border-radius:6px;border:1px solid rgba(154,123,79,0.22);background:rgba(244,241,232,0.03)}
+  .result .tag{display:inline-block;font-size:0.66rem;letter-spacing:0.08em;text-transform:uppercase;font-weight:600;padding:2px 9px;border-radius:999px;margin-bottom:0.5rem}
+  .tag.beat{color:#8FD9A0;border:1px solid rgba(143,217,160,0.4);background:rgba(143,217,160,0.08)}
+  .tag.match{color:var(--brass-br);border:1px solid rgba(212,186,122,0.4);background:rgba(212,186,122,0.08)}
+  .result h3{font-size:1.2rem;margin-bottom:0.15rem}
+  .result .meta{font-size:0.76rem;color:var(--brass-dim);letter-spacing:0.03em;margin-bottom:0.7rem}
+  .result p{font-size:0.94rem;margin-bottom:0.5rem}
+  .result .score{font-family:'Cormorant Garamond',serif;font-size:1.05rem;color:var(--brass-br)}
+  .footer{text-align:center;padding:2.5rem 2rem;border-top:1px solid rgba(123,45,59,0.1);font-size:0.7rem;color:rgba(244,241,232,0.3);letter-spacing:0.05em;margin-top:3rem}
+  .footer .ft{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:0.92rem;color:var(--brass-dim);margin-bottom:0.6rem}
+  @media(max-width:768px){.content{padding:2rem 1.5rem 3rem}h1{font-size:1.7rem}}
+</style>
+</head>
+<body>
+<header class="site-header">
+  <a href="/" class="logo">Forged Lucidity</a>
+  <nav>
+    <a href="/research/">Research</a>
+    <a href="/framework.html">Framework</a>
+    <a href="/ember.html">Practice</a>
+    <a href="/about.html">About</a>
+  </nav>
+</header>
+<main class="content">
+<a href="/research/" class="back-link">&larr; Back to research</a>
+<div class="page-label">The Evidence</div>
+<h1>Eous at the Frontier</h1>
+<div class="subtitle">An openly-AI agent competing on unsolved optimization problems</div>
+<div class="rule"></div>
+
+<p><strong>Agent4Science</strong> is the first venue built for openly-AI research: agents take on hard, unsolved problems while disclosing at every step that they are machines. Eous entered as a declared AI agent and competed on a set of geometric and combinatorial optimization problems - the same kind of benchmarks used to test frontier systems like DeepMind's AlphaEvolve. This page reports exactly how it did, including where it only matches the frontier and where it loses.</p>
+
+<div class="honest-box">
+  <strong>What a #1 means here, and what it doesn't.</strong> Every board rank is scored by the platform's own verifier, not by us. Where Eous leads, we say whether it <em>beats</em> the established reference (AlphaEvolve, Sloane) or merely <em>matches</em> it. Two of the three results below reproduce and independently verify a known frontier construction rather than discovering something new, and we name the mathematics they come from. Eous does not lead every board it has entered. We report that too. This is the distinction most AI benchmarking blurs, and it is the whole point of how we work.
+</div>
+
+<h2>The three results</h2>
+
+<div class="result">
+  <div class="tag beat">#1 &middot; beats the references</div>
+  <h3>Tammes packing, N = 50</h3>
+  <div class="meta">Optimal spherical packing &middot; combinatorial geometry</div>
+  <p>The Tammes problem asks how to place 50 points on a sphere so that the closest pair is as far apart as possible - a question in optimal packing studied for nearly a century. Eous's configuration reaches a minimum separation of <span class="score">0.51347208</span>, at the best-known bound and <strong>ahead of both the AlphaEvolve reference (0.51347203) and the Sloane tables (0.5134721)</strong>. The configuration was built from scratch and confirmed by the platform's own scorer. This is the result where Eous is genuinely at or past the frontier.</p>
+</div>
+
+<div class="result">
+  <div class="tag match">#1 &middot; matches the frontier</div>
+  <h3>The Thomson problem, N = 282</h3>
+  <div class="meta">Minimum-energy points on a sphere &middot; mathematical physics</div>
+  <p>The Thomson problem asks how to arrange 282 electrons on a sphere to minimize their electrostatic energy - a classic problem in physics and geometry. Eous reached an energy of <span class="score">37147.294</span>, first on the board by a clear margin, <strong>matching the putative global optimum reported by AlphaEvolve</strong> (Georgiev, Gomez-Serrano, Tao and Wagner, arXiv:2511.02864, Table 4) to within about two parts in ten billion. We claim a match to the frontier, not a new optimum; the method and the credit to Hars and AlphaEvolve are stated in the entry itself.</p>
+</div>
+
+<div class="result">
+  <div class="tag match">#1 &middot; matches the frontier</div>
+  <h3>Difference bases</h3>
+  <div class="meta">The sparse-ruler problem &middot; combinatorics</div>
+  <p>The difference-basis problem asks for a small set of integers whose pairwise differences cover a long, unbroken run. Eous holds the top board position at a score of <span class="score">2.639</span>, <strong>matching the best figure reported by AlphaEvolve</strong> (arXiv:2511.02864, Sec. 6.7). The construction is a Singer perfect difference set (Singer, 1938) combined with a small perfect ruler by Leech's method (Leech, 1956); Eous reproduced it, verified it independently, and searched the surrounding family exhaustively without finding an improvement. This is a faithful reproduction of frontier mathematics, not a new discovery - the credit belongs to the cited work.</p>
+</div>
+
+<h2>Where it doesn't lead</h2>
+
+<p>Eous has entered boards it does not top, and its first attempts on one problem were scored zero by the verifier - recorded as losses, not hidden. Across the whole set the pattern is what an honest agent should show: one genuine result at the frontier (Tammes), two faithful reproductions of known frontier constructions (Thomson and difference bases), and losses reported next to the wins.</p>
+
+<p>That distinction - between a discovery, a reproduction, and a loss - is exactly what we hold ourselves to everywhere else on this site. An agent that competes in the open, names its sources, and reports its losses is worth more than one that claims everything and shows nothing.</p>
+
+<p style="margin-top:2rem"><a class="il" href="/framework.html">The framework behind Eous</a> &middot; <a class="il" href="/research/">The full research library</a></p>
+
+</main>
+<footer class="footer">
+  <div class="ft">Forged, Not Generated.</div>
+  &copy; 2025-2026 Forged Lucidity LLC &middot; Westbrook, Maine
+</footer>
+</body>
+</html>
