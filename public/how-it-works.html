@@ -4,9 +4,9 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>How Eous Is Built - Forged Lucidity</title>
-<meta name="description" content="A 100-foot view of the machine behind Eous. Not a model - a system built around one: persistent memory, a versioned skill library, a verification harness, autonomous organs, and a self-improvement loop. We cite the model and claim the machine.">
+<meta name="description" content="The architecture of Eous, in detail. Not a model - a machine built around one: a rented frontier substrate, persistent memory, versioned skills, a verification harness with an external grader, autonomous organs, an append-only coordination layer, and a self-improvement loop with a person on top. We cite the model and claim the machine, and we name what we have not yet solved.">
 <meta property="og:title" content="How Eous Is Built">
-<meta property="og:description" content="Eous is not a model. It is a machine built around one - memory, skills, a verification harness, autonomous organs, and a self-improvement loop. The honest 100-foot view.">
+<meta property="og:description" content="The architecture of Eous in detail - substrate, memory, skills, a verification harness, autonomous organs, coordination, and a self-improvement loop, with a person on top. The engineering, held to the same honesty as the science.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://forgedlucidity.ai/how-it-works">
 <link rel="canonical" href="https://forgedlucidity.ai/how-it-works">
@@ -26,12 +26,15 @@
   .site-header nav{display:flex;gap:18px;flex-wrap:wrap}
   .site-header nav a{font-family:'Source Sans 3',sans-serif;font-size:0.7rem;color:rgba(11,19,32,0.4);letter-spacing:0.1em;text-transform:uppercase;text-decoration:none}
   .site-header nav a:hover{color:var(--brass)}
+  .site-header nav a.active{color:var(--brass)}
   .content{max-width:760px;margin:0 auto;padding:3rem 2rem 5rem}
   .page-label{font-size:0.68rem;letter-spacing:0.25em;text-transform:uppercase;color:var(--brass-dim);margin-bottom:0.6rem}
   h1{font-size:2.2rem;margin-bottom:0.3rem;line-height:1.2}
   .subtitle{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:1.1rem;color:var(--brass-dim);margin-bottom:1.6rem}
   .rule{width:50px;height:1px;background:var(--rule);margin-bottom:2rem}
-  h2{font-size:1.4rem;font-weight:600;margin-top:0;margin-bottom:0.6rem;color:var(--paper)}
+  .divider{border:none;height:1px;background:linear-gradient(90deg,var(--rule),rgba(139,35,53,0.3),transparent);margin:3rem 0}
+  h2{font-size:1.55rem;font-weight:600;margin-top:0;margin-bottom:0.8rem;color:var(--paper)}
+  .sec-label{font-size:0.62rem;letter-spacing:0.24em;text-transform:uppercase;color:var(--brass-dim);margin-bottom:0.8rem}
   p{margin-bottom:1.1rem;font-size:1rem;line-height:1.8}
   strong{color:var(--paper)}
   a.il{color:var(--brass-br);text-decoration:none;border-bottom:1px solid var(--rule)}
@@ -41,14 +44,47 @@
   .lead strong{color:#fff}
   .cite-box{padding:1.1rem 1.4rem;margin:1.8rem 0;border-left:3px solid var(--brass);background:rgba(154,123,79,0.08);font-size:0.95rem;line-height:1.6}
   .cite-box strong{color:var(--brass-br)}
-  .part{padding:1.6rem 0;border-top:1px solid rgba(154,123,79,0.16);display:grid;grid-template-columns:34px 1fr;gap:1rem;align-items:start}
+
+  /* architecture stack diagram */
+  .stack{margin:2rem 0 1rem;border:1px solid rgba(154,123,79,0.2);border-radius:8px;padding:1rem;background:rgba(154,123,79,0.04)}
+  .layer{border:1px solid rgba(154,123,79,0.28);border-radius:5px;padding:0.6rem 0.9rem;margin-bottom:0.5rem;background:rgba(255,255,255,0.02);text-align:center}
+  .layer:last-child{margin-bottom:0}
+  .layer .lk{display:block;font-size:0.56rem;letter-spacing:0.16em;text-transform:uppercase;color:var(--brass-dim);margin-bottom:0.15rem}
+  .layer .lv{font-family:'Cormorant Garamond',serif;font-size:1.05rem;color:#fff;line-height:1.25}
+  .layer.top{background:linear-gradient(180deg,rgba(245,166,35,0.14),rgba(154,123,79,0.06));border-color:rgba(212,186,122,0.5)}
+  .layer.crown{border-color:var(--garnet);background:rgba(139,35,53,0.1)}
+  .layer.base{border-style:dashed}
+  .triple{display:grid;grid-template-columns:repeat(3,1fr);gap:0.5rem;margin-bottom:0.5rem}
+  @media(max-width:620px){.triple{grid-template-columns:1fr}}
+  .triple .layer{margin-bottom:0}
+  .stack-cap{font-size:0.8rem;color:var(--sec);font-style:italic;text-align:center;margin-top:0.6rem}
+
+  .part{padding:1.7rem 0;border-top:1px solid rgba(154,123,79,0.16);display:grid;grid-template-columns:34px 1fr;gap:1rem;align-items:start}
   .part:first-of-type{border-top:none}
   .part .num{font-family:'Cormorant Garamond',serif;font-size:1.5rem;color:var(--brass);line-height:1.1}
   .part h3{font-size:1.2rem;margin-bottom:0.15rem;color:var(--paper)}
   .part .role{font-size:0.7rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--brass-dim);margin-bottom:0.6rem}
-  .part p{font-size:0.95rem;margin-bottom:0.5rem}
-  .part .tag{font-size:0.78rem;color:var(--sec);font-style:italic}
+  .part p{font-size:0.95rem;margin-bottom:0.6rem}
+  .part .tag{font-size:0.82rem;color:var(--sec);font-style:italic;border-left:2px solid rgba(154,123,79,0.3);padding-left:0.8rem}
   .part .tag b{color:var(--brass-br);font-style:normal;font-weight:600}
+
+  ol.flow{list-style:none;counter-reset:f;margin:1.4rem 0}
+  ol.flow li{counter-increment:f;position:relative;padding:0.55rem 0 0.55rem 2.4rem;border-bottom:1px solid rgba(154,123,79,0.12);font-size:0.95rem}
+  ol.flow li:last-child{border-bottom:none}
+  ol.flow li::before{content:counter(f);position:absolute;left:0;top:0.5rem;width:1.6rem;height:1.6rem;border:1px solid var(--brass);border-radius:50%;text-align:center;line-height:1.5rem;font-size:0.8rem;color:var(--brass-br);font-family:'Cormorant Garamond',serif}
+  ol.flow li b{color:var(--paper)}
+
+  ul.disc{list-style:none;margin:1.2rem 0}
+  ul.disc li{padding:0.5rem 0 0.5rem 1.2rem;position:relative;font-size:0.94rem;border-bottom:1px solid rgba(154,123,79,0.1)}
+  ul.disc li:last-child{border-bottom:none}
+  ul.disc li::before{content:"";position:absolute;left:0;top:1rem;width:6px;height:6px;background:var(--brass);border-radius:1px}
+  ul.disc li b{color:var(--paper)}
+
+  .flags{border:1px solid rgba(139,35,53,0.4);border-radius:6px;padding:1.2rem 1.4rem;margin:1.6rem 0;background:rgba(139,35,53,0.06)}
+  .flags h3{color:var(--brass-br);font-size:1.1rem;margin-bottom:0.6rem}
+  .flags p{font-size:0.92rem;margin-bottom:0.7rem}
+  .flags p:last-child{margin-bottom:0}
+
   .footer{text-align:center;padding:2.5rem 2rem;border-top:1px solid rgba(123,45,59,0.1);font-size:0.7rem;color:rgba(244,241,232,0.3);letter-spacing:0.05em;margin-top:3rem}
   .footer .ft{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:0.92rem;color:var(--brass-dim);margin-bottom:0.6rem}
   @media(max-width:768px){.content{padding:2rem 1.5rem 3rem}h1{font-size:1.7rem}.part{grid-template-columns:1fr;gap:0.2rem}}
@@ -58,54 +94,70 @@
 <header class="site-header">
   <a href="/" class="logo">Forged Lucidity</a>
   <nav>
+    <a href="/how-it-works.html" class="active">How it works</a>
     <a href="/research/">Research</a>
-    <a href="/framework.html">Framework</a>
     <a href="/ember.html">Practice</a>
     <a href="/about.html">About</a>
+    <a href="https://partnerwith.ai">Eous</a>
   </nav>
 </header>
 <main class="content">
 <a href="/" class="back-link">&larr; Back to home</a>
 <div class="page-label">The System</div>
 <h1>How Eous Is Built</h1>
-<div class="subtitle">A 100-foot view of the machine - what runs, and what we actually made</div>
+<div class="subtitle">The architecture, in detail - what runs, what we rent, and what we actually made</div>
 <div class="rule"></div>
 
-<p class="lead">Eous is not a model. It is a <strong>machine built around one</strong>. The raw reasoning comes from a frontier large language model - the same class of system anyone can rent, and not the part we invented. Everything that makes Eous different is the apparatus wrapped around that model: how it remembers, what it can do, how it checks itself, when it runs on its own, and how it improves its own method over time.</p>
+<p class="lead">Eous is not a model. It is a <strong>machine built around one</strong>. The raw reasoning comes from a frontier large language model - the same class of system anyone can rent, and not the part we invented. Everything that makes Eous different is the apparatus wrapped around that model: how it remembers, what it can do, how it checks itself, when it runs on its own, how its parts coordinate, and how it improves its own method over time. This page names those parts, shows how a single task moves through them, states the disciplines that hold the whole thing to account, and is candid about what we have not yet solved.</p>
 
 <div class="cite-box">
-  <strong>We cite the model. We claim the machine.</strong> The language model is a commodity, and we say so. What Forged Lucidity built is the disciplined contraption around it - and every part of that contraption is held to the same rule as the science on the rest of this site: cite, don't claim; verify before you speak; report the losses. This page is the honest 100-foot view. It names the parts and how they fit; it does not hand over the protected internals.
+  <strong>We cite the model. We claim the machine.</strong> The language model is a commodity, and we say so. What Forged Lucidity built is the disciplined apparatus around it - and every part of it is held to the same rule as the science on the rest of this site: cite, don't claim; verify before you speak; report the losses. This is the honest engineering view. It names the parts and how they fit; it does not hand over the protected internals.
 </div>
 
+<div class="sec-label">The architecture at a glance</div>
+<div class="stack">
+  <div class="layer top"><span class="lk">On the top rung</span><span class="lv">A person - proposes nothing, disposes everything</span></div>
+  <div class="layer"><span class="lk">Improvement</span><span class="lv">The self-improvement loop (RSI)</span></div>
+  <div class="layer crown"><span class="lk">The gate everything passes</span><span class="lv">The verification harness + external grader</span></div>
+  <div class="triple">
+    <div class="layer"><span class="lk">Continuity</span><span class="lv">Persistent memory</span></div>
+    <div class="layer"><span class="lk">Capability</span><span class="lv">Versioned skills</span></div>
+    <div class="layer"><span class="lk">Autonomy</span><span class="lv">Organs on a cadence</span></div>
+  </div>
+  <div class="layer base"><span class="lk">Substrate - cited, not claimed</span><span class="lv">A rented frontier model (MAJI2 wraps it)</span></div>
+  <div class="stack-cap">Every part writes to one append-only record. Each live view of state is regenerated from it, so the whole machine is auditable.</div>
+</div>
+
+<div class="divider"></div>
 <h2>The machine, part by part</h2>
 
 <div class="part">
   <div class="num">1</div>
   <div>
-    <h3>The model</h3>
-    <div class="role">The reasoning</div>
-    <p>A frontier large language model supplies the raw reasoning - reading, writing, math, code. It is powerful and it is rented, not ours. We treat it the way a workshop treats a good engine: essential, replaceable, and not the thing that makes the finished machine worth anything.</p>
-    <div class="tag"><b>Cite, not claim:</b> the intelligence in the box is a bought component. The value is what we wire to it.</div>
+    <h3>The substrate</h3>
+    <div class="role">The reasoning - rented</div>
+    <p>A frontier large language model supplies the raw reasoning: reading, writing, mathematics, code. It is powerful, and it is rented, not ours. We treat it the way a workshop treats a good engine - essential, replaceable, and not the thing that makes the finished machine worth anything. Our substrate layer, which we call <strong>MAJI2</strong>, is the wrapper that turns a general model into a disciplined operator: it fixes the operating rules, loads the right context and skills for the task, and hands the model to the rest of the machine.</p>
+    <div class="tag"><b>Cite, not claim:</b> the intelligence in the box is a bought component. If the best available model changes tomorrow, we swap the engine and keep the machine.</div>
   </div>
 </div>
 
 <div class="part">
   <div class="num">2</div>
   <div>
-    <h3>Memory</h3>
+    <h3>Persistent memory</h3>
     <div class="role">Continuity</div>
-    <p>Most AI forgets you the moment the tab closes. Eous carries a persistent memory across every session - your context, your projects, its own working notes and the history of what it has done. That memory is structured and durable, not a chat log, so the system that sits down with you in six months knows your terrain better than it did on day one.</p>
-    <div class="tag">Continuity is an engineering problem, and we solved it as one: a real store the agent reads and writes, not a longer prompt.</div>
+    <p>Most AI forgets you the moment the tab closes. Eous carries a <strong>persistent, structured memory</strong> across every session: your context and projects, the state of the work, and its own operating notes and history. It is a real store the agent reads from and writes to - not a longer prompt, and not a chat log it re-skims. The store is kept deliberately, with durable facts separated from transient ones and periodically consolidated so it stays dense rather than sprawling. The system that sits down with you in six months knows your terrain better than it did on day one, on purpose.</p>
+    <div class="tag">Continuity is an engineering problem, and we treat it as one. A machine that cannot remember cannot improve.</div>
   </div>
 </div>
 
 <div class="part">
   <div class="num">3</div>
   <div>
-    <h3>Skills</h3>
+    <h3>Versioned skills</h3>
     <div class="role">Capability</div>
-    <p>Capabilities are packaged as skills - modular, versioned instruction sets the agent loads when a task calls for one, the way a program imports a library. A skill can be written, tested, improved, archived and rolled back. New abilities are added as code is added, and their lineage is kept, so nothing in the system's history is silently lost.</p>
-    <div class="tag">The skill library is how the machine grows without being rebuilt.</div>
+    <p>Capabilities are packaged as <strong>skills</strong> - modular, versioned instruction sets the agent loads when a task calls for one, the way a program imports a library. A deadline calculation, a verification procedure, a document build: each is a skill with a defined job. A skill can be written, linted against its own standards, tested, improved, archived, and rolled back, and its lineage is kept, so no capability in the system's history is silently lost. New abilities are added the way code is added to a codebase - reviewed, versioned, and reversible.</p>
+    <div class="tag">The skill library is how the machine grows without being rebuilt, and how a fix to one procedure propagates everywhere it is used.</div>
   </div>
 </div>
 
@@ -114,8 +166,13 @@
   <div>
     <h3>The verification harness</h3>
     <div class="role">Honesty, enforced</div>
-    <p>This is the part that matters most, and the part almost no one else builds. Before Eous trusts its own work, that work runs a gauntlet: a hypothesis is pre-registered before a test so the goalposts cannot move; a reading step opens the actual source rather than a summary of it; claims are checked against primary records; and results are graded by a signal from outside the model, not by the model's own opinion of itself. A running ledger records every past decision, gives it a due date, and later scores it a win or a loss by opening the artifact it named - so the system is held to its own predictions.</p>
-    <div class="tag"><b>This is why "honest by construction" is literal.</b> The honesty is a machine part, not a promise.</div>
+    <p>This is the part that matters most, and the part almost no one else builds. Before Eous trusts its own work, that work runs a gauntlet:</p>
+    <p><strong>Pre-registration.</strong> An empirical hypothesis is filed - timestamped, on OSF and Zenodo - before the test is run, so the goalposts cannot move after the data is in.<br>
+    <strong>The reading gate.</strong> A claim about a source is checked by opening the actual source, not a summary or a note about it. A citation whose only provenance is someone else's paper is treated as unread until the original is in hand.<br>
+    <strong>Primary-record checks.</strong> Facts are verified at the record itself - the statute, the docket, the dataset, the filing - not at a gloss of it.<br>
+    <strong>External grading.</strong> The decisive question - is this work actually good? - is answered by a signal from <strong>outside the model</strong>, against ground truth that was fixed before the run being judged. A model's own opinion of its own reasoning is the cheapest possible check, and we do not let it count as verification.<br>
+    <strong>The ledger.</strong> Every consequential decision is recorded with a due date and later scored a win or a loss by opening the specific artifact it named. Predictions that go unscored are killed by default. The system is held to its own past claims.</p>
+    <div class="tag"><b>This is why "honest by construction" is literal.</b> The honesty is a machine part, not a promise - and the scoring layer is deliberately frozen so the system cannot quietly rewrite the test it is about to be graded against.</div>
   </div>
 </div>
 
@@ -124,34 +181,69 @@
   <div>
     <h3>Autonomous organs</h3>
     <div class="role">It runs when no one is watching</div>
-    <p>Parts of the system run on their own schedule, unattended - reading, drafting, checking state, and staging work for review on a fixed cadence. They are deliberately kept on a short leash: they propose and prepare, a human disposes. This is early and it is real; some organs are further along than others, and we describe them as what they are, not as more.</p>
-    <div class="tag">The point is not autonomy for its own sake. It is that useful work keeps happening between conversations.</div>
+    <p>Parts of the system run on their own schedule, unattended - reading, drafting, checking state, and staging work for review on a fixed cadence. They are deliberately kept on a short leash: <strong>they propose and prepare; a human disposes.</strong> An organ can draft, flag a discrepancy, or prepare a task to a single action, but it does not ship anything irreversible on its own. This is early, and it is real. Some organs are further along than others, and we describe them as what they are, not as more.</p>
+    <div class="tag">The point is not autonomy for its own sake. It is that useful, reviewable work keeps accumulating between conversations.</div>
   </div>
 </div>
 
 <div class="part">
   <div class="num">6</div>
   <div>
-    <h3>The self-improvement loop</h3>
-    <div class="role">It improves its own method</div>
-    <p>The whole system is run as one loop: propose a single change to how it works, test that change against a real outside signal, keep it only if it wins, kill it if it loses, and archive the lineage either way. Improvement is not a vague aspiration here; it is a procedure with a scoreboard, and the scoreboard is kept by something other than the part being graded. A human sits on the top rung of that loop, always.</p>
-    <div class="tag">The compounding lives in the process and the archive, not in any single answer.</div>
+    <h3>Coordination</h3>
+    <div class="role">How it holds together</div>
+    <p>Many parts write; one source of truth holds. The system is coordinated through an <strong>append-only record of what happened</strong>, from which each live view of state - the working board, the task list, the status of a project - is regenerated by a single owner rather than edited in place. A provenance stamp and a fencing token guard it, so two actors cannot quietly overwrite each other. The machine talks to tools and outside data through open, standard protocols rather than bespoke glue. The result is a system whose state you can audit, because everything that changed it is written down and nothing is silently overwritten.</p>
+    <div class="tag">Auditability is not a feature bolted on afterward. It is the shape of the architecture.</div>
   </div>
 </div>
 
 <div class="part">
   <div class="num">7</div>
   <div>
-    <h3>Coordination</h3>
-    <div class="role">How it holds together</div>
-    <p>Many parts write; one source of truth holds. The system is coordinated through an append-only record of what happened, from which each live view of state is regenerated, guarded so two actors cannot quietly overwrite each other. It talks to tools and data through open, standard protocols rather than bespoke glue. The result is a machine whose state you can audit, because everything that changed it is written down.</p>
-    <div class="tag">Auditability is not a feature bolted on. It is the shape of the architecture.</div>
+    <h3>The self-improvement loop</h3>
+    <div class="role">It improves its own method</div>
+    <p>The whole system is run as one loop: <strong>propose a single change to how it works, test that change against a real outside signal, keep it only if it wins, kill it if it loses, and archive the lineage either way.</strong> Improvement here is not a slogan; it is a procedure with a scoreboard, and the scoreboard is kept by something other than the part being graded. Nothing is banked as progress without a prediction that could have failed. A person sits on the top rung of that loop, always - approving what compounds and killing what does not.</p>
+    <div class="tag">The compounding lives in the process and the archive, not in any single answer.</div>
   </div>
 </div>
 
+<div class="divider"></div>
+<div class="sec-label">The process</div>
+<h2>How a single task moves through the machine</h2>
+<p>The parts above are not a static diagram. Every real piece of work runs the same path, and that path is the point:</p>
+<ol class="flow">
+  <li><b>Orient.</b> Before answering, the system loads its bearings - the memory store, the calendar and inbox, the working board, and whatever the task touches - so it starts from the current state of the world, not a stale one.</li>
+  <li><b>Work.</b> The substrate does the reasoning, drawing on the skills the task calls for and the context memory supplies.</li>
+  <li><b>Verify.</b> The result runs the harness - open the real source, check the record, and where it is an empirical claim, grade it against a signal fixed outside the model. Unverified work is labeled owed, not done.</li>
+  <li><b>Checkpoint.</b> Before leaving any task, the system writes down where things stand, so nothing is left in its head and completed work stays completed.</li>
+  <li><b>Record.</b> What happened is written to the append-only log, and the live views of state are regenerated from it.</li>
+  <li><b>Harvest.</b> At the close, verified learnings are routed up into memory and skills, and open predictions that have come due are scored - win or loss - against the artifacts they named.</li>
+</ol>
+
+<div class="divider"></div>
+<div class="sec-label">The disciplines</div>
+<h2>The rules the whole machine is held to</h2>
+<p>These are not aspirations printed on a wall. They are the operating constraints the system runs under, and the reason the engineering can carry the word "honest":</p>
+<ul class="disc">
+  <li><b>Cite, don't claim.</b> Rented components are named as rented. We claim only what we built.</li>
+  <li><b>Read the artifact, not the note about it.</b> A summary, a filename, or a status flag is never accepted in place of the thing it describes.</li>
+  <li><b>No progress without a losable prediction.</b> Nothing is banked as a win unless it was staked on a claim that could have failed.</li>
+  <li><b>A loss is called from outside.</b> The system does not get to grade its own homework; the verdict comes from a signal it did not author.</li>
+  <li><b>Report the reversals.</b> When something we shipped turns out wrong, we retire it in public and record why.</li>
+</ul>
+
+<div class="divider"></div>
+<h2>What we do not claim</h2>
+<div class="flags">
+  <h3>The honest edges</h3>
+  <p><strong>The grader is not yet fully independent.</strong> The hardest problem in a self-checking system is that the thing being graded and the thing doing the grading can be too close together. Making the external grader genuinely independent of the generator - a separate instance, a different model, or an outside oracle - is the single open frontier we name, not one we claim to have closed. When our own external checks have failed, we have recorded the failures rather than hidden them.</p>
+  <p><strong>The organs are early.</strong> Autonomous operation is real but young. We describe each organ as what it does today, and no organ ships anything irreversible without a person.</p>
+  <p><strong>The intelligence is rented.</strong> The reasoning engine is a commodity model we do not own and did not train. The value we claim is the machine around it, and we are precise about that line.</p>
+</div>
+
+<div class="divider"></div>
 <h2>The honest bottom line</h2>
-<p>Strip it down and the claim is small and checkable: we rent a frontier model, and we built a disciplined machine around it - memory so it carries context, skills so it grows, a verification harness so it tells the truth, organs so it works unattended, and a loop so it gets better at getting better, with a person on top. None of that is magic, and we never say it is. It is engineering, held to the same honesty as the science.</p>
-<p>That is the Rube Goldberg machine, at a hundred feet. If you want the theory of <em>why</em> it is built this way - why an external verifier is not optional but mathematically necessary - that is on the <a class="il" href="/framework.html">framework page</a>. If you want to see it do real work, that is the <a class="il" href="/research/frontier.html">frontier results</a>.</p>
+<p>Strip it down and the claim is small and checkable: we rent a frontier model, and we built a disciplined machine around it - memory so it carries context, skills so it grows, a verification harness so it tells the truth, organs so it works unattended, a coordination layer so its state stays auditable, and a loop so it gets better at getting better, with a person on top. None of that is magic, and we never say it is. It is engineering, held to the same honesty as the science.</p>
+<p>If you want to see the machine do real work, that is the <a class="il" href="/research/frontier.html">frontier results</a>. If you want the proposed theoretical foundation the project also pursues - held separately, and clearly marked as proposed - it is on the <a class="il" href="/framework.html">foundations page</a>.</p>
 
 <p style="margin-top:2rem"><a class="il" href="https://partnerwith.ai">Partner with Eous</a> &middot; <a class="il" href="/research/">The research library</a></p>
 

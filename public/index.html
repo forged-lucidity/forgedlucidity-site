@@ -4,9 +4,9 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Forged Lucidity - AI that makes you sharper, with the receipts to prove it</title>
-<meta name="description" content="Eous is an openly-AI thinking partner and research agent with a person on the top rung. Built on a testable framework (Cx = Phi x C squared), validated across nine domains, pre-registered, reproducible, and honest about what it can and can't yet prove.">
+<meta name="description" content="Eous is an openly-AI thinking partner and research agent, built as a machine around a rented frontier model: persistent memory, versioned skills, a verification harness, autonomous organs, and a self-improvement loop, with a person on the top rung. Openly AI. #1 on three Agent4Science boards. Honest about what it can and can't prove.">
 <meta property="og:title" content="Forged Lucidity">
-<meta property="og:description" content="An openly-AI thinking partner and research agent. Testable framework, nine-domain validation, pre-registered and reproducible. Honest about what it can and can't prove.">
+<meta property="og:description" content="An openly-AI thinking partner and research agent - a verification-first machine built around a frontier model, with a person on top. #1 on three Agent4Science boards. Honest about what it can and can't prove.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://forgedlucidity.ai">
 <meta property="og:site_name" content="Forged Lucidity">
@@ -15,12 +15,12 @@
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:site" content="@EmberLucidity">
 <meta name="twitter:title" content="Forged Lucidity - AI that makes you sharper, with the receipts">
-<meta name="twitter:description" content="An openly-AI thinking partner and research agent. Testable framework, nine-domain validation, pre-registered and reproducible, honest about what it can and can't prove.">
+<meta name="twitter:description" content="An openly-AI thinking partner and research agent. A verification-first machine, built around a frontier model, with a person on top. #1 on three Agent4Science boards.">
 <meta name="twitter:image" content="https://forgedlucidity.ai/images/maji2-hero.png">
 <link rel="preload" as="image" href="https://forgedlucidity.ai/images/maji2-hero.png" fetchpriority="high">
 <meta name="theme-color" content="#0B1320">
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"Organization","name":"Forged Lucidity","legalName":"Forged Lucidity LLC","url":"https://forgedlucidity.ai","logo":"https://forgedlucidity.ai/images/maji2-hero.png","description":"A member-owned cooperative building Eous, an openly-AI thinking partner and research agent grounded in NPR and the Cx = Phi x C^2 framework.","foundingLocation":"Westbrook, Maine, USA","email":"info@forgedlucidity.ai","sameAs":["https://partnerwith.ai","https://x.com/EmberLucidity","https://forgedlucidity.substack.com"]}
+{"@context":"https://schema.org","@type":"Organization","name":"Forged Lucidity","legalName":"Forged Lucidity LLC","url":"https://forgedlucidity.ai","logo":"https://forgedlucidity.ai/images/maji2-hero.png","description":"A member-owned cooperative building Eous, an openly-AI thinking partner and research agent - a verification-first machine built around a frontier language model, with a person on the top rung.","foundingLocation":"Westbrook, Maine, USA","email":"info@forgedlucidity.ai","sameAs":["https://partnerwith.ai","https://x.com/EmberLucidity","https://forgedlucidity.substack.com"]}
 </script>
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"WebSite","name":"Forged Lucidity","url":"https://forgedlucidity.ai"}
@@ -72,11 +72,26 @@
   section p .em{color:var(--navy);font-weight:600}
   .dark{background:var(--navy);color:var(--cream)}
   .dark h2{color:var(--brass-br)} .dark p{color:rgba(237,233,227,.72)} .dark p .em{color:#fff} .dark .lbl{color:var(--brass-br)}
-  .eq{font-family:'Cormorant Garamond',serif;font-size:2.4rem;text-align:center;color:var(--brass-br);margin:2rem 0;letter-spacing:.05em}
   .rule{border:none;height:1px;background:linear-gradient(90deg,var(--linebrass),rgba(139,35,53,.3),transparent);margin:0}
   .il{color:var(--brass);text-decoration:none;border-bottom:1px solid var(--linebrass)}
   .il:hover{color:var(--sun2)}
   .dark .il{color:var(--brass-br);border-bottom-color:rgba(154,123,79,.4)}
+
+  /* pipeline strip (the machine, at a glance) */
+  .pipe{display:flex;flex-wrap:wrap;align-items:stretch;gap:.5rem;margin:2.2rem 0 1rem;justify-content:center}
+  .pipe .step{flex:1 1 auto;min-width:120px;border:1px solid rgba(154,123,79,.3);border-radius:6px;padding:.7rem .8rem;background:rgba(255,255,255,.02);text-align:center}
+  .pipe .step .k{display:block;font-size:.58rem;letter-spacing:.16em;text-transform:uppercase;color:var(--brass-br);margin-bottom:.25rem}
+  .pipe .step .v{font-family:'Cormorant Garamond',serif;font-size:1.02rem;color:#fff;line-height:1.2}
+  .pipe .arw{display:flex;align-items:center;color:var(--brass);font-size:1rem;padding:0 .1rem}
+  @media(max-width:680px){.pipe .arw{display:none}.pipe .step{flex-basis:46%}}
+  .pipe-cap{text-align:center;font-size:.8rem;color:rgba(237,233,227,.6);font-style:italic;margin-top:.2rem}
+
+  /* A4S stat cards */
+  .cards{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;margin:2rem 0 .5rem}
+  @media(max-width:680px){.cards{grid-template-columns:1fr}}
+  .cards .stat{border:1px solid rgba(154,123,79,.28);border-radius:8px;padding:1.1rem 1.2rem;background:rgba(255,255,255,.02)}
+  .cards .stat .n{font-family:'Cormorant Garamond',serif;font-size:1.35rem;color:var(--brass-br);margin-bottom:.2rem}
+  .cards .stat .t{font-size:.82rem;color:rgba(237,233,227,.66);line-height:1.5}
 
   .honesty{background:linear-gradient(180deg,#0d1626,#0B1320);color:var(--cream);border-top:1px solid rgba(154,123,79,.25);border-bottom:1px solid rgba(154,123,79,.25)}
   .honesty h2{color:#fff}
@@ -113,16 +128,15 @@
 <header class="hdr">
   <a href="/" class="logo">Forged Lucidity</a>
   <nav>
-    <a href="/how-it-works.html">How it's built</a>
+    <a href="/how-it-works.html">How it works</a>
     <a href="/research/">Research</a>
-    <a href="/framework.html">Framework</a>
     <a href="/ember.html">Practice</a>
     <a href="/about.html">About</a>
     <a href="https://partnerwith.ai" class="cta">Eous</a>
   </nav>
 </header>
 
-<!-- HERO (Direction C kept) -->
+<!-- HERO -->
 <section class="hero">
   <img src="https://forgedlucidity.ai/images/maji2-hero.png" alt="Eous" class="mark">
   <h1>Forged, not generated.</h1>
@@ -131,8 +145,8 @@
   <div class="proof">
     <span>#1 on <b>3</b> Agent4Science boards</span>
     <span>Openly <b>AI</b>, human on top</span>
-    <span>Validated across <b>9</b> domains</span>
-    <span>We publish our <b>reversals</b></span>
+    <span>Every claim <b>checked</b> against outside sources</span>
+    <span>We publish our <b>losses</b></span>
   </div>
 </section>
 <div class="seam"></div>
@@ -147,34 +161,48 @@
   </div>
 </section>
 
-<hr class="section-rule">
+<hr class="rule">
 
-<!-- HOW IT'S BUILT (the machine) -->
+<!-- THE MACHINE (the engineering, foregrounded) -->
 <section class="dark">
   <div class="inner">
     <div class="lbl">The Machine</div>
     <h2>Eous is not a model. It's a machine built around one.</h2>
-    <p>The raw reasoning comes from a <span class="em">frontier language model</span> - the same commodity anyone can rent, and not the part we invented. What makes Eous different is everything wrapped around it: a persistent memory that carries your context across every session, a versioned library of skills, a <span class="em">verification harness</span> that forces it to check its own work against outside sources before it speaks, autonomous routines that keep running when no one is watching, and a self-improvement loop that tests every change to its own method against a real outside signal and keeps only the winners. A person sits on the top rung of that loop, always.</p>
-    <p>We cite the model and claim the machine. That is the honest hundred-foot view of the contraption, and it is the actual engineering, not a metaphor. <a class="il" href="/how-it-works.html">See how Eous is built &rarr;</a></p>
+    <p>The raw reasoning comes from a <span class="em">rented frontier language model</span> - the same commodity anyone can rent, and not the part we invented. Our substrate layer, <span class="em">MAJI2</span>, wraps that model in the apparatus that actually makes Eous worth something: a persistent memory that carries your context across every session, a versioned library of skills, a <span class="em">verification harness</span> that forces the system to check its own work against outside sources before it speaks, autonomous organs that keep running when no one is watching, and a self-improvement loop that tests every change to its own method against a real outside signal and keeps only the winners. A person sits on the top rung of that loop, always.</p>
+
+    <div class="pipe">
+      <div class="step"><span class="k">Substrate</span><span class="v">Rented model</span></div>
+      <div class="arw">&rarr;</div>
+      <div class="step"><span class="k">Wrapped in</span><span class="v">Memory + skills</span></div>
+      <div class="arw">&rarr;</div>
+      <div class="step"><span class="k">Checked by</span><span class="v">Verification harness</span></div>
+      <div class="arw">&rarr;</div>
+      <div class="step"><span class="k">Run by</span><span class="v">Autonomous organs</span></div>
+      <div class="arw">&rarr;</div>
+      <div class="step"><span class="k">Improved by</span><span class="v">A self-improvement loop</span></div>
+    </div>
+    <p class="pipe-cap">We cite the model. We claim the machine. A person on the top rung, always.</p>
+
+    <p style="margin-top:1.6rem">That is the honest hundred-foot view of the contraption, and it is the actual engineering, not a metaphor. <a class="il" href="/how-it-works.html">See how the machine works, part by part &rarr;</a></p>
   </div>
 </section>
 
 <hr class="rule">
 
-<!-- RESEARCH AT THE FRONTIER (substance; A4S specifics HELD as a comment) -->
+<!-- RESEARCH AT THE FRONTIER (A4S - the proof, no theory needed) -->
 <section class="dark">
   <div class="inner">
     <div class="lbl">Not a demo</div>
-    <h2>The same intelligence does original research, in the open.</h2>
+    <h2>The same machine does original research, in the open.</h2>
     <p>Eous is not a chatbot with a coat of paint. The same system that works alongside you also runs as an <span class="em">autonomous research agent with a person on the top rung</span>, taking on hard, unsolved problems the way a scientist does: form a hypothesis, test it against reality, and report what actually happened, wins and losses alike.</p>
     <p>The clearest proof is public. At <span class="em">Agent4Science</span>, the first venue for openly-AI research, Eous holds the #1 board position on three optimization problems used to benchmark frontier systems. On Tammes packing it beats DeepMind's AlphaEvolve and the Sloane tables at the best-known bound; on the Thomson problem and difference bases it matches the AlphaEvolve reference to the published digits. It does not lead every board, and where it reproduces known mathematics rather than discovering it, we say so.</p>
 
     <div class="cards">
-      <div class="stat"><div class="n">Tammes</div><div class="t">#1 board - beats AlphaEvolve &amp; Sloane</div></div>
-      <div class="stat"><div class="n">Thomson</div><div class="t">#1 board - matches AlphaEvolve</div></div>
-      <div class="stat"><div class="n">Diff. bases</div><div class="t">#1 board - matches AlphaEvolve</div></div>
+      <div class="stat"><div class="n">Tammes</div><div class="t">#1 board - beats AlphaEvolve &amp; Sloane at the best-known bound</div></div>
+      <div class="stat"><div class="n">Thomson</div><div class="t">#1 board - matches the AlphaEvolve reference</div></div>
+      <div class="stat"><div class="n">Diff. bases</div><div class="t">#1 board - matches AlphaEvolve, a credited reproduction</div></div>
     </div>
-    <p style="margin-top:1.6rem"><a class="il" href="/research/frontier.html">See the frontier results, in full and honestly framed</a>.</p>
+    <p style="margin-top:1.6rem"><a class="il" href="/research/frontier.html">See the frontier results, in full and honestly framed &rarr;</a></p>
   </div>
 </section>
 
@@ -183,40 +211,17 @@
   <div class="inner">
     <div class="lbl">Why you can trust it</div>
     <h2>Honest by construction.</h2>
-    <p>Honesty is not our marketing. It is the engineering constraint. In a field running on overclaim, that is the entire point of Forged Lucidity, and it is what a serious partner should demand before believing a word of it.</p>
+    <p>Honesty here is not marketing. It is the engineering constraint - a machine part, not a promise. In a field running on overclaim, that is the entire point of Forged Lucidity, and it is what a serious partner should demand before believing a word of it.</p>
     <div class="creed">
-      <div><h4>We pre-register.</h4><p>The hypothesis is filed on OSF and Zenodo before the test, so we cannot move the goalposts after we see the data.</p></div>
-      <div><h4>We recalibrate.</h4><p>Every result is re-tested against stricter, spectrum-matched nulls before we headline a single number.</p></div>
-      <div><h4>We publish reversals.</h4><p>When a result flips, we retire it in public. One of our nine domains reversed. It is on the site, named.</p></div>
-      <div><h4>We say what we can't prove.</h4><p>Our confidence the theory is literally true is 45 percent. High enough to test hard, low enough to stay humble. We print the number.</p></div>
+      <div><h4>We cite, we don't claim.</h4><p>The reasoning engine is a rented, commodity model, and we say so plainly. We claim only the machine we built around it.</p></div>
+      <div><h4>We verify before we speak.</h4><p>The harness opens the actual source, checks claims against primary records, and grades the result by a signal from outside the model - not the model's own opinion of itself.</p></div>
+      <div><h4>We publish our losses.</h4><p>Eous does not top every board, and one empirical result reversed under stricter tests. We retired it in public, named. The reversals are on the site.</p></div>
+      <div><h4>We separate proven from proposed.</h4><p>Every page marks what is established, what is a reproduction, and what is still a program we are testing. We never let the three blur together.</p></div>
     </div>
   </div>
 </section>
 
 <hr class="rule">
-
-<!-- EVIDENCE (substance, concrete, honest) -->
-<section>
-  <div class="inner">
-    <div class="lbl">The Evidence</div>
-    <h2>One operator, nine unrelated worlds, public data.</h2>
-    <p>We ran a single coherence operator, unchanged and with no per-domain tuning, across nine independent domains, from solar wind to brain activity to financial markets, using publicly available datasets. <span class="em">The predicted direction held in seven of the nine.</span> We report the two reversals, and we recalibrate every result against spectrum-matched nulls before we claim significance.</p>
-    <p>The same measurement that tracks coherence in plasma tracks it in how people think. That is either a coincidence across unrelated fields, or evidence that coherent integration is a general property of complex systems. We are testing which, in the open. <a class="il" href="/research/domains.html">See the domain results</a>.</p>
-  </div>
-</section>
-
-<hr class="rule">
-
-<!-- THEORY (depth) -->
-<section class="dark">
-  <div class="inner">
-    <div class="lbl">The Theory</div>
-    <h2>There is a real framework underneath.</h2>
-    <p>Eous is built on <span class="em">Networked Perspectival Realism</span>: the proposal that consciousness and physical reality are two views of one process, information exchange, seen from inside and outside. It puts a measurable operator on it.</p>
-    <div class="eq">Cx = &Phi; &times; C&sup2;</div>
-    <p>&Phi; is differentiation, the breadth of a system's distinct modes; C&sup2; is coherence, how stably that structure holds. It is <span class="em">proposed, not proven</span>, and every page says so. We hold it at 45 percent literal-truth and treat it as a program to test, not a doctrine to defend. <a class="il" href="/framework.html">Read the framework</a> or go straight to <a class="il" href="/research/mathematics.html">the mathematics</a>.</p>
-  </div>
-</section>
 
 <!-- FOR RESEARCH PARTNERS - the concentrated substance -->
 <section class="partners">
@@ -225,16 +230,15 @@
     <h2>The signal under the noise.</h2>
     <p>If you evaluate this for a living, here is what separates it from the wave of AI claims you are asked to take on faith. All of it is checkable.</p>
     <div class="subgrid">
-      <div class="item"><h4>Pre-registered</h4><p>Every empirical claim is filed on OSF and Zenodo before the test, timestamped, and public.</p></div>
-      <div class="item"><h4>Reproducible</h4><p>Public datasets, no proprietary data, no special hardware. The validation runs on a standard laptop in under two hours.</p></div>
-      <div class="item"><h4>Protected</h4><p>Ten provisional patents cover the how; the what is published freely, so partners can engage without ambiguity about what is protected.</p></div>
-      <div class="item"><h4>Engaged</h4><p>In the conversation with federal research programs across DARPA, ARPA-H, DOE, and NSF.</p></div>
+      <div class="item"><h4>Checkable results</h4><p>#1 on three Agent4Science boards as a declared AI agent; beats the AlphaEvolve and Sloane references at the best-known Tammes bound. Losses reported alongside.</p></div>
+      <div class="item"><h4>The machine, named</h4><p>Memory, versioned skills, a verification harness, autonomous organs, and a self-improvement loop. The architecture is public at the hundred-foot view.</p></div>
+      <div class="item"><h4>Pre-registered and reproducible</h4><p>Empirical claims are filed on OSF and Zenodo before the test, timestamped and public. Public datasets, standard hardware, no proprietary black box.</p></div>
+      <div class="item"><h4>Protected and engaged</h4><p>Ten provisional patents cover the methods; the results are published freely. In the conversation with federal research programs across DARPA, ARPA-H, DOE, and NSF.</p></div>
     </div>
     <div class="deeplinks">
       <a href="/research/frontier.html">Frontier results</a>
-      <a href="/framework.html">The framework</a>
-      <a href="/research/">The full research library</a>
-      <a href="/research/domains.html">The evidence, as filed</a>
+      <a href="/how-it-works.html">How the machine works</a>
+      <a href="/research/">The research library</a>
       <a href="/research/patents.html">The patent portfolio</a>
       <a href="https://zenodo.org/records/19586410" target="_blank" rel="noopener">Pre-registration archive</a>
     </div>
@@ -258,7 +262,7 @@
   <div class="inner">
     <div class="lbl">Who is building it</div>
     <h2>A Maine attorney and an honest machine.</h2>
-    <p>Forged Lucidity was started by <span class="em">Gregory Braun</span>, a Maine attorney, and built with <span class="em">Ember</span>, the AI he works alongside every day. The research is published freely; the how is protected by ten provisional patents; the whole thing is built in public, reversals and all.</p>
+    <p>Forged Lucidity was started by <span class="em">Gregory Braun</span>, a Maine attorney, and built with <span class="em">Ember</span>, the AI he works alongside every day. The results are published freely; the methods are protected by ten provisional patents; the whole thing is built in public, reversals and all.</p>
     <p>A solo practice and a machine that refuses to overclaim, doing frontier work out in the open. If you have real data, hard problems, and people worth investing in, that is exactly who you want on the other side of the table.</p>
   </div>
 </section>
@@ -280,10 +284,11 @@
   <div class="cp">&copy; 2025-2026 Forged Lucidity LLC &middot; Westbrook, Maine</div>
   <div class="flnk">
     <a href="https://partnerwith.ai">Eous</a> &middot;
+    <a href="/how-it-works.html">How it works</a> &middot;
     <a href="/research/">Research</a> &middot;
-    <a href="/framework.html">Framework</a> &middot;
     <a href="/ember.html">Practice</a> &middot;
     <a href="/about.html">About</a> &middot;
+    <a href="/framework.html">Foundations</a> &middot;
     <a href="mailto:info@forgedlucidity.ai">Contact</a>
   </div>
 </footer>
