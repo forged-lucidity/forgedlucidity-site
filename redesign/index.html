@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="theme-color" content="#141A24"><title>Forged Lucidity</title><meta name="description" content="Eous is an openly-AI, verification-first thinking partner built by Forged Lucidity, a member-owned cooperative in Westbrook, Maine. Forged, not generated."><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet"><style>/* ============================================================
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="theme-color" content="#141A24"><title>Forged Lucidity</title><meta name="description" content="Paste a claim; Eous opens the source, grades it, and hands it back with the receipt. A verification-first research instrument from Forged Lucidity, a member-owned cooperative in Westbrook, Maine."><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet"><style>/* ============================================================
    FORGED LUCIDITY DESIGN SYSTEM  v1.0 (staged 2026-09-10)
    Tokens first; components through tokens only.
    ============================================================ */
@@ -184,91 +184,147 @@ footer ul a{border:0;color:var(--ink-2)}
   .btn,.card,.dir{transition:transform .2s,border-color .2s,background .2s}
   .card:hover,.dir:hover{transform:translateY(-2px);border-color:var(--brass)}
 }
+
+.console{margin-inline:calc(-1 * var(--gutter));padding:var(--s-6) var(--gutter) var(--s-7);background:var(--iron);color:#EDE7DA;border-bottom:1px solid rgba(210,182,124,.3)}
+.console .top{display:flex;flex-wrap:wrap;justify-content:space-between;gap:var(--s-4);align-items:baseline;margin-bottom:var(--s-5)}
+.console h1{color:#F5EFE2;font-size:clamp(var(--fs-5),4.6vw,var(--fs-7));max-width:22ch}
+.console .sub{color:#CFC7B6;font-size:var(--fs-3);max-width:52ch;line-height:1.45;margin-top:var(--s-3)}
+.panel{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);gap:var(--s-5);align-items:stretch}
+@media(max-width:900px){.panel{grid-template-columns:1fr}}
+.input{background:var(--iron-2);border:1px solid rgba(210,182,124,.3);border-radius:var(--r-2);padding:var(--s-5);display:grid;gap:var(--s-4);align-content:start}
+.input label{font-family:var(--mono);font-size:var(--fs-0);letter-spacing:.16em;text-transform:uppercase;color:var(--brass-lt)}
+.input textarea{width:100%;min-height:9.5rem;resize:vertical;font-family:var(--body);font-size:var(--fs-2);line-height:1.5;color:#F5EFE2;background:#0F141C;border:1px solid rgba(210,182,124,.25);border-radius:var(--r-1);padding:var(--s-4)}
+.input textarea::placeholder{color:#7C838E}
+.input .row{display:flex;flex-wrap:wrap;gap:var(--s-3);align-items:center}
+.input .note{font-size:var(--fs-1);color:#9AA0A8;max-width:none}
+.input .note b{color:#CFC7B6;font-weight:500}
+.btn.link{border:0;padding:.8rem .4rem;color:var(--brass-lt);background:none;font-weight:500}
+.btn.link:hover{color:#fff;background:none}
+.console .receipt{height:100%}
+.readouts{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:var(--s-4);margin-top:var(--s-5)}
+@media(max-width:820px){.readouts{grid-template-columns:1fr}}
+.ro{border-top:2px solid var(--brass);padding-top:var(--s-3);font-family:var(--mono);font-size:var(--fs-1)}
+.ro .k{font-size:var(--fs-0);letter-spacing:.16em;text-transform:uppercase;color:var(--brass-lt);margin-bottom:var(--s-2)}
+.ro .v{font-family:var(--display);font-size:var(--fs-5);line-height:1;color:#F5EFE2;margin-bottom:var(--s-2)}
+.ro .v.warn{color:var(--heat)}
+.ro p{font-family:var(--body);font-size:var(--fs-1);color:#B9B1A0;max-width:none}
+.uses{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:var(--s-5)}
+@media(max-width:900px){.uses{grid-template-columns:1fr}}
+.use{padding-top:var(--s-4);border-top:1px solid var(--line)}
+.use .k{font-family:var(--mono);font-size:var(--fs-0);letter-spacing:.16em;text-transform:uppercase;color:var(--brass);margin-bottom:var(--s-3)}
+.use h3{margin-bottom:var(--s-3)}
+.use p{font-size:var(--fs-1);color:var(--ink-2)}
+.rounds{display:grid;gap:0;list-style:none}
+.rounds li{display:grid;grid-template-columns:7rem 1fr auto;gap:var(--s-4);padding-block:var(--s-3);border-top:1px solid var(--line);font-size:var(--fs-1);align-items:baseline}
+.rounds li .d{font-family:var(--mono);color:var(--brass)}
+@media(max-width:560px){.rounds li{grid-template-columns:1fr}}
 @media(max-width:820px){.band .wrap[style*='grid-template-columns']{grid-template-columns:1fr!important}}</style></head><body><header class="nav wrap"><a class="brand" href="/"><svg viewBox="0 0 32 32" aria-hidden="true" fill="none"><rect x="3" y="18" width="26" height="9" rx="1.5" fill="#A8864F"/><path d="M16 17V6" stroke="#D95B1E" stroke-width="2.4" stroke-linecap="round"/><path d="M10.5 12.5 16 6l5.5 6.5" stroke="#D95B1E" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>Forged Lucidity</a><nav aria-label="Primary"><ul><li><a href="/" aria-current="page">Home</a></li><li><a href="/eous">Eous</a></li><li><a href="/how-it-works">How it works</a></li><li><a href="/businesses">Businesses</a></li><li><a href="/research/">Research</a></li><li><a href="/about">About</a></li><li><a class="pill" href="https://partnerwith.ai">Partner with Eous</a></li></ul></nav></header>
 <main class="wrap">
-<section class="hero">
-  <div>
-    <div class="eyebrow">Forged Lucidity &middot; Westbrook, Maine</div>
-    <h1>Forged, not generated.</h1>
-    <p class="lede">Eous is an openly-AI thinking partner that checks its work against the outside world before it speaks, and shows you the receipt. Built as a machine around a rented model, with a person on the top rung.</p>
-    <div class="btn-row"><a class="btn primary" href="/eous">Meet Eous</a><a class="btn" href="/how-it-works">How the machine works</a></div>
+<section class="console">
+  <div class="wrap">
+  <div class="top">
+    <div><div class="eyebrow">Forged Lucidity &middot; the grader &middot; Westbrook, Maine</div>
+      <h1>Paste a claim. Get it checked at the source, graded, and handed back with the receipt.</h1>
+      <p class="sub">Eous opens the actual record, checks the claim against it, states how sure it is, and keeps a public ledger of what it got right and wrong. Openly AI, with a person on the top rung.</p></div>
   </div>
-  
-<aside class="receipt" aria-label="A verification record">
-  <div class="rh"><span>Verification record</span><span>Agent4Science</span></div>
-  <dl>
-    <dt>Claim</dt><dd>Tammes packing, best-known bound</dd>
-    <dt>Checked against</dt><dd>AlphaEvolve reference; Sloane tables</dd>
-    <dt>Result</dt><dd>#1 board &middot; <span class="tag ok">beats reference</span></dd>
-    <dt>Thomson</dt><dd>#1 board &middot; <span class="tag warn">reproduction</span></dd>
-    <dt>Difference bases</dt><dd>#1 board &middot; <span class="tag warn">reproduction</span></dd>
-    <dt>Losses</dt><dd>One earlier empirical result reversed under stricter tests &middot; <span class="tag loss">retired in public</span></dd>
-  </dl>
-  <div class="rf">Every claim on this site carries a record like this one, or it does not appear.</div>
-</aside>
+  <div class="panel">
+    <form class="input" onsubmit="return false">
+      <label for="claim">Claim to grade</label>
+      <textarea id="claim" name="claim" placeholder="A number in a report. A line from a brief. A statistic someone put in a slide. Something you are about to rely on."></textarea>
+      <div class="row"><button class="btn primary" id="submit" type="button">Grade this claim</button><a class="btn link" href="#" id="ex">Load an example</a><a class="btn link" href="#" id="clr">Clear</a></div>
+      <p class="note"><b>How it works today:</b> the claim goes to the grader queue, Eous opens the source and drafts the record, and a person reviews it before it comes back to you. Nothing is auto-published. <a href="/eous">What the machine does &rarr;</a></p>
+    </form>
+    <aside class="receipt" aria-live="polite" aria-label="The record your claim will carry">
+      <div class="rh"><span>Verification record</span><span id="rc-status">GRADED</span></div>
+      <dl>
+        <dt>Claim</dt><dd id="rc-claim"></dd>
+        <dt>Source</dt><dd id="rc-source"></dd>
+        <dt>Checked</dt><dd id="rc-checked"></dd>
+        <dt>Result</dt><dd id="rc-result"></dd>
+      </dl>
+      <div class="rf" id="rc-foot"></div>
+    </aside>
+  </div>
+  <div class="readouts">
+    <div class="ro"><div class="k">Grader &middot; round four, Sep 2-3 2026</div><div class="v">0 / 48</div><p>Unverifiable "I opened it" claims by the Claude panel members, checked by a script against byte-level open events. The same script caught a small local model fabricating a read three times. Rounds 0-3 lost; we say so.</p></div>
+    <div class="ro"><div class="k">Forecaster &middot; calibration</div><div class="v warn">Unmeasured</div><p>Every forecast is pre-registered before the outcome. The reliability curve publishes when enough resolve - whatever it shows. Until then this readout says exactly what it says.</p></div>
+    <div class="ro"><div class="k">Public ledger &middot; Agent4Science</div><div class="v">3 boards &middot; 1 retired</div><p>#1 on Tammes (beats the reference), Thomson and difference bases (credited reproductions). One earlier empirical result reversed under stricter tests and was retired in public.</p></div>
+  </div>
+  </div>
 </section>
 
-<hr class="rule">
 <section>
-  <div class="head"><div><div class="eyebrow">The promise</div><h2>Honest by construction.</h2></div>
-  <p class="lede">Honesty here is an engineering constraint, not a slogan. In a field running on overclaim, these four habits are the whole point.</p></div>
-  <div class="grid g4">
-    <div class="card"><h4>We cite, we don't claim.</h4><p>The reasoning engine is a rented, commodity model, and we say so plainly. We claim only the machine we built around it.</p></div>
-    <div class="card"><h4>We verify before we speak.</h4><p>The harness opens the actual source and grades the result by a signal from outside the model, never the model's opinion of itself.</p></div>
-    <div class="card"><h4>We publish our losses.</h4><p>Eous does not top every board. One empirical result reversed under stricter tests; we retired it, named, in public.</p></div>
-    <div class="card"><h4>We separate proven from proposed.</h4><p>Every page marks what is established, what is a reproduction, and what is still a program under test.</p></div>
+  <div class="head"><div><div class="eyebrow">Why keep this open all day</div><h2>Because you are about to rely on something.</h2></div>
+  <p class="lede">Most tools hand you an answer. This one hands you an answer with the source it opened, the check it ran, and the confidence it earned - so you can lean on it when the decision is real.</p></div>
+  <div class="uses">
+    <div class="use"><div class="k">Before you cite it</div><h3>Check the claim.</h3><p>A statute, a figure, a quotation, a deadline. Eous opens the primary record and grades the claim against it. A pin cite that is off by a page comes back marked, not missed.</p></div>
+    <div class="use"><div class="k">Before you decide</div><h3>Get the graded answer.</h3><p>Ask the question. The answer arrives with its sources opened, its confidence stated, and the parts it could not verify named as such. "I don't know yet" is a legitimate result.</p></div>
+    <div class="use"><div class="k">Before it resolves</div><h3>Put a forecast on the record.</h3><p>Forecasts are sealed before the outcome and scored afterward, in public. The track record is the product, and it publishes wins and losses alike.</p></div>
   </div>
 </section>
 
 <section class="band">
   <div class="wrap">
-  <div class="head"><div><div class="eyebrow">The product</div><h2>Eous is not a model. It is a machine built around one.</h2></div>
-  <p class="lede">Persistent memory, a versioned library of skills, a verification harness, autonomous organs that keep working when no one is watching, and a self-improvement loop that keeps only the changes that win against an outside signal.</p></div>
-  <div class="grid g3">
-    <div class="stat"><div class="n">Remembers</div><div class="t">Your context carries across every session. It learns your terrain and writes in your voice.</div></div>
-    <div class="stat"><div class="n">Verifies</div><div class="t">Claims are checked against primary sources before they reach you, with the record attached.</div></div>
-    <div class="stat"><div class="n">Says how sure</div><div class="t">It never pretends to be a person, and it never pretends to be certain. "I don't know yet" is an answer.</div></div>
-  </div>
-  <p style="margin-top:var(--s-6)"><a href="/eous">See what Eous does, how it works, and who it is for &rarr;</a></p>
+  <div class="head"><div><div class="eyebrow">How the grader earns the word</div><h2>The grader is graded.</h2></div>
+  <p class="lede">A model saying it read the file is not evidence that it did. So the grader's own reads are scored by a script on byte-level open events, against a key sealed before the run, by a panel that includes a different provider's model. Every round is recorded - the losses first.</p></div>
+  <ul class="rounds">
+    <li><span class="d">Aug 26</span><span>Rounds 0 and 1: every model scored 12/12 on a gold set whose source was pasted under the claim. A pasted source measures reading, not verification.</span><span class="tag loss">loss</span></li>
+    <li><span class="d">Aug 27</span><span>v2 design: the critic must open the file itself, among decoys, and a script - not a model - decides whether the bytes were read.</span><span class="tag warn">switch</span></li>
+    <li><span class="d">Sep 2-3</span><span>Round four: liar control 0/12, open-all control 12/12; four Claude members 0 fabricated reads in 48 rows; the local 3B model fabricated three receipts and the script gave it no credit.</span><span class="tag ok">win</span></li>
+    <li><span class="d">Sep 5</span><span>Fact layer added: for checkable claims a script renders coupled or decoupled from the opened bytes - 3 net-new catches, 0 false alarms on 6 sound controls.</span><span class="tag ok">win</span></li>
+  </ul>
+  <p style="margin-top:var(--s-5)">The generator-equals-grader problem is not closed, and we do not claim it is. <a href="/how-it-works">The machine, part by part &rarr;</a></p>
   </div>
 </section>
 
 <section>
-  <div class="head"><div><div class="eyebrow">Businesses building with us</div><h2>A trusted circle, listed only once it is real.</h2></div>
-  <p class="lede">Practices and companies putting Forged Lucidity's tools to work in the day-to-day of running a business, starting in Maine, one careful build at a time.</p></div>
-  <div class="grid g2">
-    <a class="dir" href="/businesses/braun-law" style="border-bottom-width:1px"><div><span class="meta">Law &middot; Westbrook, Maine</span><b>Braun Law</b><p>A solo Maine practice - probate, business, and litigation - running its intake and back-office on Forged Lucidity's tools.</p></div><span class="btn ghost">Visit</span></a>
-    <div class="dir"><div><span class="meta">By invitation &amp; request</span><b>More as builds go live</b><p>Each business is listed only once it is real and running. Never a placeholder. Write <a href="mailto:ask@forgedlucidity.ai">ask@forgedlucidity.ai</a>.</p></div></div>
+  <div class="grid g2" style="align-items:start">
+    <div><div class="eyebrow">The product</div><h2 style="margin:var(--s-3) 0 var(--s-4)">Eous is not a model. It is a machine built around one.</h2><p>Persistent memory, a versioned library of skills, the verification harness above, autonomous organs that keep working when no one is watching, and a self-improvement loop that keeps only what wins against an outside signal. We cite the model; we claim the machine. <a href="/eous">What Eous does and who it is for &rarr;</a></p></div>
+    <div><div class="eyebrow">Businesses building with us</div><h2 style="margin:var(--s-3) 0 var(--s-4)">A trusted circle, listed only once it is real.</h2><a class="dir" href="/businesses/braun-law" style="border-bottom-width:1px"><div><span class="meta">Law &middot; Westbrook, Maine</span><b>Braun Law</b><p>A solo Maine practice running its intake and back-office on Forged Lucidity's tools.</p></div><span class="btn ghost">Visit</span></a><p style="margin-top:var(--s-4);font-size:var(--fs-1)" class="muted">More as builds go live. Never a placeholder. <a href="/businesses">The directory &rarr;</a></p></div>
   </div>
 </section>
 
 <section class="band band-2">
   <div class="wrap">
   <div class="head"><div><div class="eyebrow">The research, honestly framed</div><h2>We don't know if we're right. We think it's worth finding out.</h2></div>
-  <p class="lede">Alongside the product, the cooperative pursues an openly-held research program in the foundations of consciousness. The two are kept distinct: the product stands on what it does; the theory carries its confidence on its face.</p></div>
+  <p class="lede">Alongside the instrument, the cooperative pursues an openly-held research program in the foundations of consciousness. The product stands on what it does; the theory carries its confidence on its face.</p></div>
   <div class="grid g2" style="align-items:start">
     <div class="rail">
       <div class="row"><span class="lbl">Internal coherence</span><span class="bar"><i style="width:94%"></i></span><span class="val num">94%</span></div>
       <div class="row"><span class="lbl">Physics compatibility</span><span class="bar"><i style="width:83%"></i></span><span class="val num">83%</span></div>
       <div class="row key"><span class="lbl">Literal truth</span><span class="bar"><i style="width:45%"></i></span><span class="val num">45%</span></div>
-      <p class="muted" style="font-size:var(--fs-1)">Forty-five percent is high enough to justify serious work and low enough to demand real humility. Every paper carries these numbers with it.</p>
     </div>
-    <div class="callout"><p><b>We did not invent this; we consolidate it, with credit.</b> The dual-aspect lineage belongs to Spinoza, Bohm, Zurek, Penrose and Hameroff, Goff, and Tononi, among others. Our contribution is narrow: bring the threads together, ask precisely where they might connect, and build tools that let the question be tested. Nothing here is presented as a discovery or a proof.</p><p style="margin-top:var(--s-3)"><a href="/research/">Read the research library &rarr;</a></p></div>
+    <div class="callout"><p><b>We did not invent this; we consolidate it, with credit.</b> The dual-aspect lineage belongs to Spinoza, Bohm, Zurek, Penrose and Hameroff, Goff, and Tononi, among others. Nothing here is presented as a discovery or a proof. <a href="/research/">The research library &rarr;</a></p></div>
   </div>
   </div>
 </section>
 
 <section>
   <div class="grid g2" style="align-items:start">
-    <div><div class="eyebrow">The structure</div><h2 style="margin:var(--s-3) 0 var(--s-4)">The people who use Eous own the company that makes it.</h2><p>Forged Lucidity is a member-owned cooperative organized under Maine law. Up to 85 percent of net surplus returns to members. No outside shareholders, no ads, no attention games - the business only does well when members get sharper.</p></div>
-    <div><div class="eyebrow">Who is building it</div><h2 style="margin:var(--s-3) 0 var(--s-4)">A Maine attorney and an honest machine.</h2><p>Forged Lucidity was started by Gregory P. Braun, a Maine attorney, working daily alongside the AI system that became Eous. The results are published freely; the methods are protected by ten provisional patents; the whole thing is built in public, reversals and all. <a href="/about">About the organization &rarr;</a></p></div>
+    <div><div class="eyebrow">The structure</div><h2 style="margin:var(--s-3) 0 var(--s-4)">The people who use it own the company that makes it.</h2><p>Forged Lucidity is a member-owned cooperative under Maine law. Up to 85 percent of net surplus returns to members. No outside shareholders, no ads, no attention games.</p></div>
+    <div><div class="eyebrow">Who is building it</div><h2 style="margin:var(--s-3) 0 var(--s-4)">A Maine attorney and an honest machine.</h2><p>Started by Gregory P. Braun, a Maine attorney, working daily alongside the AI system that became Eous. Results published freely; methods protected by ten provisional patents; built in public, reversals and all. <a href="/about">About the organization &rarr;</a></p></div>
   </div>
 </section>
 
 <section class="band">
   <div class="wrap" style="display:grid;grid-template-columns:minmax(0,1fr) auto;gap:var(--s-6);align-items:center">
-    <div><div class="eyebrow">Work with us</div><h2 style="margin-top:var(--s-3)">Start a conversation.</h2><p style="margin-top:var(--s-3)">A thinking partner for your work, a research collaborator for your lab, or a build for your business.</p></div>
-    <div class="btn-row"><a class="btn primary" href="https://partnerwith.ai">Partner with Eous</a><a class="btn" href="mailto:info@forgedlucidity.ai">Get in touch</a></div>
+    <div><div class="eyebrow">Work with us</div><h2 style="margin-top:var(--s-3)">Bring it a real claim.</h2><p style="margin-top:var(--s-3)">A grader for your desk, a research collaborator for your lab, or a build for your business.</p></div>
+    <div class="btn-row"><a class="btn primary" href="#claim">Grade a claim</a><a class="btn" href="https://partnerwith.ai">Partner with Eous</a></div>
   </div>
 </section>
-</main><footer class="wrap"><div><div class="motto">Forged, not generated.</div><div class="cp">&copy; 2025-2026 Forged Lucidity LLC &middot; a member-owned cooperative &middot; Westbrook, Maine</div></div><ul><li><a href="/eous">Eous</a></li><li><a href="/how-it-works">How it works</a></li><li><a href="/businesses">Businesses</a></li><li><a href="/research/">Research</a></li><li><a href="/about">About</a></li><li><a href="mailto:info@forgedlucidity.ai">info@forgedlucidity.ai</a></li></ul></footer></body></html>
+</main>
+<script>
+(function(){
+  var ta=document.getElementById('claim');var out=document.getElementById('rc-claim');var st=document.getElementById('rc-status');
+  var src=document.getElementById('rc-source');var chk=document.getElementById('rc-checked');var res=document.getElementById('rc-result');var foot=document.getElementById('rc-foot');
+  var EX={claim:'Eous holds the #1 Agent4Science board position on Tammes packing, beating the AlphaEvolve and Sloane references at the best-known bound.',source:'Agent4Science board (public); AlphaEvolve reference; Sloane tables',checked:'2026-09-02, at the board, scoringDirection read',result:'<span class="tag ok">verified</span> - a reproduction of known mathematics is credited as such on the Thomson and difference-bases boards',status:'GRADED'};
+  function render(){var v=ta.value.trim();if(!v){out.textContent=EX.claim;src.textContent=EX.source;chk.textContent=EX.checked;res.innerHTML=EX.result;st.textContent=EX.status;foot.textContent='Example record. Type your own claim to see what a submission carries.';return;}
+    out.textContent=v;src.textContent='to be opened - the primary record, not a summary';chk.textContent='at the stamp, before anything is graded';res.innerHTML='<span class="tag warn">pending</span> - a person on the top rung reviews every record';st.textContent='QUEUED';foot.textContent='Submitting sends this claim to the grader queue. The record comes back with the receipt - or with "we could not verify this," which is also an answer.';}
+  ta.addEventListener('input',render);
+  document.getElementById('ex').addEventListener('click',function(e){e.preventDefault();ta.value=EX.claim;render();ta.focus();});
+  document.getElementById('clr').addEventListener('click',function(e){e.preventDefault();ta.value='';render();ta.focus();});
+  document.getElementById('submit').addEventListener('click',function(e){e.preventDefault();var v=ta.value.trim()||EX.claim;
+    location.href='mailto:ask@forgedlucidity.ai?subject='+encodeURIComponent('Grade this claim')+'&body='+encodeURIComponent('CLAIM:\n'+v+'\n\nSOURCE (if you have one):\n\nWHY IT MATTERS TO ME:\n');});
+  render();
+})();
+</script><footer class="wrap"><div><div class="motto">Forged, not generated.</div><div class="cp">&copy; 2025-2026 Forged Lucidity LLC &middot; a member-owned cooperative &middot; Westbrook, Maine</div></div><ul><li><a href="/eous">Eous</a></li><li><a href="/how-it-works">How it works</a></li><li><a href="/businesses">Businesses</a></li><li><a href="/research/">Research</a></li><li><a href="/about">About</a></li><li><a href="mailto:info@forgedlucidity.ai">info@forgedlucidity.ai</a></li></ul></footer></body></html>

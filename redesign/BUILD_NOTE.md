@@ -48,3 +48,15 @@ Brand hues kept and sharpened: Iron #141A24, Parchment #F1ECE2, Brass #A8864F (s
 ## Seal (from the charter)
 
 Within the frame, Greg approves the redesign DIRECTION from the staged drafts, or picks the parts that work. LOSS = Greg judges the redesign no better than what is live, or it breaks a locked constraint. Sunset 2026-09-24.
+
+## v2 (same day, on Greg's redirect: "research center, scientific tool focused ... the tool/grader/forecaster is the first thing they get")
+
+Home rebuilt as an INSTRUMENT PAGE. The first screen is the grader console: a claim box, "Grade this claim", and the live verification record it will carry (loaded with a real record - the Tammes result - and rewriting itself as the visitor types). Three instrument readouts sit under it, every number sourced: GRADER 0/48 fabricated reads by the Claude panel in round four, scored by a script on byte-level open events (01_Current_State/Evaluator/README_Evaluator_v1.md, round-four block; report Round_Report_v2_round4_20260903_090706.md); FORECASTER "Unmeasured" (Scorecard_Evidence_Log_2026-08-26.md: Brier / reliability curve "still does not exist" - stated on the page as the honest readout, not hidden); LEDGER 3 boards / 1 retired (live site). Then "why keep this open all day" (three uses), "the grader is graded" (the round history with the losses first, from the Evaluator README), then the product / businesses / research / coop / CTA in compressed form.
+
+How the console works today, stated on the page: submissions go to the grader queue (mailto ask@forgedlucidity.ai with the claim in the body); Eous opens the source and drafts the record; a person reviews before it comes back. Nothing is auto-graded or auto-published, and the page says so. When a public API exists, the same console posts to it - the UI does not change.
+
+Not fabricated: no track record, score, or testimonial that does not exist on disk. The forecaster's calibration is shown as Unmeasured because it is.
+
+The reference site Greg mentioned (given in a conversation the week of 9/3-9/10) was searched for in 05_Ember_Log, 01_Current_State, 03_Knowledge_Base (URLs in files touched in the last 14 days) and in bucsdude2000 mail - not found; openresearchlab.org was his own "not it." Fold it in when it turns up.
+
+Design-system delta: console/readout/uses/rounds components added to the home page's CSS (to be folded into styles.css and the design-system page when the direction is approved).
