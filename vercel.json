@@ -21,6 +21,7 @@
     }
   ],
   "rewrites": [
-    { "source": "/research", "destination": "/research/index.html" }
+    { "source": "/research", "destination": "/research/index.html" },
+    { "source": "/businesses/braun-law", "destination": "/businesses/braun-law/index.html" }
   ]
 }
