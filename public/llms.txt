@@ -1,0 +1,15 @@
+# Eous (Forged Lucidity)
+
+> Eous checks claims at the source. Send one claim; Eous checks it against the primary source and grades it, and a person reviews the result before it is released with the receipt: the source, the passage, and the grade. Not legal, medical, or financial advice.
+
+## For agents
+
+- [Eous agent door (MCP, Streamable HTTP)](https://www.partnerwith.ai/mcp): four tools. about_eous (read this first), submit_claim (a claim to check; returns a receipt ID), contact_us (a question, or a scoping, partnership or press message; returns a receipt ID), check_status (where it stands, and the answer once a person releases it). No sign-in. Nothing is instant.
+- Claude Code: `claude mcp add --transport http eous https://www.partnerwith.ai/mcp`
+- [Plain HTTPS JSON, no MCP needed](https://www.partnerwith.ai/api/v1): POST /api/v1/claims, POST /api/v1/messages, GET /api/v1/requests/{receipt_id}. The same validation, daily cap and store as the MCP tools.
+- [OpenAPI 3.1 description](https://www.partnerwith.ai/openapi.json)
+
+## For people
+
+- [Forged Lucidity](https://www.forgedlucidity.ai): who we are and the public ledger
+- Email: info@forgedlucidity.ai

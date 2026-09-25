@@ -23,7 +23,13 @@
   "rewrites": [
     { "source": "/research", "destination": "/research/index.html" },
     { "source": "/businesses/braunlaw.us", "destination": "/businesses/braunlaw.us/index.html" },
-    { "source": "/businesses/braunlaw.us/ai", "destination": "/businesses/braunlaw.us/ai.html" }
+    { "source": "/businesses/braunlaw.us/ai", "destination": "/businesses/braunlaw.us/ai.html" },
+    { "source": "/mcp", "has": [{"type": "host", "value": {"inc": ["www.partnerwith.ai", "partnerwith.ai"]}}], "destination": "/api/door?door_route=mcp" },
+    { "source": "/openapi.json", "has": [{"type": "host", "value": {"inc": ["www.partnerwith.ai", "partnerwith.ai"]}}], "destination": "/api/door?door_route=openapi" },
+    { "source": "/api/v1", "has": [{"type": "host", "value": {"inc": ["www.partnerwith.ai", "partnerwith.ai"]}}], "destination": "/api/door?door_route=v1" },
+    { "source": "/api/v1/claims", "has": [{"type": "host", "value": {"inc": ["www.partnerwith.ai", "partnerwith.ai"]}}], "destination": "/api/door?door_route=v1/claims" },
+    { "source": "/api/v1/messages", "has": [{"type": "host", "value": {"inc": ["www.partnerwith.ai", "partnerwith.ai"]}}], "destination": "/api/door?door_route=v1/messages" },
+    { "source": "/api/v1/requests/:receipt_id", "has": [{"type": "host", "value": {"inc": ["www.partnerwith.ai", "partnerwith.ai"]}}], "destination": "/api/door?door_route=v1/requests/:receipt_id" }
   ],
   "redirects": [
     { "source": "/businesses/braun-law", "destination": "/businesses/braunlaw.us", "permanent": true },
