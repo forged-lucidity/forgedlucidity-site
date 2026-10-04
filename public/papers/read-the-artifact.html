@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Read the Artifact, Not the Flag — Forged Lucidity</title>
+<meta name="description" content="Honest self-evaluation and recovery for autonomous robots. A grader learned from a robot's own success reports learns to pass the failures it cannot sense; a fixed outside check, fault-injected, stays honest. A Forged Lucidity working paper by Gregory P. Braun.">
+<link rel="canonical" href="https://forgedlucidity.ai/papers/read-the-artifact">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Read the Artifact, Not the Flag">
+<meta property="og:description" content="A grader learned from a robot's own success reports learns to pass the failures it cannot sense. A fixed outside check, fault-injected, stays honest — and can drive repair.">
+<meta property="og:url" content="https://forgedlucidity.ai/papers/read-the-artifact">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Read the Artifact, Not the Flag">
+<meta name="twitter:description" content="Honest self-evaluation and recovery for autonomous robots. A Forged Lucidity working paper.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --iron:#141A24; --parchment:#F1ECE2; --brass:#A8864F; --heat:#D95B1E; --slag:#6C7078;
+    --parchment-dim:#C9C3B6;
+  }
+  *{box-sizing:border-box}
+  html{-webkit-text-size-adjust:100%}
+  body{
+    margin:0; background:var(--iron); color:var(--parchment);
+    font-family:"IBM Plex Sans",system-ui,sans-serif; font-size:17px; line-height:1.65;
+    -webkit-font-smoothing:antialiased;
+  }
+  .wrap{max-width:760px; margin:0 auto; padding:64px 24px 96px}
+  .eyebrow{
+    font-family:"IBM Plex Mono",monospace; font-size:12.5px; letter-spacing:.14em;
+    text-transform:uppercase; color:var(--brass); margin:0 0 22px;
+  }
+  h1{
+    font-family:"Cormorant Garamond",Georgia,serif; font-weight:600;
+    font-size:clamp(34px,6vw,52px); line-height:1.08; letter-spacing:.005em; margin:0 0 10px;
+  }
+  .subtitle{
+    font-family:"Cormorant Garamond",Georgia,serif; font-weight:500; font-style:italic;
+    font-size:clamp(19px,3.4vw,25px); color:var(--parchment-dim); margin:0 0 26px; line-height:1.25;
+  }
+  .byline{
+    font-family:"IBM Plex Mono",monospace; font-size:13px; color:var(--slag);
+    border-top:1px solid rgba(168,134,79,.35); border-bottom:1px solid rgba(168,134,79,.35);
+    padding:14px 0; margin:0 0 34px;
+  }
+  .byline a{color:var(--brass); text-decoration:none}
+  .byline a:hover{text-decoration:underline}
+  .actions{display:flex; flex-wrap:wrap; gap:14px; align-items:center; margin:0 0 42px}
+  .btn{
+    display:inline-block; background:var(--heat); color:#fff; text-decoration:none;
+    font-family:"IBM Plex Sans",sans-serif; font-weight:600; font-size:15px;
+    padding:13px 24px; border-radius:3px; letter-spacing:.01em;
+  }
+  .btn:hover{filter:brightness(1.07)}
+  .btn.ghost{background:transparent; color:var(--parchment); border:1px solid var(--slag)}
+  .meta-note{font-family:"IBM Plex Mono",monospace; font-size:12px; color:var(--slag)}
+  h2{
+    font-family:"Cormorant Garamond",Georgia,serif; font-weight:600; font-size:27px;
+    margin:44px 0 12px; letter-spacing:.01em;
+  }
+  p{margin:0 0 18px}
+  .abstract{color:var(--parchment); font-size:16.5px}
+  .abstract .lead{color:var(--parchment)}
+  ol.rules{list-style:none; counter-reset:r; padding:0; margin:0}
+  ol.rules li{
+    counter-increment:r; position:relative; padding:0 0 0 54px; margin:0 0 20px;
+  }
+  ol.rules li::before{
+    content:counter(r); position:absolute; left:0; top:-2px;
+    font-family:"Cormorant Garamond",serif; font-weight:600; font-size:30px; color:var(--brass);
+    width:38px; text-align:center;
+  }
+  ol.rules b{color:var(--parchment)}
+  ol.rules span{color:var(--parchment-dim)}
+  hr{border:0; border-top:1px solid rgba(168,134,79,.3); margin:48px 0}
+  footer{font-family:"IBM Plex Mono",monospace; font-size:12px; color:var(--slag); line-height:1.7}
+  footer a{color:var(--brass); text-decoration:none}
+  footer a:hover{text-decoration:underline}
+</style>
+</head>
+<body>
+<main class="wrap">
+  <p class="eyebrow">Forged Lucidity · Working paper · 2026</p>
+  <h1>Read the Artifact, Not the Flag</h1>
+  <p class="subtitle">Honest self-evaluation and recovery for autonomous robots</p>
+  <p class="byline">Gregory P. Braun &nbsp;·&nbsp; Forged Lucidity, Westbrook, Maine &nbsp;·&nbsp; <a href="mailto:gpb4@cornell.edu">gpb4@cornell.edu</a></p>
+
+  <div class="actions">
+    <a class="btn" href="/downloads/read-the-artifact-not-the-flag.pdf">Download the paper (PDF, 18 pp)</a>
+    <span class="meta-note">Prepared for the CoRL 2026 Workshop on Agentic Robotics</span>
+  </div>
+
+  <h2>Abstract</h2>
+  <div class="abstract">
+    <p class="lead">A robot working with no person nearby must decide for itself whether its task is done, and a self-improving robot must also decide which of its own changes to keep. Can it make those calls honestly? Not with a grader learned from its own success reports: such a grader learns to pass the failures the robot cannot sense, and some that it can.</p>
+    <p>In a simulated pick-and-place task on a model of the AgileX NERO arm, with a scripted policy, a classifier trained on the robot's reports passed 1% of planted failures when every failure in its training data had been sensed and 76% when a cube could slip unnoticed from the gripper on 30% of carries, while its agreement with the robot's own labels overstated its real accuracy. A fixed check that reads the final state from an overhead camera, in a scene built for it, passed none of the planted failures and matched ground truth on all 600 natural test episodes. The same check can drive repair: acting only on the check's image, the robot repaired 92% of its natural failures and every planted failure within reach, raising task success at the highest slip rate from 49% to 95%, and in 1,000 test episodes it never reported a failed task as done; when it could not repair a failure, it stopped and asked for help.</p>
+    <p>When the robot tunes itself, its own settings can loosen its own check. In a 50-round keep-or-kill loop, a grader retrained on the robot's reports came to pass between 34 and 46 of 100 planted failures from round 10 on, while its reported success stayed within 4 points of the truth; the same grader trained once on the outside check and frozen passed 1 of 100 throughout and let its loop undo a bad change. We distill three rules for evaluating robots that work alone, and a protocol for measuring recovery that gives no credit for the robot's own account.</p>
+  </div>
+
+  <h2>Three rules for honest self-evaluation</h2>
+  <ol class="rules">
+    <li><b>Judge the final state, not the robot's account of it.</b> <span>A task-complete flag or a model's "I verified X" is output of the system being judged, not evidence the property holds.</span></li>
+    <li><b>Read the artifact, not the flag.</b> <span>Score from the logged record of what happened — an overhead image, a sensor trace, a proof kernel's verdict — never from the report of it.</span></li>
+    <li><b>Fault-inject the grader before you trust it.</b> <span>A checker that has not refused a planted fault has not been shown to check.</span></li>
+  </ol>
+
+  <hr>
+  <footer>
+    A Forged Lucidity working paper. The simulation code, scorers and pre-registrations are described in the paper's appendices.<br>
+    <a href="https://forgedlucidity.ai/">forgedlucidity.ai</a> &nbsp;·&nbsp; The grader is graded.
+  </footer>
+</main>
+</body>
+</html>
