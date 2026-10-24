@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Aethon Legal - Forged Lucidity</title>
+<meta name="description" content="Aethon Legal - verification-first legal intelligence from Forged Lucidity. The same disciplined engine, pointed at the law.">
+<meta property="og:title" content="Aethon Legal"><meta property="og:description" content="Verification-first legal intelligence - the same disciplined engine, pointed at the law.">
+<meta name="theme-color" content="#15151f">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+  <div class="glow"></div><div class="glow two"></div>
+  <div class="wrap">
+    <header>
+      <a class="brand" href="/">Forged Lucidity</a>
+      <nav><a href="/eous/">Eous</a><a href="/football/">Football</a><a href="/legal/" class="on">Aethon Legal</a></nav>
+    </header>
+
+    <section class="hero sub">
+      <div class="eyebrow">Verification-first Legal</div>
+      <h1>Aethon <span class="l">Legal</span></h1>
+      <div class="tag">The same disciplined engine, pointed at the law.</div>
+      <div class="bar"></div>
+      <div class="say">Aethon is the legal side of the Eous engine - built to read the primary source, verify every citation, and show its work. A careful, documented process in support of real legal practice.</div>
+
+      <div class="board">
+        <div class="b"><div class="t">Primary-source first</div><div class="d">Read the statute, the docket, the record - not a gloss. Every authority checked at its source.</div></div>
+        <div class="b"><div class="t">Verify, then rely</div><div class="d">Citations confirmed, the rule confirmed current, the work product reviewed by a person before it goes out.</div></div>
+        <div class="b"><div class="t">In practice</div><div class="d">Built alongside a working Maine practice - the method proven on real matters, not a demo.</div></div>
+      </div>
+
+      <div class="cta">
+        <div class="k">More to come</div>
+        <h2>Stay in the loop.</h2>
+        <p>Aethon Legal is taking shape. Join the list and we will share more as it opens up.</p>
+        <form id="f" novalidate><input type="email" id="email" placeholder="you@example.com" autocomplete="email" required aria-label="Email"><button class="join" type="submit" id="btn">Join</button></form>
+        <div class="ok" id="ok">You are on the list. We will be in touch.</div>
+        <div class="fine">No spam, ever.</div>
+      </div>
+    </section>
+
+    <footer>
+      <div><a href="/">&larr; Forged Lucidity</a> &middot; A Maine company on a cooperative basis (IRC Subchapter T)</div>
+      <div class="r">&copy; 2026 Forged Lucidity LLC</div>
+    </footer>
+  </div>
+<script>
+  var SUPA_URL="https://tcontraztjotymxvwpnj.supabase.co",SUPA_KEY="sb_publishable_ef9QBUJUoHfvT8biWBmFwQ_yTBopGk0";
+  var f=document.getElementById('f'),email=document.getElementById('email'),btn=document.getElementById('btn'),ok=document.getElementById('ok');
+  f.addEventListener('submit',function(e){e.preventDefault();var v=(email.value||'').trim();if(!v||v.indexOf('@')<1){email.focus();return;}
+    btn.disabled=true;btn.textContent='...';
+    fetch(SUPA_URL+"/rest/v1/waitlist",{method:'POST',headers:{'apikey':SUPA_KEY,'Authorization':'Bearer '+SUPA_KEY,'Content-Type':'application/json','Prefer':'return=minimal'},body:JSON.stringify({email:v,source:'legal'})})
+    .catch(function(x){console.warn(x);}).finally(function(){f.style.display='none';ok.classList.add('show');});});
+</script>
+</body>
+</html>

@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Eous AI Football - Forged Lucidity</title>
+<meta name="description" content="Pro-grade AI advance scouting from Forged Lucidity - built off an opponent's whole season, in your language, delivered the week of the game.">
+<meta property="og:title" content="Eous AI Football"><meta property="og:description" content="Pro-grade advance scouting, built off an opponent's whole season, in your language, every week.">
+<meta name="theme-color" content="#15151f">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+  <div class="glow"></div><div class="glow two"></div>
+  <div class="wrap">
+    <header>
+      <a class="brand" href="/">Forged Lucidity</a>
+      <nav><a href="/eous/">Eous</a><a href="/football/" class="on">Football</a><a href="/legal/">Aethon Legal</a></nav>
+    </header>
+
+    <section class="hero sub">
+      <div class="eyebrow">Applied Intelligence</div>
+      <h1>Eous <span class="l">AI Football</span></h1>
+      <div class="tag">Your opponent's whole season, turned into a player-ready game plan - every week.</div>
+      <div class="bar"></div>
+      <div class="say">Pro-grade advance scouting, built on the Eous engine: we ingest the whole season of film and data, verify every number against the official breakdowns, carry <b>your</b> terminology, and improve every week. Not "AI that glances at film" - a verification-first scouting process.</div>
+
+      <div class="board four">
+        <div class="b"><div class="t">The deck</div><div class="d">A clean, player-ready scouting deck - offense, defense (blitz included), special teams, pre-snap stills.</div></div>
+        <div class="b"><div class="t">Two cuts</div><div class="d">Their offense for your defensive staff; their defense for your offensive staff.</div></div>
+        <div class="b"><div class="t">The First-15</div><div class="d">A suggested opening script against their defense.</div></div>
+        <div class="b"><div class="t">Your language</div><div class="d">Your fronts, coverages, and run game - carried verbatim, locked in and sharper each week.</div></div>
+      </div>
+
+      <div class="cta hl">
+        <div class="k">Invited to participate?</div>
+        <h2>Come aboard.</h2>
+        <p>If a coach has invited you, start here. Scroll, confirm, and we will send your documents to e-sign and your private link to submit materials - all by email.</p>
+        <a class="go-btn" href="/start/">Invited to participate? &rarr;</a>
+      </div>
+
+      <div class="cta">
+        <div class="k">Not yet</div>
+        <h2>Join the list.</h2>
+        <p>Want to see what this could do for your program? Join the list and we will be in touch.</p>
+        <form id="f" novalidate><input type="email" id="email" placeholder="you@example.com" autocomplete="email" required aria-label="Email"><button class="join" type="submit" id="btn">Join</button></form>
+        <div class="ok" id="ok">You are on the list. We will be in touch.</div>
+        <div class="fine">No spam, ever.</div>
+      </div>
+    </section>
+
+    <footer>
+      <div><a href="/">&larr; Forged Lucidity</a> &middot; A Maine company on a cooperative basis (IRC Subchapter T)</div>
+      <div class="r">&copy; 2026 Forged Lucidity LLC</div>
+    </footer>
+  </div>
+<script>
+  var SUPA_URL="https://tcontraztjotymxvwpnj.supabase.co",SUPA_KEY="sb_publishable_ef9QBUJUoHfvT8biWBmFwQ_yTBopGk0";
+  var f=document.getElementById('f'),email=document.getElementById('email'),btn=document.getElementById('btn'),ok=document.getElementById('ok');
+  f.addEventListener('submit',function(e){e.preventDefault();var v=(email.value||'').trim();if(!v||v.indexOf('@')<1){email.focus();return;}
+    btn.disabled=true;btn.textContent='...';
+    fetch(SUPA_URL+"/rest/v1/waitlist",{method:'POST',headers:{'apikey':SUPA_KEY,'Authorization':'Bearer '+SUPA_KEY,'Content-Type':'application/json','Prefer':'return=minimal'},body:JSON.stringify({email:v,source:'football'})})
+    .catch(function(x){console.warn(x);}).finally(function(){f.style.display='none';ok.classList.add('show');});});
+</script>
+</body>
+</html>

@@ -1,4 +1,2 @@
 User-agent: *
 Allow: /
-
-Sitemap: https://forgedlucidity.ai/sitemap.xml
