@@ -1,0 +1,180 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Materials Drop - Lowndes - Forged Lucidity</title>
+<meta name="description" content="Secure materials drop for the Eous AI Football Scout. Upload film links, data sheets, depth charts, and notes.">
+<meta name="robots" content="noindex">
+<meta name="theme-color" content="#15151f">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/styles.css">
+<style>
+  label.fl{display:block;font-size:12.5px;letter-spacing:.5px;color:#bdb6c9;margin:16px 0 6px;text-transform:uppercase;}
+  input[type=text],input[type=url],input[type=file],select,textarea{width:100%;font-family:inherit;}
+  select,textarea,input[type=text],input[type=url]{background:rgba(255,255,255,.04);border:1px solid var(--line);border-radius:10px;color:#eee;padding:12px 14px;font-size:15px;}
+  textarea{min-height:70px;resize:vertical;}
+  input[type=file]{color:#cbc4d6;font-size:14px;padding:10px 0;}
+  .btn{display:inline-block;margin-top:22px;background:var(--amber);color:#1a1322;border:none;border-radius:12px;padding:15px 26px;font-size:16px;font-weight:600;font-family:inherit;cursor:pointer;transition:background .2s,opacity .2s;}
+  .btn:hover{background:#e3b985;} .btn:disabled{opacity:.5;cursor:default;}
+  .btn.block{display:block;width:100%;}
+  .signbox{margin-top:30px;border:1px solid rgba(212,165,116,.5);border-radius:16px;padding:26px;background:linear-gradient(180deg, rgba(212,165,116,.08), rgba(255,255,255,.02));}
+  .err{color:#e88;font-size:13px;margin-top:12px;min-height:16px;}
+  .status{font-size:13.5px;color:#bdb6c9;margin-top:14px;min-height:18px;}
+  .hidden{display:none;}
+  .prog{display:inline-block;font-size:12px;letter-spacing:.5px;text-transform:uppercase;color:#1a1322;background:var(--amber);border-radius:20px;padding:5px 14px;font-weight:600;}
+  .orline{display:flex;align-items:center;gap:12px;color:#8b8494;font-size:12px;letter-spacing:.5px;margin:18px 0 6px;text-transform:uppercase;}
+  .orline::before,.orline::after{content:"";flex:1;height:1px;background:var(--line);}
+  .droplist{margin-top:26px;}
+  .droplist h3{font-size:13px;letter-spacing:.5px;text-transform:uppercase;color:#bdb6c9;margin:0 0 10px;}
+  .drop{border:1px solid var(--line);border-radius:12px;padding:13px 16px;margin-bottom:10px;background:rgba(255,255,255,.03);}
+  .drop .dc{font-size:11px;letter-spacing:.5px;text-transform:uppercase;color:var(--amber);}
+  .drop .dn{font-size:14.5px;color:#eee;margin-top:3px;word-break:break-word;}
+  .drop .dm{font-size:12px;color:#8b8494;margin-top:3px;}
+  .safe{font-size:12.5px;color:#8b8494;margin-top:14px;line-height:1.5;}
+  .safe b{color:#bdb6c9;font-weight:600;}
+</style>
+</head>
+<body>
+  <div class="glow"></div>
+  <div class="wrap">
+    <header>
+      <a class="brand" href="/">Forged Lucidity</a>
+      <nav><a href="/football/">&larr; Eous AI Football</a></nav>
+    </header>
+
+    <!-- GATE -->
+    <section class="hero sub" id="gate" style="padding-bottom:40px;">
+      <div class="eyebrow">Eous AI Football - Materials Drop</div>
+      <h1>Drop your stuff right here.</h1>
+      <div class="tag">Enter your program's access code to open your secure drop. Film links, data sheets, depth charts, notes - it all comes straight to Eous. No more email.</div>
+      <div class="signbox" style="max-width:460px;">
+        <label class="fl" for="code">Access code</label>
+        <input type="text" id="code" placeholder="Enter your code" autocomplete="off" autocapitalize="none" spellcheck="false">
+        <button class="btn block" id="unlock">Open my drop</button>
+        <div class="err" id="gerr"></div>
+      </div>
+    </section>
+
+    <!-- DROP -->
+    <div id="flow" class="hidden">
+      <section class="hero sub" style="padding-bottom:0;">
+        <div class="eyebrow">Secure drop</div>
+        <h1>Lowndes materials</h1>
+        <div class="tag"><span class="prog">Lowndes High School</span> &nbsp; Everything you drop here lands in Lowndes' own sealed space and goes straight into game prep.</div>
+      </section>
+
+      <section>
+        <div class="signbox">
+          <label class="fl" for="cat">What is this?</label>
+          <select id="cat">
+            <option value="Film">Film (HUDL or Drive link)</option>
+            <option value="Data sheet">Data sheet / breakdown</option>
+            <option value="Depth chart">Depth chart</option>
+            <option value="Notes">Notes / scouting</option>
+            <option value="Other">Other</option>
+          </select>
+
+          <label class="fl" for="link">Paste a HUDL or Drive link</label>
+          <input type="url" id="link" placeholder="https://  (best for film or anything over 50 MB)">
+
+          <div class="orline">or</div>
+
+          <label class="fl" for="file">Choose a file to upload (up to 50 MB)</label>
+          <input type="file" id="file">
+
+          <label class="fl" for="note">Note for Eous (optional)</label>
+          <textarea id="note" placeholder="e.g. Camden all-22, or 'new depth chart, #14 now at corner'"></textarea>
+
+          <button class="btn block" id="send">Drop it in</button>
+          <div class="status" id="sstatus"></div>
+          <div class="err" id="e1"></div>
+
+          <div class="safe">
+            <b>Your stuff stays yours.</b> It goes into Lowndes' own sealed container - never mixed with, shown to, or used for any other program. Only generic football knowledge ever feeds the shared system; your film, data, personnel, and plan never leave your space.
+          </div>
+        </div>
+
+        <div class="droplist hidden" id="droplist">
+          <h3>Dropped this session</h3>
+          <div id="drops"></div>
+        </div>
+      </section>
+    </div>
+
+    <footer>
+      <div><a href="/">&larr; Forged Lucidity</a> &middot; A Maine company on a cooperative basis (IRC Subchapter T)</div>
+      <div class="r">&copy; 2026 Forged Lucidity LLC</div>
+    </footer>
+  </div>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.min.js"></script>
+<script>
+(function(){
+  "use strict";
+  var SUPA="https://tcontraztjotymxvwpnj.supabase.co";
+  var KEY="sb_publishable_ef9QBUJUoHfvT8biWBmFwQ_yTBopGk0";
+  var CODE="winnersville";
+  var PROGRAM="lowndes";
+  var MAXBYTES=52428800; // 50 MB
+  var $=function(id){return document.getElementById(id);};
+  var sb=window.supabase.createClient(SUPA,KEY);
+
+  function tryUnlock(){
+    var v=($("code").value||"").trim().toLowerCase();
+    if(v===CODE){ $("gate").classList.add("hidden"); $("flow").classList.remove("hidden"); window.scrollTo({top:0,behavior:"smooth"}); }
+    else { $("gerr").textContent="That code is not right. Check with Coach or FL and try again."; }
+  }
+  $("unlock").addEventListener("click",tryUnlock);
+  $("code").addEventListener("keydown",function(e){ if(e.key==="Enter") tryUnlock(); });
+
+  function safeName(n){ return (n||"file").replace(/[^a-zA-Z0-9._-]+/g,"_").slice(0,120); }
+
+  function addDrop(cat,name,meta){
+    $("droplist").classList.remove("hidden");
+    var d=document.createElement("div"); d.className="drop";
+    d.innerHTML='<div class="dc"></div><div class="dn"></div><div class="dm"></div>';
+    d.querySelector(".dc").textContent=cat;
+    d.querySelector(".dn").textContent=name;
+    d.querySelector(".dm").textContent=meta;
+    $("drops").insertBefore(d,$("drops").firstChild);
+  }
+
+  $("send").addEventListener("click",async function(){
+    $("e1").textContent="";
+    var cat=$("cat").value;
+    var link=($("link").value||"").trim();
+    var note=($("note").value||"").trim();
+    var file=$("file").files[0]||null;
+    if(!file && !link){ $("e1").textContent="Add a file or paste a link."; return; }
+    if(file && file.size>MAXBYTES){ $("e1").textContent="That file is over 50 MB. For film or anything big, paste a HUDL or Drive link instead."; return; }
+    $("send").disabled=true; $("sstatus").textContent="Dropping it in...";
+    try{
+      var storage_path=null, size_bytes=null, content_type=null, original_filename=null;
+      if(file){
+        original_filename=file.name; size_bytes=file.size; content_type=file.type||"application/octet-stream";
+        storage_path=PROGRAM+"/"+Date.now()+"_"+safeName(file.name);
+        var up=await sb.storage.from("coach-materials").upload(storage_path,file,{contentType:content_type,upsert:false});
+        if(up.error){ throw new Error("Upload failed: "+up.error.message); }
+      }
+      var row={ program:PROGRAM, original_filename:original_filename, storage_path:storage_path, size_bytes:size_bytes,
+                content_type:content_type, category:cat, note:note||null, link_url:link||null };
+      var ins=await sb.from("uploads").insert(row);
+      if(ins.error){ throw new Error("Saved the file but could not log it: "+ins.error.message); }
+      var label = file ? original_filename : link;
+      var meta = (file ? (Math.max(1,Math.round(size_bytes/1024))+" KB") : "link") + (note? "  -  "+note : "");
+      addDrop(cat,label,meta);
+      $("sstatus").textContent="Got it. Dropped in and on its way to Eous.";
+      $("link").value=""; $("note").value=""; $("file").value="";
+    }catch(err){
+      $("sstatus").textContent="";
+      $("e1").textContent=(err&&err.message)?err.message:"Something went wrong. Please try again or let us know.";
+    }finally{
+      $("send").disabled=false;
+    }
+  });
+})();
+</script>
+</body>
+</html>
