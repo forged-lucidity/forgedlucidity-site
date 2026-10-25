@@ -81,10 +81,12 @@
         <div class="signbox">
           <div class="row2">
             <div><label class="fl" for="name">Full name</label><input type="text" id="name" autocomplete="name" placeholder="First and last name"></div>
-            <div><label class="fl" for="title">Title (optional)</label><input type="text" id="title" placeholder="e.g. Head Coach, Offensive Coordinator"></div>
+            <div><label class="fl" for="title">Your title / role</label><input type="text" id="title" placeholder="e.g. Head Coach, Offensive Coordinator, TE Coach"></div>
           </div>
           <label class="fl" for="program">Program / School</label>
-          <input type="text" id="program" placeholder="e.g. Lowndes High School">
+          <input type="text" id="program" placeholder="e.g. High School, University">
+          <label class="fl" for="division">Division / Region / Conference</label>
+          <input type="text" id="division" placeholder="e.g. Georgia 7A">
           <label class="fl" for="address">Mailing address</label>
           <input type="text" id="address" placeholder="Street, City, State ZIP">
           <label class="fl" for="email">Email (your copy goes here)</label>
@@ -164,6 +166,7 @@
       individual: state.name||"________________",
       address: state.address||"________________",
       title: state.title||"",
+      division: state.division||"",
       date: TODAY,
       retention: "end of the then-current season plus twelve (12) months"
     };
@@ -172,9 +175,9 @@
   function ndaBlocks(d){
     return [
       {t:"h",text:"MUTUAL NONDISCLOSURE AGREEMENT"},
-      {t:"p",text:"This Mutual Nondisclosure Agreement (this “Agreement”) is entered into as of "+d.date+" (the “Effective Date”) by and between Forged Lucidity LLC, a Maine limited liability company with a mailing address of P.O. Box 107, Westbrook, Maine 04098 (“FL”), and "+d.program+", with an address of "+d.address+" (“Program”). FL and Program are each a “Party” and together the “Parties.”"},
-      {t:"p",text:"Recital. The Parties wish to explore and carry out a relationship in which FL provides AI-assisted football advance-scouting and analysis services to the Program (the “Purpose”), which will involve each Party disclosing certain confidential information to the other."},
-      {t:"p",text:"1. Confidential Information. “Confidential Information” means non-public information disclosed by one Party (“Discloser”) to the other (“Recipient”), in any form, that is marked or reasonably understood to be confidential. It includes, without limitation: (a) the Program’s game film, breakdown/data sheets, personnel and depth-chart information, game plans, tendencies, questions, and strategy; and (b) FL’s methods, models, software, prompts, templates, scouting formats, analytical processes, pricing, and deliverables."},
+      {t:"p",text:"This Mutual Nondisclosure Agreement (this “Agreement”) is entered into as of "+d.date+" (the “Effective Date”) by and between Forged Lucidity LLC, a Maine limited liability company with a mailing address of P.O. Box 107, Westbrook, Maine 04098 (“FL”), and "+d.individual+(d.title?", "+d.title:"")+(d.program?", affiliated with "+d.program+(d.division?" ("+d.division+")":""):"")+", with an address of "+d.address+" (“the Individual”). FL and the Individual are each a “Party” and together the “Parties.”"},
+      {t:"p",text:"Recital. The Parties wish to explore and carry out a relationship in which FL provides AI-assisted football advance-scouting and analysis services to the Individual (the “Purpose”), which will involve each Party disclosing certain confidential information to the other."},
+      {t:"p",text:"1. Confidential Information. “Confidential Information” means non-public information disclosed by one Party (“Discloser”) to the other (“Recipient”), in any form, that is marked or reasonably understood to be confidential. It includes, without limitation: (a) the Individual’s game film, breakdown/data sheets, personnel and depth-chart information, game plans, tendencies, questions, and strategy; and (b) FL’s methods, models, software, prompts, templates, scouting formats, analytical processes, pricing, and deliverables."},
       {t:"p",text:"2. Obligations. Recipient shall (a) use the Confidential Information only for the Purpose; (b) protect it with at least the care it uses for its own confidential information, and no less than reasonable care; and (c) not disclose it to any third party except to its personnel who need it for the Purpose and are bound by confidentiality obligations at least as protective as these."},
       {t:"p",text:"3. Exclusions. Confidential Information does not include information that (a) is or becomes public through no fault of Recipient; (b) Recipient lawfully possessed without confidentiality obligation before disclosure; (c) Recipient independently develops without use of the Confidential Information; or (d) Recipient rightfully receives from a third party without restriction. Recipient may disclose Confidential Information if required by law or court order, provided it gives the Discloser prompt notice (where lawful) and reasonable cooperation to seek protection."},
       {t:"p",text:"4. No license; no obligation. Nothing in this Agreement grants any license or ownership right in the Confidential Information, except the limited right to use it for the Purpose. Any license to use submitted materials is addressed in a separate authorization. This Agreement does not obligate either Party to proceed with any transaction."},
@@ -189,7 +192,7 @@
   function authBlocks(d){
     return [
       {t:"h",text:"MATERIALS SUBMISSION AUTHORIZATION, LICENSE & ACKNOWLEDGEMENT"},
-      {t:"p",text:"This Authorization (this “Authorization”) is entered into as of "+d.date+" by and between Forged Lucidity LLC, a Maine limited liability company, P.O. Box 107, Westbrook, Maine 04098 (“FL”), and "+d.individual+" (the “Individual”)."},
+      {t:"p",text:"This Authorization (this “Authorization”) is entered into as of "+d.date+" by and between Forged Lucidity LLC, a Maine limited liability company, P.O. Box 107, Westbrook, Maine 04098 (“FL”), and "+d.individual+(d.title?", "+d.title:"")+(d.program?", affiliated with "+d.program+(d.division?" ("+d.division+")":""):"")+" (the “Individual”)."},
       {t:"p",text:"Recital. The Individual has in the Individual’s possession game film, breakdown/data sheets, depth-chart and personnel information, questions, and related materials used for the Individual’s own coaching work (collectively, the “Submitted Materials”), and wishes to submit them to FL so that FL may produce AI-assisted advance-scouting analysis and deliverables (the “Services”). This Authorization sets the permissions, representations, and acknowledgements for that exchange."},
       {t:"p",text:"1. License to FL (to provide the Services). The Individual grants FL a non-exclusive, worldwide, royalty-free license to host, store, copy, process, analyze, and create derivative analyses from the Submitted Materials solely to provide the Services to the Individual and to deliver the resulting work product to the Individual. In plain terms: you are giving FL the permission it needs to do whatever is required with the film and materials you give us in order to do this work for you, and nothing more. FL may use your Submitted Materials only to provide the Services to you, and gains no right to use them for any purpose beyond the Services."},
       {t:"p",text:"2. The Individual’s representations. The Individual represents that the Submitted Materials are in the Individual’s possession for the Individual’s own coaching work and purposes, and that the Individual is entitled to share them with FL in order to receive the Services. The Individual will not submit materials the Individual is not entitled to share, will promptly tell FL if that changes, and, to the Individual’s knowledge, sharing the Submitted Materials with FL does not violate any agreement by which the Individual is bound."},
@@ -213,7 +216,8 @@
       if(b.t==="h") html+='<h4>'+esc(b.text)+'</h4>';
       else html+='<p>'+esc(b.text)+'</p>';
     }
-    html+='<p class="sec">Signature block</p><p>FL: G.P. Braun, Member &amp; Manager, Forged Lucidity LLC - '+esc(d.date)+'</p><p>'+(which==="nda"?"Program":"Individual")+': <span class="fill">'+esc(d.individual)+'</span>'+(which==="nda"&&d.title?' ('+esc(d.title)+')':'')+' - '+esc(d.date)+' (your signature is applied on submit)</p>';
+    var clabel = d.title ? esc(d.title) : "The Individual";
+    html+='<p class="sec">Signature block</p><p>FL: G.P. Braun, Member &amp; Manager, Forged Lucidity LLC - '+esc(d.date)+'</p><p>'+clabel+': <span class="fill">'+esc(d.individual)+'</span>'+(d.program?' - '+esc(d.program)+(d.division?' ('+esc(d.division)+')':''):'')+' - '+esc(d.date)+' (your signature is applied on submit)</p>';
     $("docbody").innerHTML=html;
   }
   function esc(s){return String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;");}
@@ -231,7 +235,7 @@
     var name=($("name").value||"").trim(), email=($("email").value||"").trim(), program=($("program").value||"").trim();
     if(name.length<2||email.indexOf("@")<1||program.length<2){ $("e1").textContent="Please enter your name, program, and a valid email."; return; }
     state.name=name; state.email=email; state.program=program;
-    state.title=($("title").value||"").trim(); state.address=($("address").value||"").trim();
+    state.title=($("title").value||"").trim(); state.address=($("address").value||"").trim(); state.division=($("division").value||"").trim();
     $("e1").textContent="";
     $("step1").classList.add("hidden"); $("step2").classList.remove("hidden");
     $("flowh1").textContent="Review and sign"; $("flowtag").textContent="Read both documents, then sign once below. Your signature applies to both.";
@@ -280,16 +284,18 @@
     }
     function heading(text){ space(20); page.drawText(clean(text),{x:M,y:y,size:13,font:bold,color:P.rgb(0.55,0.11,0.17)}); y-=20; }
     function rule(){ space(14); page.drawLine({start:{x:M,y:y},end:{x:W-M,y:y},thickness:0.8,color:P.rgb(0.8,0.82,0.86)}); y-=14; }
-    function sigBlock(label){
-      space(84);
+    function sigBlock(){
+      space(100);
       page.drawText("FORGED LUCIDITY LLC",{x:M,y:y,size:9.5,font:bold,color:P.rgb(0.2,0.2,0.24)}); y-=16;
       page.drawText("By: G.P. Braun    Title: Member & Manager    Date: "+meta.date,{x:M,y:y,size:10,font:font,color:P.rgb(0.1,0.1,0.13)}); y-=26;
-      page.drawText(label,{x:M,y:y,size:9.5,font:bold,color:P.rgb(0.2,0.2,0.24)}); y-=4;
+      var clabel = meta.title ? meta.title.toUpperCase() : "THE INDIVIDUAL";
+      page.drawText(clabel,{x:M,y:y,size:9.5,font:bold,color:P.rgb(0.2,0.2,0.24)}); y-=4;
       var sigW=150, sigH=46; page.drawImage(sigImg,{x:M,y:y-sigH,width:sigW,height:sigH});
       page.drawLine({start:{x:M,y:y-sigH-2},end:{x:M+sigW,y:y-sigH-2},thickness:0.8,color:P.rgb(0.6,0.6,0.64)});
       y-=sigH+8;
-      var nameLine="By: "+meta.name+(label.indexOf("PROGRAM")>=0&&meta.title?"    Title: "+meta.title:"")+"    Date: "+meta.date;
-      page.drawText(nameLine,{x:M,y:y,size:10,font:font,color:P.rgb(0.1,0.1,0.13)}); y-=22;
+      page.drawText("By: "+meta.name+(meta.title?"    Title: "+meta.title:""),{x:M,y:y,size:10,font:font,color:P.rgb(0.1,0.1,0.13)}); y-=15;
+      var aff=(meta.program?meta.program:"")+(meta.division?" ("+meta.division+")":"");
+      page.drawText((aff?"Affiliation: "+aff+"    ":"")+"Date: "+meta.date,{x:M,y:y,size:10,font:font,color:P.rgb(0.1,0.1,0.13)}); y-=22;
     }
 
     // Cover / attestation page
@@ -300,7 +306,7 @@
     rule();
     page.drawText("Signer",{x:M,y:y,size:11,font:bold,color:P.rgb(0.2,0.2,0.24)}); y-=18;
     drawPara("Name: "+meta.name+(meta.title?"  ("+meta.title+")":""),10.5,font,2);
-    drawPara("Program / School: "+meta.program,10.5,font,2);
+    drawPara("Program / School: "+meta.program+(meta.division?" ("+meta.division+")":""),10.5,font,2);
     if(meta.address) drawPara("Address: "+meta.address,10.5,font,2);
     drawPara("Email: "+meta.email,10.5,font,2);
     drawPara("Date signed: "+meta.date,10.5,font,8);
@@ -319,12 +325,12 @@
     newPage();
     var d=docData(); var nb=ndaBlocks(d);
     for(var i=0;i<nb.length;i++){ if(nb[i].t==="h") heading(nb[i].text); else drawPara(nb[i].text,10.5,font,6); }
-    sigBlock("PROGRAM");
+    sigBlock();
     // Authorization
     newPage();
     var ab=authBlocks(d);
     for(var j=0;j<ab.length;j++){ if(ab[j].t==="h") heading(ab[j].text); else drawPara(ab[j].text,10.5,font,6); }
-    sigBlock("THE INDIVIDUAL");
+    sigBlock();
 
     // footer page numbers
     var pages=doc.getPages();
@@ -348,7 +354,7 @@
     $("submit").disabled=true; $("sstatus").textContent="Preparing your signed documents...";
     try{
       var ip=await getIp();
-      var meta={ name:state.name, email:state.email, program:state.program, title:state.title, address:state.address,
+      var meta={ name:state.name, email:state.email, program:state.program, title:state.title, division:state.division, address:state.address,
                  date:TODAY, typed:typed, ts:new Date().toISOString(), ip:ip, ua:navigator.userAgent,
                  sigDataUrl:canvas.toDataURL("image/png") };
       var bytes=await buildPdf(meta);
@@ -362,7 +368,7 @@
         await fetchT(SUPA+"/rest/v1/signatures",{ method:"POST",
           headers:{"apikey":KEY,"Authorization":"Bearer "+KEY,"Content-Type":"application/json","Prefer":"return=minimal"},
           body:JSON.stringify({ name:state.name, email:state.email, program:state.program, address:state.address, title:state.title,
-            documents:"Mutual NDA; Materials Submission Authorization", consent:true, signer_date:TODAY, ip:ip,
+            documents:"Mutual NDA; Materials Submission Authorization", consent:true, signer_date:TODAY, ip:ip, division:state.division,
             signature_png:meta.sigDataUrl, signed_pdf_b64:b64FromBytes(bytes), doc_version:DOC_VERSION,
             source:"participate-esign", user_agent:navigator.userAgent }) },20000);
       }catch(e){}
