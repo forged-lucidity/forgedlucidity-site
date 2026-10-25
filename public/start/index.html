@@ -61,7 +61,7 @@
       <div class="tag">Enter your access code to open the documents. You will review and e-sign them right here - no waiting on email.</div>
       <div class="signbox" style="max-width:460px;">
         <label class="fl" for="code">Access code</label>
-        <input type="password" id="code" placeholder="Enter your code" autocomplete="off">
+        <input type="text" id="code" placeholder="Enter your code" autocomplete="off" autocapitalize="none" spellcheck="false">
         <button class="btn block" id="unlock">Unlock the documents</button>
         <div class="err" id="gerr"></div>
       </div>
@@ -87,8 +87,8 @@
           <input type="text" id="program" placeholder="e.g. High School, University">
           <label class="fl" for="division">Division / Region / Conference</label>
           <input type="text" id="division" placeholder="e.g. Georgia 7A">
-          <label class="fl" for="address">Mailing address</label>
-          <input type="text" id="address" placeholder="Street, City, State ZIP">
+          <label class="fl" for="address">Mailing address (home or office)</label>
+          <input type="text" id="address" placeholder="Home or office - Street, City, State ZIP">
           <label class="fl" for="email">Email (your copy goes here)</label>
           <input type="email" id="email" autocomplete="email" placeholder="you@example.com">
           <button class="btn block" id="toStep2">Continue to the documents</button>
@@ -118,16 +118,16 @@
           <div class="err" id="e2"></div>
         </div>
       </section>
+    </div>
 
-      <!-- DONE -->
-      <div class="done" id="done">
-        <div class="check">&#10003;</div>
-        <h2>You are all set.</h2>
-        <p>Your signed copy of both documents has downloaded to your device, and a copy is now on file with Forged Lucidity. There is nothing else to do - we will be in touch about next steps and your private link to submit materials.</p>
-        <p><button class="btn" id="redownload">Download my signed copy again</button></p>
-        <div class="fine">Signed electronically under the ESIGN Act and Maine UETA. Keep your copy for your records.</div>
-        <div class="next" style="margin-top:22px;font-size:13.5px;color:var(--mut);">Welcome aboard. - The Eous AI Football Scouting Department</div>
-      </div>
+    <!-- DONE (sibling of #flow so hiding the flow reveals this) -->
+    <div class="done" id="done">
+      <div class="check">&#10003;</div>
+      <h2>You are all set.</h2>
+      <p>Your signed copy of both documents has downloaded to your device, and a copy is now on file with Forged Lucidity. There is nothing else to do - we will be in touch about next steps and your private link to submit materials.</p>
+      <p><button class="btn" id="redownload">Download my signed copy again</button></p>
+      <div class="fine">Signed electronically under the ESIGN Act and Maine UETA. Keep your copy for your records.</div>
+      <div class="next" style="margin-top:22px;font-size:13.5px;color:var(--mut);">Welcome aboard. - The Eous AI Football Scouting Department</div>
     </div>
 
     <footer>
