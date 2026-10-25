@@ -4,32 +4,46 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Participate - Forged Lucidity</title>
-<meta name="description" content="You've been invited to participate with Forged Lucidity. Confirm your details and we'll send your documents to e-sign.">
+<meta name="description" content="Invited to participate with Forged Lucidity. Enter your code, review and e-sign the documents, and you are done.">
 <meta name="robots" content="noindex"><meta name="theme-color" content="#15151f">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="/styles.css">
 <style>
-  .steps{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:40px;}
-  .stp{border:1px solid var(--line);border-radius:14px;padding:20px;}
-  .stp .n{font-size:22px;font-weight:600;color:var(--amber);}
-  .stp .h{font-size:15px;color:#fff;font-weight:500;margin-top:8px;}
-  .stp .d{font-size:13px;color:#bdb6c9;margin-top:6px;line-height:1.5;}
-  .signbox{margin-top:36px;border:1px solid rgba(212,165,116,.5);border-radius:16px;padding:28px;background:linear-gradient(180deg, rgba(212,165,116,.08), rgba(255,255,255,.02));}
-  .signbox label.fl{display:block;font-size:12.5px;letter-spacing:.5px;color:#bdb6c9;margin:16px 0 6px;text-transform:uppercase;}
-  .signbox input{width:100%;}
+  .steps{display:flex;gap:10px;margin:28px 0 8px;flex-wrap:wrap;}
+  .steps .s{font-size:12px;letter-spacing:.5px;color:#8b8494;border:1px solid var(--line);border-radius:20px;padding:6px 14px;}
+  .steps .s.on{color:#1a1322;background:var(--amber);border-color:var(--amber);font-weight:600;}
+  label.fl{display:block;font-size:12.5px;letter-spacing:.5px;color:#bdb6c9;margin:16px 0 6px;text-transform:uppercase;}
+  input[type=text],input[type=email],input[type=password]{width:100%;}
+  .row2{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
+  @media(max-width:620px){.row2{grid-template-columns:1fr;}}
+  .btn{display:inline-block;margin-top:22px;background:var(--amber);color:#1a1322;border:none;border-radius:12px;padding:15px 26px;font-size:16px;font-weight:600;font-family:inherit;cursor:pointer;transition:background .2s,opacity .2s;}
+  .btn:hover{background:#e3b985;} .btn:disabled{opacity:.5;cursor:default;}
+  .btn.block{display:block;width:100%;}
+  .docwrap{margin-top:14px;border:1px solid var(--line);border-radius:14px;background:rgba(255,255,255,.03);}
+  .doctab{display:flex;border-bottom:1px solid var(--line);}
+  .doctab button{flex:1;background:none;border:none;color:#bdb6c9;font-family:inherit;font-size:13.5px;font-weight:500;padding:13px;cursor:pointer;border-bottom:2px solid transparent;}
+  .doctab button.on{color:#fff;border-bottom-color:var(--amber);}
+  .docbody{max-height:340px;overflow:auto;padding:20px 22px;font-size:13.5px;line-height:1.6;color:#d7d2e0;}
+  .docbody h4{color:#fff;font-size:15px;margin:0 0 10px;}
+  .docbody p{margin:0 0 11px;} .docbody .sec{color:#fff;font-weight:600;}
+  .docbody .fill{color:var(--amber);font-weight:600;}
+  .signbox{margin-top:30px;border:1px solid rgba(212,165,116,.5);border-radius:16px;padding:26px;background:linear-gradient(180deg, rgba(212,165,116,.08), rgba(255,255,255,.02));}
+  #sig{width:100%;height:170px;background:#fff;border-radius:10px;border:1px solid var(--line);touch-action:none;display:block;cursor:crosshair;}
+  .sigrow{display:flex;justify-content:space-between;align-items:center;margin-top:8px;}
+  .sigrow .hint{font-size:12px;color:#8b8494;}
+  .linkbtn{background:none;border:none;color:var(--amber);font-family:inherit;font-size:12.5px;cursor:pointer;text-decoration:underline;}
   .consent{display:flex;gap:11px;align-items:flex-start;margin-top:20px;cursor:pointer;}
   .consent input{width:17px;height:17px;margin-top:3px;accent-color:var(--amber);flex-shrink:0;}
   .consent span{font-size:13px;color:#c7c0d4;line-height:1.5;}
-  .submit{display:block;width:100%;margin-top:22px;background:var(--amber);color:#1a1322;border:none;border-radius:12px;padding:17px;font-size:16px;font-weight:600;font-family:inherit;cursor:pointer;transition:background .2s,opacity .2s;}
-  .submit:hover{background:#e3b985;} .submit:disabled{opacity:.5;cursor:default;}
+  .err{color:#e88;font-size:13px;margin-top:12px;min-height:16px;}
+  .status{font-size:13.5px;color:#bdb6c9;margin-top:14px;min-height:18px;}
   .done{display:none;text-align:center;padding:40px 10px;}
   .done.show{display:block;animation:fadeup .5s ease both;}
   .done .check{width:64px;height:64px;border-radius:50%;background:rgba(212,165,116,.15);border:1.5px solid var(--amber);display:flex;align-items:center;justify-content:center;margin:0 auto 20px;font-size:30px;color:var(--amber);}
-  .done h2{font-size:30px;font-weight:300;color:#fff;}
-  .done p{margin-top:14px;color:#cbc4d6;font-size:16px;max-width:480px;margin:14px auto 0;}
-  .done .next{margin-top:22px;font-size:13.5px;color:var(--mut);}
-  #flow.hide{display:none;}
+  .done h2{font-size:30px;font-weight:300;color:#fff;} .done p{margin-top:14px;color:#cbc4d6;font-size:16px;max-width:520px;margin:14px auto 0;}
+  .fine{font-size:12px;color:#8b8494;margin-top:10px;}
+  .hidden{display:none;}
 </style>
 </head>
 <body>
@@ -40,35 +54,78 @@
       <nav><a href="/football/">&larr; Eous AI Football</a></nav>
     </header>
 
-    <div id="flow">
+    <!-- GATE -->
+    <section class="hero sub" id="gate" style="padding-bottom:40px;">
+      <div class="eyebrow">Invited to participate</div>
+      <h1>Come aboard.</h1>
+      <div class="tag">Enter your access code to open the documents. You will review and e-sign them right here - no waiting on email.</div>
+      <div class="signbox" style="max-width:460px;">
+        <label class="fl" for="code">Access code</label>
+        <input type="password" id="code" placeholder="Enter your code" autocomplete="off">
+        <button class="btn block" id="unlock">Unlock the documents</button>
+        <div class="err" id="gerr"></div>
+      </div>
+    </section>
+
+    <!-- FLOW -->
+    <div id="flow" class="hidden">
       <section class="hero sub" style="padding-bottom:0;">
-        <div class="eyebrow">Invited to participate</div>
-        <h1>Come aboard.</h1>
-        <div class="tag">Confirm a few details and we'll send everything you need - by email, ready to sign.</div>
+        <div class="eyebrow">Participate</div>
+        <h1 id="flowh1">Your details</h1>
+        <div class="tag" id="flowtag">Tell us who is signing. We fill it into both documents for you.</div>
+        <div class="steps"><span class="s on" id="st1">1 - Your details</span><span class="s" id="st2">2 - Review &amp; sign</span><span class="s" id="st3">3 - Done</span></div>
       </section>
 
-      <div class="steps">
-        <div class="stp"><div class="n">1</div><div class="h">Confirm</div><div class="d">Your name and email, below. Takes a minute.</div></div>
-        <div class="stp"><div class="n">2</div><div class="h">Sign</div><div class="d">We email you the documents to e-sign - the NDA and the materials authorization.</div></div>
-        <div class="stp"><div class="n">3</div><div class="h">Submit</div><div class="d">You get your copies, plus a private link to send us your film and data.</div></div>
-      </div>
+      <!-- STEP 1 -->
+      <section id="step1">
+        <div class="signbox">
+          <div class="row2">
+            <div><label class="fl" for="name">Full name</label><input type="text" id="name" autocomplete="name" placeholder="First and last name"></div>
+            <div><label class="fl" for="title">Title (optional)</label><input type="text" id="title" placeholder="e.g. Head Coach, Offensive Coordinator"></div>
+          </div>
+          <label class="fl" for="program">Program / School</label>
+          <input type="text" id="program" placeholder="e.g. Lowndes High School">
+          <label class="fl" for="address">Mailing address</label>
+          <input type="text" id="address" placeholder="Street, City, State ZIP">
+          <label class="fl" for="email">Email (your copy goes here)</label>
+          <input type="email" id="email" autocomplete="email" placeholder="you@example.com">
+          <button class="btn block" id="toStep2">Continue to the documents</button>
+          <div class="err" id="e1"></div>
+        </div>
+      </section>
 
-      <div class="signbox">
-        <div class="eyebrow" style="margin:0;">Get your documents</div>
-        <label class="fl" for="name">Full name</label>
-        <input type="text" id="name" autocomplete="name" placeholder="First and last name">
-        <label class="fl" for="email">Email</label>
-        <input type="email" id="email" autocomplete="email" placeholder="you@example.com">
-        <label class="consent"><input type="checkbox" id="consent"><span>Please send me the Mutual Nondisclosure Agreement and the Materials Submission Authorization to review and e-sign, and my private link to submit materials. I agree to be contacted by email.</span></label>
-        <button class="submit" id="go" disabled>Send me the documents</button>
-      </div>
-    </div>
+      <!-- STEP 2 -->
+      <section id="step2" class="hidden">
+        <div class="docwrap">
+          <div class="doctab">
+            <button class="on" id="tabNda" data-doc="nda">Mutual NDA</button>
+            <button id="tabAuth" data-doc="auth">Materials Authorization</button>
+          </div>
+          <div class="docbody" id="docbody"></div>
+        </div>
+        <div class="signbox">
+          <div class="eyebrow" style="margin:0 0 6px;">Sign once for both</div>
+          <div class="tag" style="font-size:14px;">Draw your signature below. It applies to both documents, dated today.</div>
+          <canvas id="sig"></canvas>
+          <div class="sigrow"><span class="hint">Draw with your mouse or finger.</span><button class="linkbtn" id="clearSig">Clear</button></div>
+          <label class="fl" for="typed">Type your full name to confirm</label>
+          <input type="text" id="typed" placeholder="Type your name exactly">
+          <label class="consent"><input type="checkbox" id="consent"><span>I agree to sign these documents electronically; I intend my electronic signature and typed name to be my legal signature and to be as binding as a handwritten one; and I agree that Forged Lucidity may send me and retain a signed electronic copy. (ESIGN / UETA)</span></label>
+          <button class="btn block" id="submit">Sign and submit both documents</button>
+          <div class="status" id="sstatus"></div>
+          <div class="err" id="e2"></div>
+        </div>
+      </section>
 
-    <div class="done" id="done">
-      <div class="check">&#10003;</div>
-      <h2>Thanks - you are all set.</h2>
-      <p>You will get your documents to e-sign by email, and we will be in touch with further instructions and directions. Your private link to submit materials will follow.</p>
-      <div class="next">Welcome aboard. - The Eous AI Football Scouting Department</div>
+      <!-- DONE -->
+      <div class="done" id="done">
+        <div class="check">&#10003;</div>
+        <h2>You are all set.</h2>
+        <p>Your signed copy of both documents has downloaded to your device, and a copy is now on file with Forged Lucidity. There is nothing else to do - we will be in touch about next steps and your private link to submit materials.</p>
+        <p><button class="btn" id="redownload">Download my signed copy again</button></p>
+        <div class="fine">Signed electronically under the ESIGN Act and Maine UETA. Keep your copy for your records.</div>
+        <div class="next" style="margin-top:22px;font-size:13.5px;color:var(--mut);">Welcome aboard. - The Eous AI Football Scouting Department</div>
+      </div>
     </div>
 
     <footer>
@@ -76,18 +133,250 @@
       <div class="r">&copy; 2026 Forged Lucidity LLC</div>
     </footer>
   </div>
+
+<script src="/assets/pdf-lib.min.js"></script>
 <script>
-  var SUPA_URL="https://tcontraztjotymxvwpnj.supabase.co",SUPA_KEY="sb_publishable_ef9QBUJUoHfvT8biWBmFwQ_yTBopGk0";
-  var name=document.getElementById('name'),email=document.getElementById('email'),consent=document.getElementById('consent'),
-      go=document.getElementById('go'),flow=document.getElementById('flow'),done=document.getElementById('done');
-  function refresh(){go.disabled=!(name.value.trim().length>1 && email.value.indexOf('@')>0 && consent.checked);}
-  name.addEventListener('input',refresh);email.addEventListener('input',refresh);consent.addEventListener('change',refresh);
-  go.addEventListener('click',function(){
-    go.disabled=true;go.textContent='Sending...';
-    fetch(SUPA_URL+"/rest/v1/signatures",{method:'POST',
-      headers:{'apikey':SUPA_KEY,'Authorization':'Bearer '+SUPA_KEY,'Content-Type':'application/json','Prefer':'return=minimal'},
-      body:JSON.stringify({name:name.value.trim(),email:email.value.trim(),documents:'Mutual NDA; Materials Submission Authorization',consent:true,source:'football/participate',user_agent:navigator.userAgent})})
-    .catch(function(x){console.warn(x);}).finally(function(){flow.classList.add('hide');done.classList.add('show');window.scrollTo({top:0,behavior:'smooth'});});});
+(function(){
+  "use strict";
+  var SUPA="https://tcontraztjotymxvwpnj.supabase.co";
+  var KEY="sb_publishable_ef9QBUJUoHfvT8biWBmFwQ_yTBopGk0";
+  var CODE="vikings"; var DOC_VERSION="2026-10-25";
+  var $=function(id){return document.getElementById(id);};
+  var state={}, lastPdfBytes=null, lastFileName="";
+
+  // ---------- gate ----------
+  function tryUnlock(){
+    var v=($("code").value||"").trim().toLowerCase();
+    if(v===CODE){ $("gate").classList.add("hidden"); $("flow").classList.remove("hidden"); window.scrollTo({top:0,behavior:"smooth"}); }
+    else { $("gerr").textContent="That code is not right. Check with your coach and try again."; }
+  }
+  $("unlock").addEventListener("click",tryUnlock);
+  $("code").addEventListener("keydown",function(e){if(e.key==="Enter")tryUnlock();});
+
+  // ---------- today's date ----------
+  function today(){ var d=new Date(); return d.toLocaleDateString("en-US",{year:"numeric",month:"long",day:"numeric"}); }
+  var TODAY=today();
+
+  // ---------- document text ----------
+  function docData(){
+    return {
+      program: state.program||"________________",
+      individual: state.name||"________________",
+      address: state.address||"________________",
+      title: state.title||"",
+      date: TODAY,
+      retention: "end of the then-current season plus twelve (12) months"
+    };
+  }
+  // Returns array of blocks: {t:'h'|'s'|'p', text}
+  function ndaBlocks(d){
+    return [
+      {t:"h",text:"MUTUAL NONDISCLOSURE AGREEMENT"},
+      {t:"p",text:"This Mutual Nondisclosure Agreement (this “Agreement”) is entered into as of "+d.date+" (the “Effective Date”) by and between Forged Lucidity LLC, a Maine limited liability company with a mailing address of P.O. Box 107, Westbrook, Maine 04098 (“FL”), and "+d.program+", with an address of "+d.address+" (“Program”). FL and Program are each a “Party” and together the “Parties.”"},
+      {t:"p",text:"Recital. The Parties wish to explore and carry out a relationship in which FL provides AI-assisted football advance-scouting and analysis services to the Program (the “Purpose”), which will involve each Party disclosing certain confidential information to the other."},
+      {t:"p",text:"1. Confidential Information. “Confidential Information” means non-public information disclosed by one Party (“Discloser”) to the other (“Recipient”), in any form, that is marked or reasonably understood to be confidential. It includes, without limitation: (a) the Program’s game film, breakdown/data sheets, personnel and depth-chart information, game plans, tendencies, questions, and strategy; and (b) FL’s methods, models, software, prompts, templates, scouting formats, analytical processes, pricing, and deliverables."},
+      {t:"p",text:"2. Obligations. Recipient shall (a) use the Confidential Information only for the Purpose; (b) protect it with at least the care it uses for its own confidential information, and no less than reasonable care; and (c) not disclose it to any third party except to its personnel who need it for the Purpose and are bound by confidentiality obligations at least as protective as these."},
+      {t:"p",text:"3. Exclusions. Confidential Information does not include information that (a) is or becomes public through no fault of Recipient; (b) Recipient lawfully possessed without confidentiality obligation before disclosure; (c) Recipient independently develops without use of the Confidential Information; or (d) Recipient rightfully receives from a third party without restriction. Recipient may disclose Confidential Information if required by law or court order, provided it gives the Discloser prompt notice (where lawful) and reasonable cooperation to seek protection."},
+      {t:"p",text:"4. No license; no obligation. Nothing in this Agreement grants any license or ownership right in the Confidential Information, except the limited right to use it for the Purpose. Any license to use submitted materials is addressed in a separate authorization. This Agreement does not obligate either Party to proceed with any transaction."},
+      {t:"p",text:"5. Return or destruction. Upon the Discloser’s written request or termination of the relationship, Recipient will return or destroy the Discloser’s Confidential Information in its possession, except for routine backups and copies required by law, which remain subject to this Agreement."},
+      {t:"p",text:"6. Term. This Agreement applies to disclosures made for two (2) years after the Effective Date, and the confidentiality obligations survive for two (2) years after each disclosure."},
+      {t:"p",text:"7. No warranty. Confidential Information is provided “as is,” without warranty of any kind."},
+      {t:"p",text:"8. Remedies. The Parties agree that a breach may cause irreparable harm for which money damages are inadequate, and that the Discloser may seek injunctive relief in addition to other remedies."},
+      {t:"p",text:"9. Governing law; venue. This Agreement is governed by the laws of the State of Maine, without regard to its conflict-of-laws rules. The Parties consent to the exclusive jurisdiction and venue of the state and federal courts located in Cumberland County, Maine."},
+      {t:"p",text:"10. Miscellaneous. This Agreement is the entire agreement between the Parties as to its subject matter and supersedes prior discussions. It may be amended only in a writing signed by both Parties. It may be signed in counterparts and by electronic signature, each of which is an original."}
+    ];
+  }
+  function authBlocks(d){
+    return [
+      {t:"h",text:"MATERIALS SUBMISSION AUTHORIZATION, LICENSE & ACKNOWLEDGEMENT"},
+      {t:"p",text:"This Authorization (this “Authorization”) is entered into as of "+d.date+" by and between Forged Lucidity LLC, a Maine limited liability company, P.O. Box 107, Westbrook, Maine 04098 (“FL”), and "+d.individual+" (the “Individual”)."},
+      {t:"p",text:"Recital. The Individual has in the Individual’s possession game film, breakdown/data sheets, depth-chart and personnel information, questions, and related materials used for the Individual’s own coaching work (collectively, the “Submitted Materials”), and wishes to submit them to FL so that FL may produce AI-assisted advance-scouting analysis and deliverables (the “Services”). This Authorization sets the permissions, representations, and acknowledgements for that exchange."},
+      {t:"p",text:"1. License to FL (to provide the Services). The Individual grants FL a non-exclusive, worldwide, royalty-free license to host, store, copy, process, analyze, and create derivative analyses from the Submitted Materials solely to provide the Services to the Individual and to deliver the resulting work product to the Individual. In plain terms: you are giving FL the permission it needs to do whatever is required with the film and materials you give us in order to do this work for you, and nothing more. FL may use your Submitted Materials only to provide the Services to you, and gains no right to use them for any purpose beyond the Services."},
+      {t:"p",text:"2. The Individual’s representations. The Individual represents that the Submitted Materials are in the Individual’s possession for the Individual’s own coaching work and purposes, and that the Individual is entitled to share them with FL in order to receive the Services. The Individual will not submit materials the Individual is not entitled to share, will promptly tell FL if that changes, and, to the Individual’s knowledge, sharing the Submitted Materials with FL does not violate any agreement by which the Individual is bound."},
+      {t:"p",text:"3. Intellectual property. As between the parties, FL exclusively owns, and the Individual makes no claim to, all of FL’s methods, models, software, prompts, templates, scouting formats, and processes, together with all know-how, skill, experience, techniques, and the general knowledge, learning, and improvements that FL develops, derives, or refines in the course of providing the Services (collectively, “FL IP”). The Individual acknowledges that FL IP, including anything FL learns, refines, or improves through providing the Services, is and remains FL’s property, and that FL’s continued use and development of FL IP is not limited by this Authorization. The one exception, which belongs to the Individual and not to FL, is the Individual’s own Submitted Materials and the finished deliverables FL prepares for the Individual; FL provides those deliverables to the Individual for the Individual’s own coaching use, and the Individual will not resell, publish, or share them outside the Individual’s own program without FL’s written consent."},
+      {t:"p",text:"4. Confidentiality and non-use. FL will hold the Individual’s Submitted Materials in confidence. FL will not share, publish, or disclose the Submitted Materials to any third party, and will not use the Individual’s Submitted Materials to prepare deliverables for, or to otherwise directly benefit, any other coach, team, or program. FL stores and processes the Submitted Materials within its own controlled environment. This Section protects the Individual’s actual Submitted Materials from disclosure and from direct reuse for anyone else; it does not limit FL’s ownership of FL IP under Section 3, including the general know-how, learning, and improvements FL develops through providing the Services."},
+      {t:"p",text:"5. AI-service acknowledgement. The Individual acknowledges and agrees that: (a) the Services are produced with artificial intelligence and automated analysis; (b) they are best-efforts analyses of the materials the Individual provides - the quality and completeness of the output depend on the quality and completeness of the Submitted Materials (“we can only analyze what is submitted”); (c) they are decision-support only and are not guarantees or predictions of any game result or outcome; and (d) the Individual is solely responsible for the Individual’s own coaching and competitive decisions."},
+      {t:"p",text:"6. Data handling; retention. On the Individual’s written request, FL will delete the Individual’s identifiable Submitted Materials, except for routine backups and copies required by law. Default retention: "+d.retention+"."},
+      {t:"p",text:"7. Term; termination. This Authorization applies for the duration of the parties’ engagement and may be terminated by either party on written notice. Sections 2 through 6, and this Section 7, survive termination."},
+      {t:"p",text:"8. Governing law; venue. Maine law governs, without regard to conflict-of-laws rules; exclusive jurisdiction and venue lie in the state and federal courts of Cumberland County, Maine."},
+      {t:"p",text:"9. Entire agreement. This Authorization (together with any nondisclosure agreement and any Services Agreement the parties sign) is the entire agreement on its subject matter. Amendments must be in a signed writing. Electronic signatures and counterparts are effective."}
+    ];
+  }
+
+  // ---------- render doc preview ----------
+  function renderDoc(which){
+    var d=docData();
+    var blocks = which==="nda"? ndaBlocks(d) : authBlocks(d);
+    var html="";
+    for(var i=0;i<blocks.length;i++){
+      var b=blocks[i];
+      if(b.t==="h") html+='<h4>'+esc(b.text)+'</h4>';
+      else html+='<p>'+esc(b.text)+'</p>';
+    }
+    html+='<p class="sec">Signature block</p><p>FL: G.P. Braun, Member &amp; Manager, Forged Lucidity LLC - '+esc(d.date)+'</p><p>'+(which==="nda"?"Program":"Individual")+': <span class="fill">'+esc(d.individual)+'</span>'+(which==="nda"&&d.title?' ('+esc(d.title)+')':'')+' - '+esc(d.date)+' (your signature is applied on submit)</p>';
+    $("docbody").innerHTML=html;
+  }
+  function esc(s){return String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;");}
+  function setTab(which){
+    $("tabNda").classList.toggle("on",which==="nda");
+    $("tabAuth").classList.toggle("on",which==="auth");
+    renderDoc(which);
+    $("docbody").scrollTop=0;
+  }
+  $("tabNda").addEventListener("click",function(){setTab("nda");});
+  $("tabAuth").addEventListener("click",function(){setTab("auth");});
+
+  // ---------- step 1 -> 2 ----------
+  $("toStep2").addEventListener("click",function(){
+    var name=($("name").value||"").trim(), email=($("email").value||"").trim(), program=($("program").value||"").trim();
+    if(name.length<2||email.indexOf("@")<1||program.length<2){ $("e1").textContent="Please enter your name, program, and a valid email."; return; }
+    state.name=name; state.email=email; state.program=program;
+    state.title=($("title").value||"").trim(); state.address=($("address").value||"").trim();
+    $("e1").textContent="";
+    $("step1").classList.add("hidden"); $("step2").classList.remove("hidden");
+    $("flowh1").textContent="Review and sign"; $("flowtag").textContent="Read both documents, then sign once below. Your signature applies to both.";
+    $("st1").classList.remove("on"); $("st2").classList.add("on");
+    setTab("nda"); setTimeout(resizeCanvas,30);
+    window.scrollTo({top:0,behavior:"smooth"});
+  });
+
+  // ---------- signature canvas ----------
+  var canvas=$("sig"), ctx=canvas.getContext("2d"), drawing=false, hasSig=false;
+  function resizeCanvas(){ var ratio=Math.max(window.devicePixelRatio||1,1); var w=canvas.offsetWidth, h=canvas.offsetHeight; canvas.width=w*ratio; canvas.height=h*ratio; ctx.setTransform(ratio,0,0,ratio,0,0); ctx.lineWidth=2.2; ctx.lineCap="round"; ctx.lineJoin="round"; ctx.strokeStyle="#15121c"; }
+  function ptr(e){ var r=canvas.getBoundingClientRect(); return {x:e.clientX-r.left, y:e.clientY-r.top}; }
+  canvas.addEventListener("pointerdown",function(e){drawing=true;hasSig=true;var p=ptr(e);ctx.beginPath();ctx.moveTo(p.x,p.y);canvas.setPointerCapture(e.pointerId);});
+  canvas.addEventListener("pointermove",function(e){if(!drawing)return;var p=ptr(e);ctx.lineTo(p.x,p.y);ctx.stroke();});
+  canvas.addEventListener("pointerup",function(){drawing=false;});
+  $("clearSig").addEventListener("click",function(){ctx.clearRect(0,0,canvas.width,canvas.height);hasSig=false;});
+  window.addEventListener("resize",function(){if(!$("step2").classList.contains("hidden")){var data=canvas.toDataURL();resizeCanvas();}});
+
+  // ---------- PDF ----------
+  function wrap(text, font, size, maxW){
+    var words=text.split(/\s+/), lines=[], line="";
+    for(var i=0;i<words.length;i++){
+      var test=line?line+" "+words[i]:words[i];
+      if(font.widthOfTextAtSize(test,size)>maxW && line){ lines.push(line); line=words[i]; }
+      else line=test;
+    }
+    if(line)lines.push(line);
+    return lines;
+  }
+  function clean(s){ return s.replace(/[‘’]/g,"'").replace(/[“”]/g,'"').replace(/[–—]/g,"-"); }
+
+  async function buildPdf(meta){
+    var P=PDFLib, doc=await P.PDFDocument.create();
+    var font=await doc.embedFont(P.StandardFonts.Helvetica);
+    var bold=await doc.embedFont(P.StandardFonts.HelveticaBold);
+    var sigImg=await doc.embedPng(meta.sigDataUrl);
+    var W=612,H=792,M=56, maxW=W-M*2;
+    var page,y;
+    function newPage(){ page=doc.addPage([W,H]); y=H-M; }
+    function space(n){ if(y-n<M){ newPage(); } }
+    function drawPara(text,size,f,gap){
+      f=f||font; size=size||10.5; gap=gap||4.5;
+      var lines=wrap(clean(text),f,size,maxW);
+      for(var i=0;i<lines.length;i++){ space(size+3); page.drawText(lines[i],{x:M,y:y,size:size,font:f,color:P.rgb(0.1,0.1,0.13)}); y-=size+3; }
+      y-=gap;
+    }
+    function heading(text){ space(20); page.drawText(clean(text),{x:M,y:y,size:13,font:bold,color:P.rgb(0.55,0.11,0.17)}); y-=20; }
+    function rule(){ space(14); page.drawLine({start:{x:M,y:y},end:{x:W-M,y:y},thickness:0.8,color:P.rgb(0.8,0.82,0.86)}); y-=14; }
+    function sigBlock(label){
+      space(84);
+      page.drawText("FORGED LUCIDITY LLC",{x:M,y:y,size:9.5,font:bold,color:P.rgb(0.2,0.2,0.24)}); y-=16;
+      page.drawText("By: G.P. Braun    Title: Member & Manager    Date: "+meta.date,{x:M,y:y,size:10,font:font,color:P.rgb(0.1,0.1,0.13)}); y-=26;
+      page.drawText(label,{x:M,y:y,size:9.5,font:bold,color:P.rgb(0.2,0.2,0.24)}); y-=4;
+      var sigW=150, sigH=46; page.drawImage(sigImg,{x:M,y:y-sigH,width:sigW,height:sigH});
+      page.drawLine({start:{x:M,y:y-sigH-2},end:{x:M+sigW,y:y-sigH-2},thickness:0.8,color:P.rgb(0.6,0.6,0.64)});
+      y-=sigH+8;
+      var nameLine="By: "+meta.name+(label.indexOf("PROGRAM")>=0&&meta.title?"    Title: "+meta.title:"")+"    Date: "+meta.date;
+      page.drawText(nameLine,{x:M,y:y,size:10,font:font,color:P.rgb(0.1,0.1,0.13)}); y-=22;
+    }
+
+    // Cover / attestation page
+    newPage();
+    page.drawText("Forged Lucidity LLC",{x:M,y:y,size:12,font:bold,color:P.rgb(0.55,0.11,0.17)}); y-=30;
+    page.drawText("Coach Participation Package - Signed Electronically",{x:M,y:y,size:18,font:bold,color:P.rgb(0.1,0.1,0.13)}); y-=30;
+    drawPara("This record contains two executed documents - the Mutual Nondisclosure Agreement and the Materials Submission Authorization, License & Acknowledgement - signed electronically by the individual below for the program identified.",10.5,font,10);
+    rule();
+    page.drawText("Signer",{x:M,y:y,size:11,font:bold,color:P.rgb(0.2,0.2,0.24)}); y-=18;
+    drawPara("Name: "+meta.name+(meta.title?"  ("+meta.title+")":""),10.5,font,2);
+    drawPara("Program / School: "+meta.program,10.5,font,2);
+    if(meta.address) drawPara("Address: "+meta.address,10.5,font,2);
+    drawPara("Email: "+meta.email,10.5,font,2);
+    drawPara("Date signed: "+meta.date,10.5,font,8);
+    page.drawText("Your signature",{x:M,y:y,size:11,font:bold,color:P.rgb(0.2,0.2,0.24)}); y-=6;
+    page.drawImage(sigImg,{x:M,y:y-48,width:160,height:48}); y-=56;
+    rule();
+    page.drawText("Electronic signature record (ESIGN Act / Maine UETA)",{x:M,y:y,size:11,font:bold,color:P.rgb(0.2,0.2,0.24)}); y-=16;
+    drawPara("Consent: The signer agreed to transact and sign electronically and intended the electronic and typed signature to be legally binding.",9.5,font,2);
+    drawPara("Typed-name confirmation: "+meta.typed,9.5,font,2);
+    drawPara("Timestamp (UTC): "+meta.ts,9.5,font,2);
+    drawPara("IP address: "+(meta.ip||"not captured"),9.5,font,2);
+    drawPara("Browser: "+meta.ua,9.5,font,2);
+    drawPara("Document version: "+DOC_VERSION,9.5,font,2);
+
+    // NDA
+    newPage();
+    var d=docData(); var nb=ndaBlocks(d);
+    for(var i=0;i<nb.length;i++){ if(nb[i].t==="h") heading(nb[i].text); else drawPara(nb[i].text,10.5,font,6); }
+    sigBlock("PROGRAM");
+    // Authorization
+    newPage();
+    var ab=authBlocks(d);
+    for(var j=0;j<ab.length;j++){ if(ab[j].t==="h") heading(ab[j].text); else drawPara(ab[j].text,10.5,font,6); }
+    sigBlock("THE INDIVIDUAL");
+
+    // footer page numbers
+    var pages=doc.getPages();
+    for(var k=0;k<pages.length;k++){ pages[k].drawText("Forged Lucidity LLC - signed "+meta.date+"    Page "+(k+1)+" of "+pages.length,{x:M,y:28,size:8,font:font,color:P.rgb(0.5,0.5,0.55)}); }
+    return await doc.save();
+  }
+
+  function b64FromBytes(bytes){ var bin=""; for(var i=0;i<bytes.length;i++) bin+=String.fromCharCode(bytes[i]); return btoa(bin); }
+  function download(bytes,fname){ var blob=new Blob([bytes],{type:"application/pdf"}); var url=URL.createObjectURL(blob); var a=document.createElement("a"); a.href=url; a.download=fname; document.body.appendChild(a); a.click(); setTimeout(function(){URL.revokeObjectURL(url);a.remove();},1500); }
+
+  function fetchT(url,opts,ms){ return new Promise(function(res,rej){ var c=new AbortController(); var t=setTimeout(function(){c.abort();},ms||10000); opts=opts||{}; opts.signal=c.signal; fetch(url,opts).then(function(r){clearTimeout(t);res(r);},function(e){clearTimeout(t);rej(e);}); }); }
+  async function getIp(){ try{ var r=await fetchT("https://api.ipify.org?format=json",{},4000); var j=await r.json(); return j.ip; }catch(e){ return ""; } }
+
+  // ---------- submit ----------
+  $("submit").addEventListener("click",async function(){
+    $("e2").textContent="";
+    var typed=($("typed").value||"").trim();
+    if(!hasSig){ $("e2").textContent="Please draw your signature."; return; }
+    if(typed.length<2){ $("e2").textContent="Please type your full name to confirm."; return; }
+    if(!$("consent").checked){ $("e2").textContent="Please check the consent box to sign electronically."; return; }
+    $("submit").disabled=true; $("sstatus").textContent="Preparing your signed documents...";
+    try{
+      var ip=await getIp();
+      var meta={ name:state.name, email:state.email, program:state.program, title:state.title, address:state.address,
+                 date:TODAY, typed:typed, ts:new Date().toISOString(), ip:ip, ua:navigator.userAgent,
+                 sigDataUrl:canvas.toDataURL("image/png") };
+      var bytes=await buildPdf(meta);
+      lastPdfBytes=bytes;
+      lastFileName="ForgedLucidity_Signed_"+(state.program.replace(/[^a-z0-9]+/gi,"_").slice(0,30))+".pdf";
+      // deliver to the coach FIRST - they always get their copy
+      download(bytes,lastFileName);
+      // then file the full signed record with us, best-effort (never blocks the coach's copy)
+      $("sstatus").textContent="Filing your signed copy with Forged Lucidity...";
+      try{
+        await fetchT(SUPA+"/rest/v1/signatures",{ method:"POST",
+          headers:{"apikey":KEY,"Authorization":"Bearer "+KEY,"Content-Type":"application/json","Prefer":"return=minimal"},
+          body:JSON.stringify({ name:state.name, email:state.email, program:state.program, address:state.address, title:state.title,
+            documents:"Mutual NDA; Materials Submission Authorization", consent:true, signer_date:TODAY, ip:ip,
+            signature_png:meta.sigDataUrl, signed_pdf_b64:b64FromBytes(bytes), doc_version:DOC_VERSION,
+            source:"participate-esign", user_agent:navigator.userAgent }) },20000);
+      }catch(e){}
+      $("flow").classList.add("hidden"); $("done").classList.add("show");
+      $("st2").classList.remove("on"); $("st3").classList.add("on");
+      window.scrollTo({top:0,behavior:"smooth"});
+    }catch(err){
+      $("submit").disabled=false;
+      $("e2").textContent="Something went wrong preparing the documents. Please try again, or let us know.";
+      try{console.error(err);}catch(e){}
+    }
+  });
+  $("redownload").addEventListener("click",function(){ if(lastPdfBytes) download(lastPdfBytes,lastFileName); });
+})();
 </script>
 </body>
 </html>
