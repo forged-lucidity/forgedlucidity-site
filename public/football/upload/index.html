@@ -19,6 +19,8 @@
   .btn{display:inline-block;margin-top:22px;background:var(--amber);color:#1a1322;border:none;border-radius:12px;padding:15px 26px;font-size:16px;font-weight:600;font-family:inherit;cursor:pointer;transition:background .2s,opacity .2s;}
   .btn:hover{background:#e3b985;} .btn:disabled{opacity:.5;cursor:default;}
   .btn.block{display:block;width:100%;}
+  .btn.ghost{background:none;border:1px solid var(--line);color:#cbc4d6;}
+  .btn.ghost:hover{background:rgba(255,255,255,.05);}
   .signbox{margin-top:30px;border:1px solid rgba(212,165,116,.5);border-radius:16px;padding:26px;background:linear-gradient(180deg, rgba(212,165,116,.08), rgba(255,255,255,.02));}
   .err{color:#e88;font-size:13px;margin-top:12px;min-height:16px;}
   .status{font-size:13.5px;color:#bdb6c9;margin-top:14px;min-height:18px;}
@@ -34,6 +36,18 @@
   .drop .dm{font-size:12px;color:#8b8494;margin-top:3px;}
   .safe{font-size:12.5px;color:#8b8494;margin-top:14px;line-height:1.5;}
   .safe b{color:#bdb6c9;font-weight:600;}
+  /* receipt */
+  .receipt{margin-top:30px;border:1px solid rgba(212,165,116,.5);border-radius:16px;padding:30px 26px;background:linear-gradient(180deg, rgba(212,165,116,.1), rgba(255,255,255,.02));text-align:center;}
+  .receipt .check{width:58px;height:58px;border-radius:50%;background:rgba(212,165,116,.16);border:1.5px solid var(--amber);display:flex;align-items:center;justify-content:center;margin:0 auto 16px;font-size:28px;color:var(--amber);}
+  .receipt h2{font-size:25px;font-weight:300;color:#fff;}
+  .receipt .rsub{margin-top:8px;color:#cbc4d6;font-size:15px;max-width:460px;margin-left:auto;margin-right:auto;}
+  .rbox{text-align:left;max-width:480px;margin:20px auto 0;border:1px solid var(--line);border-radius:12px;overflow:hidden;background:rgba(0,0,0,.18);}
+  .rrow{display:flex;justify-content:space-between;gap:16px;padding:10px 16px;border-bottom:1px solid var(--line);font-size:14px;}
+  .rrow:last-child{border-bottom:none;}
+  .rrow span{color:#8b8494;text-transform:uppercase;font-size:11px;letter-spacing:.5px;padding-top:2px;}
+  .rrow b{color:#eee;font-weight:600;text-align:right;word-break:break-word;}
+  .rbtns{margin-top:6px;display:flex;gap:12px;justify-content:center;flex-wrap:wrap;}
+  .rfine{font-size:12px;color:#8b8494;margin-top:14px;}
 </style>
 </head>
 <body>
@@ -65,7 +79,8 @@
         <div class="tag"><span class="prog">Lowndes High School</span> &nbsp; Everything you drop here lands in Lowndes' own sealed space and goes straight into game prep.</div>
       </section>
 
-      <section>
+      <!-- FORM -->
+      <section id="dropform">
         <div class="signbox">
           <label class="fl" for="cat">What is this?</label>
           <select id="cat">
@@ -101,6 +116,27 @@
           <div id="drops"></div>
         </div>
       </section>
+
+      <!-- RECEIPT -->
+      <section id="receiptwrap" class="hidden">
+        <div class="receipt">
+          <div class="check">&#10003;</div>
+          <h2>Got it - received.</h2>
+          <p class="rsub">Forged Lucidity has your submission on file in Lowndes' own sealed space. Here is your receipt.</p>
+          <div class="rbox">
+            <div class="rrow"><span>Program</span><b>Lowndes High School</b></div>
+            <div class="rrow"><span>Received</span><b id="r_when"></b></div>
+            <div class="rrow"><span>Type</span><b id="r_cat"></b></div>
+            <div class="rrow"><span>Item</span><b id="r_item"></b></div>
+            <div class="rrow"><span>Reference</span><b id="r_ref"></b></div>
+          </div>
+          <div class="rbtns">
+            <button class="btn" id="dlReceipt">Download receipt</button>
+            <button class="btn ghost" id="dropMore">Drop something else</button>
+          </div>
+          <div class="rfine">Keep this receipt for your records. You can drop as many items as you like - each one gets its own receipt.</div>
+        </div>
+      </section>
     </div>
 
     <footer>
@@ -109,6 +145,7 @@
     </footer>
   </div>
 
+<script src="/assets/pdf-lib.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.min.js"></script>
 <script>
 (function(){
@@ -117,9 +154,11 @@
   var KEY="sb_publishable_ef9QBUJUoHfvT8biWBmFwQ_yTBopGk0";
   var CODE="winnersville";
   var PROGRAM="lowndes";
+  var PROGRAM_LABEL="Lowndes High School";
   var MAXBYTES=52428800; // 50 MB
   var $=function(id){return document.getElementById(id);};
   var sb=window.supabase.createClient(SUPA,KEY);
+  var CURRENT=null;
 
   function tryUnlock(){
     var v=($("code").value||"").trim().toLowerCase();
@@ -141,6 +180,58 @@
     $("drops").insertBefore(d,$("drops").firstChild);
   }
 
+  function showReceipt(m){
+    CURRENT=m;
+    $("r_when").textContent=m.when;
+    $("r_cat").textContent=m.cat;
+    $("r_item").textContent=m.item + (m.size? "  ("+m.size+")" : "");
+    $("r_ref").textContent=m.ref;
+    $("dropform").classList.add("hidden");
+    $("receiptwrap").classList.remove("hidden");
+    window.scrollTo({top:0,behavior:"smooth"});
+  }
+
+  function dl(blob,fname){
+    var url=URL.createObjectURL(blob); var a=document.createElement("a");
+    a.href=url; a.download=fname; document.body.appendChild(a); a.click();
+    setTimeout(function(){ URL.revokeObjectURL(url); a.remove(); },1500);
+  }
+  function receiptText(m){
+    return "FORGED LUCIDITY LLC - Materials Receipt\nEous AI Football Scout\n\n"
+      +"Program:   "+m.program+"\nReceived:  "+m.when+"\nType:      "+m.cat+"\nItem:      "+m.item
+      +(m.size?"\nSize:      "+m.size:"")+"\nReference: "+m.ref
+      +"\n\nReceived and on file with Forged Lucidity in Lowndes' own sealed space.\nThis is your acknowledgment of submission. Keep it for your records.\n";
+  }
+  async function receiptPdf(m){
+    var P=window.PDFLib; if(!P) throw new Error("pdflib not loaded");
+    var doc=await P.PDFDocument.create();
+    var font=await doc.embedFont(P.StandardFonts.Helvetica);
+    var bold=await doc.embedFont(P.StandardFonts.HelveticaBold);
+    var pg=doc.addPage([612,792]); var M=56; var y=792-M;
+    pg.drawText("Forged Lucidity LLC",{x:M,y:y,size:12,font:bold,color:P.rgb(0.55,0.11,0.17)}); y-=30;
+    pg.drawText("Materials Receipt",{x:M,y:y,size:20,font:bold,color:P.rgb(0.1,0.1,0.13)}); y-=26;
+    pg.drawText("Eous AI Football Scout",{x:M,y:y,size:11,font:font,color:P.rgb(0.3,0.3,0.34)}); y-=30;
+    pg.drawLine({start:{x:M,y:y},end:{x:612-M,y:y},thickness:0.8,color:P.rgb(0.8,0.82,0.86)}); y-=24;
+    function row(k,v){ pg.drawText(k,{x:M,y:y,size:10,font:bold,color:P.rgb(0.3,0.3,0.34)}); pg.drawText(String(v).slice(0,78),{x:M+150,y:y,size:11,font:font,color:P.rgb(0.1,0.1,0.13)}); y-=22; }
+    row("Program", m.program); row("Received", m.when); row("Type", m.cat); row("Item", m.item);
+    if(m.size) row("Size", m.size); row("Reference", m.ref);
+    y-=14;
+    pg.drawText("Received and on file with Forged Lucidity in Lowndes' own sealed space.",{x:M,y:y,size:10.5,font:font,color:P.rgb(0.1,0.1,0.13)}); y-=16;
+    pg.drawText("This is your acknowledgment of submission. Keep it for your records.",{x:M,y:y,size:10.5,font:font,color:P.rgb(0.1,0.1,0.13)});
+    return await doc.save();
+  }
+  $("dlReceipt").addEventListener("click",async function(){
+    if(!CURRENT) return;
+    try{ var bytes=await receiptPdf(CURRENT); dl(new Blob([bytes],{type:"application/pdf"}),"FL_Receipt_"+CURRENT.ref+".pdf"); }
+    catch(e){ dl(new Blob([receiptText(CURRENT)],{type:"text/plain"}),"FL_Receipt_"+CURRENT.ref+".txt"); }
+  });
+  $("dropMore").addEventListener("click",function(){
+    $("receiptwrap").classList.add("hidden");
+    $("dropform").classList.remove("hidden");
+    $("sstatus").textContent=""; $("e1").textContent="";
+    window.scrollTo({top:0,behavior:"smooth"});
+  });
+
   $("send").addEventListener("click",async function(){
     $("e1").textContent="";
     var cat=$("cat").value;
@@ -152,9 +243,10 @@
     $("send").disabled=true; $("sstatus").textContent="Dropping it in...";
     try{
       var storage_path=null, size_bytes=null, content_type=null, original_filename=null;
+      var ts=Date.now();
       if(file){
         original_filename=file.name; size_bytes=file.size; content_type=file.type||"application/octet-stream";
-        storage_path=PROGRAM+"/"+Date.now()+"_"+safeName(file.name);
+        storage_path=PROGRAM+"/"+ts+"_"+safeName(file.name);
         var up=await sb.storage.from("coach-materials").upload(storage_path,file,{contentType:content_type,upsert:false});
         if(up.error){ throw new Error("Upload failed: "+up.error.message); }
       }
@@ -163,9 +255,12 @@
       var ins=await sb.from("uploads").insert(row);
       if(ins.error){ throw new Error("Saved the file but could not log it: "+ins.error.message); }
       var label = file ? original_filename : link;
-      var meta = (file ? (Math.max(1,Math.round(size_bytes/1024))+" KB") : "link") + (note? "  -  "+note : "");
-      addDrop(cat,label,meta);
-      $("sstatus").textContent="Got it. Dropped in and on its way to Eous.";
+      var sizeStr = file ? (Math.max(1,Math.round(size_bytes/1024))+" KB") : null;
+      addDrop(cat,label,(sizeStr?sizeStr:"link")+(note? "  -  "+note : ""));
+      var when=new Date(ts).toLocaleString("en-US",{year:"numeric",month:"long",day:"numeric",hour:"numeric",minute:"2-digit"});
+      var ref="FL-LOW-"+new Date(ts).toISOString().slice(0,10).replace(/-/g,"")+"-"+String(ts).slice(-5);
+      $("sstatus").textContent="";
+      showReceipt({ program:PROGRAM_LABEL, when:when, cat:cat, item:label, size:sizeStr, ref:ref, note:note });
       $("link").value=""; $("note").value=""; $("file").value="";
     }catch(err){
       $("sstatus").textContent="";
